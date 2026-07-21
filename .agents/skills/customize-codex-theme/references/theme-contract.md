@@ -164,6 +164,29 @@ RUNTIME_NODE RUNTIME_CLI uninstall --theme THEME_ID
 
 The installer defaults to the latest stable `ssyamv/codex-skin` GitHub Release, selects the host architecture, verifies SHA-256 and code signing, validates the exact Bundle ID, and installs into `~/Applications` with recoverable backup semantics.
 
+Preview the resolved release and destination before writing:
+
+```text
+scripts/install-app.zsh --print-plan
+```
+
+Install the latest stable release:
+
+```text
+scripts/install-app.zsh
+```
+
+Supported explicit inputs:
+
+```text
+--version <semver>
+--source-dir <local-release-directory>
+--install-root <directory>
+--print-plan
+```
+
+`--source-dir` requires `--version` and is intended for a locally downloaded or test Release directory containing the selected ZIP plus `SHA256SUMS`. The installer verifies everything before changing the destination, keeps any previous App in a same-parent backup, runs post-install `doctor`, and restores the previous App if that final check fails.
+
 Before `start`, check whether ordinary Codex is running. When it is:
 
 - `themes validate` and offline `themes install` may continue.

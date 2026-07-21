@@ -16,7 +16,7 @@ Create a schema-1 theme pack, install it into Codex Skin Studio, and prove the r
 ## Workflow
 
 1. Confirm macOS, the desired visual direction, theme name, light/dark appearance, and whether the background is new, edited, or unchanged.
-2. Locate the runtime CLI inside an installed `Codex Skin Studio.app`. If absent, run `scripts/install-app.zsh` using its safe defaults or explicit release inputs.
+2. Locate the runtime CLI inside an installed `Codex Skin Studio.app`. If absent, show `scripts/install-app.zsh --print-plan`, then run the installer using its safe defaults or explicit release inputs after the installation scope is confirmed.
 3. Produce the background through `imagegen` when creation or visual editing is requested. Preserve an unchanged user image exactly.
 4. Create a JSON config with the six required colors documented in the reference. Use a lowercase kebab-case ID that will remain stable across replacements.
 5. Run:
