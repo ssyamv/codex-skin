@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
 import { CdpClient, listCdpTargets } from "../src/cdp.mjs";
-import { resolveTheme } from "../src/themes.mjs";
+import { createThemeStore } from "../src/themes.mjs";
 
 const port = Number(process.argv[2]);
 if (!Number.isInteger(port) || port <= 0 || port > 65535) {
   throw new Error(
-    "用法：node scripts/runtime-probe.mjs <CDP port> [--theme makima|faye]",
+    "用法：node scripts/runtime-probe.mjs <CDP port> [--theme <主题 ID>]",
   );
 }
 const themeOptionIndex = process.argv.indexOf("--theme");
-const theme = resolveTheme(
+const theme = await createThemeStore({ environment: process.env }).resolve(
   themeOptionIndex === -1 ? undefined : process.argv[themeOptionIndex + 1],
 );
 

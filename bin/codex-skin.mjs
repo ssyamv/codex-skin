@@ -13,6 +13,7 @@ import {
   inspectThemeOnPort,
   loadThemeCss,
   removeThemeFromPort,
+  validateSkinCss,
 } from "../src/injector.mjs";
 import {
   classifyCodexAppProcesses,
@@ -31,21 +32,30 @@ import {
   verifyCodeSignature,
   writeState,
 } from "../src/runtime.mjs";
-import { resolveTheme } from "../src/themes.mjs";
+import { validateThemePack } from "../src/theme-store.mjs";
+import { createThemeStore } from "../src/themes.mjs";
 
 const entrypoint = fileURLToPath(import.meta.url);
 const projectRoot = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
-const { command, options } = parseArguments(process.argv.slice(2));
-const theme = resolveTheme(options.theme);
-const themePath = path.join(projectRoot, "themes", theme.cssFile);
-const heroImagePath = path.join(projectRoot, "assets", theme.heroFile);
-const paths = getRuntimePaths(process.env, {
-  runtimeDirectory: theme.runtimeDirectory,
-});
+const { command, options, positionals } = parseArguments(process.argv.slice(2));
+const themeStore = createThemeStore({ environment: process.env });
+let theme;
+let themePath;
+let heroImagePath;
+let paths;
 
 try {
   assertSupportedNode();
-  if (command === "start") await startCommand();
+  if (command === "themes") {
+    await themesCommand(positionals[0] || "list", positionals.slice(1));
+  } else {
+    theme = await themeStore.resolve(options.theme);
+    themePath = theme.cssPath;
+    heroImagePath = theme.heroPath;
+    paths = getRuntimePaths(process.env, {
+      runtimeDirectory: theme.runtimeDirectory,
+    });
+    if (command === "start") await startCommand();
   else if (command === "stop") await stopCommand();
   else if (command === "status") await statusCommand();
   else if (command === "doctor") await doctorCommand();
@@ -55,6 +65,7 @@ try {
   else if (command === "daemon") await daemonCommand();
   else if (["help", "--help", "-h"].includes(command)) printHelp();
   else throw new Error(`未知命令：${command}`);
+  }
 } catch (error) {
   console.error(`错误：${error.message}`);
   process.exitCode = error.exitCode || 1;
@@ -563,6 +574,91 @@ async function uninstallCommand() {
   console.log("运行时状态与日志已清理；独立 profile 为避免误删登录数据而保留。");
 }
 
+async function themesCommand(action, args) {
+  if (action === "list") {
+    const themes = (await themeStore.list()).map(serializeTheme);
+    if (options.json) console.log(JSON.stringify(themes, null, 2));
+    else for (const item of themes) {
+      console.log(`${item.id}\t${item.displayName}\t${item.source}`);
+    }
+    return;
+  }
+
+  if (action === "validate") {
+    const directory = args[0];
+    if (!directory) throw new Error("必须提供主题包目录");
+    const candidate = await validateCandidateTheme(directory);
+    printThemeOperation(candidate, `主题 ${candidate.id} 校验通过`);
+    return;
+  }
+
+  if (action === "install") {
+    const directory = args[0];
+    if (!directory) throw new Error("必须提供主题包目录");
+    await validateCandidateTheme(directory);
+    const installed = await themeStore.install(directory, {
+      replace: options.replace === true,
+      isRunning: isInstalledThemeRunning,
+    });
+    printThemeOperation(installed, `已安装主题 ${installed.displayName} (${installed.id})`);
+    return;
+  }
+
+  if (action === "remove") {
+    const id = args[0];
+    if (!id) throw new Error("必须提供主题 ID");
+    const removed = await themeStore.remove(id, { isRunning: isInstalledThemeRunning });
+    const result = { id: String(id).toLowerCase(), removed };
+    if (options.json) console.log(JSON.stringify(result, null, 2));
+    else console.log(removed ? `已删除主题 ${result.id}` : `主题 ${result.id} 未安装`);
+    return;
+  }
+
+  throw new Error(`未知 themes 子命令：${action}`);
+}
+
+async function validateCandidateTheme(directory) {
+  const candidate = await validateThemePack(path.resolve(directory), { source: "candidate" });
+  const css = await fs.readFile(candidate.cssPath, "utf8");
+  validateSkinCss(css, { theme: candidate });
+  return candidate;
+}
+
+async function isInstalledThemeRunning(id) {
+  let candidate;
+  try {
+    candidate = await themeStore.resolve(id);
+  } catch {
+    return false;
+  }
+  const candidatePaths = getRuntimePaths(process.env, {
+    runtimeDirectory: candidate.runtimeDirectory,
+  });
+  const state = await readState(candidatePaths);
+  return Boolean(state?.daemonPid && isProcessAlive(state.daemonPid));
+}
+
+function serializeTheme(value) {
+  return {
+    schemaVersion: value.schemaVersion,
+    id: value.id,
+    displayName: value.displayName,
+    eyebrow: value.eyebrow,
+    summary: value.summary,
+    appearance: value.appearance,
+    source: value.source,
+    previewPath: value.previewPath,
+    installedPath: value.installedPath,
+    styleId: value.styleId,
+    runtimeDirectory: value.runtimeDirectory,
+  };
+}
+
+function printThemeOperation(value, message) {
+  if (options.json) console.log(JSON.stringify(serializeTheme(value), null, 2));
+  else console.log(message);
+}
+
 async function collectDoctor() {
   const app = await resolveCodexApp();
   const signature = await verifyCodeSignature(app.appPath);
@@ -664,9 +760,13 @@ function printResult(result, humanPrinter = null) {
 function parseArguments(argv) {
   const [parsedCommand = "help", ...rest] = argv;
   const parsedOptions = {};
+  const parsedPositionals = [];
   for (let index = 0; index < rest.length; index += 1) {
     const item = rest[index];
-    if (!item.startsWith("--")) continue;
+    if (!item.startsWith("--")) {
+      parsedPositionals.push(item);
+      continue;
+    }
     const key = item
       .slice(2)
       .replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
@@ -677,7 +777,7 @@ function parseArguments(argv) {
       index += 1;
     }
   }
-  return { command: parsedCommand, options: parsedOptions };
+  return { command: parsedCommand, options: parsedOptions, positionals: parsedPositionals };
 }
 
 function requirePort(value) {
@@ -709,17 +809,21 @@ function printHelp() {
   console.log(`Codex 外置运行时皮肤（默认：玛奇玛）
 
 用法：
-  ./codex-skin start [--theme makima|faye]
-  ./codex-skin status [--theme makima|faye] [--json]
-  ./codex-skin verify [--theme makima|faye] [--json]
-  ./codex-skin doctor [--theme makima|faye] [--json]
-  ./codex-skin snapshot [--theme makima|faye] [--output <png>]
-  ./codex-skin stop [--theme makima|faye]
-  ./codex-skin uninstall [--theme makima|faye]
+  ./codex-skin themes list [--json]
+  ./codex-skin themes validate <主题包目录> [--json]
+  ./codex-skin themes install <主题包目录> [--replace] [--json]
+  ./codex-skin themes remove <主题 ID> [--json]
+  ./codex-skin start [--theme <主题 ID>]
+  ./codex-skin status [--theme <主题 ID>] [--json]
+  ./codex-skin verify [--theme <主题 ID>] [--json]
+  ./codex-skin doctor [--theme <主题 ID>] [--json]
+  ./codex-skin snapshot [--theme <主题 ID>] [--output <png>]
+  ./codex-skin stop [--theme <主题 ID>]
+  ./codex-skin uninstall [--theme <主题 ID>]
 
 start 前必须先正常退出所有普通 Codex；检测到共享 ~/.codex 的进程时会拒绝启动，绝不会代为终止。
 每个主题使用独立 profile 启动官方 Codex；stop 只会移除所选主题并关闭对应 Codex，普通 Codex 和其他主题不受影响。
-uninstall 清理本工具状态与日志并保留独立 profile。
+uninstall 清理本工具状态与日志并保留独立 profile；themes remove 才删除用户主题。
 工具不会修改应用包、app.asar 或官方 Chromium profile，也不会直接编辑 ~/.codex。`);
 }
 
