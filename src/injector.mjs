@@ -10,6 +10,26 @@ export const HEADER_OPAQUE_END_VAR = "--cs-makima-header-opaque-end";
 // Kept as a stable public alias for existing callers and tests.
 export const IMAGE_PLACEHOLDER = HERO_IMAGE_PLACEHOLDER;
 
+const PNG_SIGNATURE = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+
+export function detectThemeImageMime(bytes) {
+  const image = Buffer.isBuffer(bytes) ? bytes : Buffer.from(bytes);
+  if (image.length >= 8 && image.subarray(0, 8).equals(PNG_SIGNATURE)) {
+    return "image/png";
+  }
+  if (image.length >= 2 && image[0] === 0xff && image[1] === 0xd8) {
+    return "image/jpeg";
+  }
+  if (
+    image.length >= 12
+    && image.toString("ascii", 0, 4) === "RIFF"
+    && image.toString("ascii", 8, 12) === "WEBP"
+  ) {
+    return "image/webp";
+  }
+  throw new Error("主题背景必须是 PNG、JPEG 或 WebP");
+}
+
 const DIFF_SHADOW_CSS = Object.freeze({
   makima: `:host {
   color-scheme: light !important;
@@ -94,6 +114,7 @@ export async function loadThemeCss(
     readFile(stylePath, "utf8"),
     readFile(heroImagePath),
   ]);
+  const heroMime = detectThemeImageMime(heroImage);
   validateSkinCss(template, { theme });
   if (template.split(HERO_IMAGE_PLACEHOLDER).length !== 2) {
     throw new Error(
@@ -102,7 +123,7 @@ export async function loadThemeCss(
   }
   return template.replace(
     HERO_IMAGE_PLACEHOLDER,
-    `data:image/webp;base64,${heroImage.toString("base64")}`,
+    `data:${heroMime};base64,${heroImage.toString("base64")}`,
   );
 }
 

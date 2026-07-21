@@ -1,5 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
 import { runInNewContext } from "node:vm";
 
 import {
@@ -10,13 +13,51 @@ import {
   buildApplyScript,
   buildImpactInspectionScript,
   buildRemoveScript,
+  detectThemeImageMime,
   getDiffShadowCss,
   inspectImpactOnPort,
+  loadThemeCss,
 } from "../src/injector.mjs";
-import { THEMES } from "../src/themes.mjs";
+import { THEMES, deriveThemeRuntimeFields } from "../src/themes.mjs";
 
 const SAFE_CSS = 'html[data-codex-skin="makima"] { color: #eee; }';
 const SAFE_FAYE_CSS = 'html[data-codex-skin="faye"] { --cs-faye-ink: #080b0e; color: #eee; }';
+
+test("动态主题按真实 PNG、JPEG 和 WebP MIME 编译背景", async (context) => {
+  const directory = await mkdtemp(path.join(os.tmpdir(), "codex-theme-image-"));
+  context.after(() => rm(directory, { recursive: true, force: true }));
+  const id = "moonlit-archive";
+  const theme = {
+    id,
+    displayName: "Moonlit Archive",
+    ...deriveThemeRuntimeFields(id),
+  };
+  const cssPath = path.join(directory, "theme.css");
+  await writeFile(
+    cssPath,
+    `html[data-codex-skin="${id}"] { --cs-${id}-ink: #e7ecf4; color: var(--cs-${id}-ink); background-image: url("__CODEX_SKIN_HERO_IMAGE__"); }`,
+  );
+  const fixtures = [
+    ["png", Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]), "image/png"],
+    ["jpg", Buffer.from([0xff, 0xd8, 0xff, 0xd9]), "image/jpeg"],
+    ["webp", Buffer.from("RIFF0000WEBP", "ascii"), "image/webp"],
+  ];
+  for (const [extension, bytes, mime] of fixtures) {
+    const imagePath = path.join(directory, `hero.${extension}`);
+    await writeFile(imagePath, bytes);
+    assert.equal(detectThemeImageMime(bytes), mime);
+    assert.match(
+      await loadThemeCss(cssPath, { heroImagePath: imagePath, theme }),
+      new RegExp(`data:${mime.replace("/", "\\/")};base64,`),
+    );
+  }
+  const unsupported = path.join(directory, "hero.svg");
+  await writeFile(unsupported, "<svg></svg>");
+  await assert.rejects(
+    loadThemeCss(cssPath, { heroImagePath: unsupported, theme }),
+    /PNG、JPEG 或 WebP/,
+  );
+});
 
 test("apply/remove scripts use one stable style id", () => {
   assert.match(buildApplyScript(SAFE_CSS), new RegExp(STYLE_ID));

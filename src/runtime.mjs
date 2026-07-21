@@ -11,10 +11,10 @@ import {fetchCdpJson} from "./cdp.mjs";
 const execFileAsync=promisify(execFile);
 export const CODEX_BUNDLE_IDENTIFIER="com.openai.codex";
 export const OPENAI_CODEX_TEAM_IDENTIFIER="2DC432GLL2";
-const RUNTIME_MARKER_FILE=".codex-makima-skin-owned";
-const RUNTIME_MARKER_VALUE="codex-makima-skin:v1\n";
+const RUNTIME_MARKER_FILE=".codex-skin-studio-owned";
+const RUNTIME_MARKER_VALUE="codex-skin-studio:v1\n";
 export function stableLaunchDirectory(){return os.homedir();}
-export function getRuntimePaths(env=process.env,{runtimeDirectory="Codex Makima Skin"}={}){const home=env.CODEX_SKIN_HOME||path.join(os.homedir(),"Library","Application Support",runtimeDirectory);return{home,profileDir:env.CODEX_SKIN_PROFILE_DIR||path.join(home,"Profile"),stateFile:path.join(home,"state.json"),logFile:path.join(home,"theme.log"),appLogFile:path.join(home,"codex.log")};}
+export function getRuntimePaths(env=process.env,{runtimeDirectory="Codex Skin Studio/Runtime/makima"}={}){const userHome=env.HOME||os.homedir(),home=env.CODEX_SKIN_HOME||path.join(userHome,"Library","Application Support",runtimeDirectory);return{home,profileDir:env.CODEX_SKIN_PROFILE_DIR||path.join(home,"Profile"),stateFile:path.join(home,"state.json"),logFile:path.join(home,"theme.log"),appLogFile:path.join(home,"codex.log")};}
 async function assertRuntimeOwnership(paths,{allowMissingHome=false}={}){const marker=path.join(paths.home,RUNTIME_MARKER_FILE);let value;try{value=await readFile(marker,"utf8");}catch(error){if(error.code!=="ENOENT")throw error;if(allowMissingHome){try{await access(paths.home);}catch(homeError){if(homeError.code==="ENOENT")return false;throw homeError;}}throw new Error(`拒绝访问没有皮肤所有权标记的运行目录：${paths.home}`);}if(value!==RUNTIME_MARKER_VALUE)throw new Error(`皮肤运行目录所有权标记不匹配：${marker}`);return true;}
 export async function ensureRuntimeHome(paths){const created=await mkdir(paths.home,{recursive:true,mode:0o700});if(created===undefined){await assertRuntimeOwnership(paths);return;}const marker=path.join(paths.home,RUNTIME_MARKER_FILE);try{await writeFile(marker,RUNTIME_MARKER_VALUE,{mode:0o600,flag:"wx"});}catch(error){if(error.code!=="EEXIST")throw error;await assertRuntimeOwnership(paths);}}
 export async function readState(paths){if(!await assertRuntimeOwnership(paths,{allowMissingHome:true}))return null;try{return JSON.parse(await readFile(paths.stateFile,"utf8"));}catch(error){if(error.code==="ENOENT"||error instanceof SyntaxError)return null;throw error;}}
