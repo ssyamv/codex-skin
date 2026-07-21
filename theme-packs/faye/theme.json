@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "faye",
+  "displayName": "Faye",
+  "eyebrow": "BEBOP AFTER MIDNIGHT",
+  "summary": "人物左置，右侧近黑留白的午夜飞船氛围。",
+  "appearance": "dark",
+  "cssFile": "theme.css",
+  "heroFile": "hero.webp",
+  "previewFile": "preview.png"
+}

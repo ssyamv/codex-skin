@@ -1,0 +1,15 @@
+Codex Skin Studio
+Copyright (c) 2026 Chen Qi
+
+This is an independent, unofficial project. It is not affiliated with,
+endorsed by, or sponsored by OpenAI. Codex and OpenAI names and marks belong to
+their respective owners.
+
+The MIT License in LICENSE applies to the project source code. Visual assets,
+including PNG, JPEG, WebP, ICNS, and concept artwork, are not included in that
+code license grant unless a file or its source explicitly states otherwise.
+Users and redistributors are responsible for confirming that they have the
+rights required for any visual asset they generate, import, use, or publish.
+
+Codex Skin Studio launches the official Codex Desktop application through an
+isolated local runtime. It does not redistribute the official Codex app.

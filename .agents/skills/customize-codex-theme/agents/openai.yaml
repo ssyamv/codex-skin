@@ -1,0 +1,4 @@
+interface:
+  display_name: "Customize Codex Theme"
+  short_description: "Generate and install safe custom Codex themes"
+  default_prompt: "Use $customize-codex-theme to create and install a custom Codex theme from my visual description."

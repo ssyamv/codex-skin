@@ -1,0 +1,12 @@
+.DS_Store
+.worktrees/
+build/
+dist/
+artifacts/*
+!artifacts/runtime/
+artifacts/runtime/*
+!artifacts/runtime/makima-runtime-left-static.png
+tmp/
+*.zip
+SHA256SUMS
+*.log
