@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct CodexProApp: App {
+struct CodexSkinStudioApp: App {
     @StateObject private var model = CodexProModel()
 
     var body: some Scene {

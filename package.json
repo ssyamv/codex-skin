@@ -12,7 +12,7 @@
     "check": "node --check ./bin/codex-skin.mjs && node --check ./src/cdp.mjs && node --check ./src/injector.mjs && node --check ./src/runtime.mjs && node --check ./src/theme-store.mjs && node --check ./src/themes.mjs && node --check ./scripts/runtime-probe.mjs",
     "test": "node --test",
     "verify": "npm run check && npm test",
-    "build:app": "./scripts/build-codex-pro.zsh",
+    "build:app": "./scripts/build-app.zsh",
     "doctor": "node bin/codex-skin.mjs doctor",
     "status": "node bin/codex-skin.mjs status",
     "probe": "node ./scripts/runtime-probe.mjs"

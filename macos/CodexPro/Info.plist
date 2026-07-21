@@ -5,21 +5,21 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>zh_CN</string>
     <key>CFBundleDisplayName</key>
-    <string>Codex Pro</string>
+    <string>Codex Skin Studio</string>
     <key>CFBundleExecutable</key>
-    <string>CodexPro</string>
+    <string>CodexSkinStudio</string>
     <key>CFBundleIconFile</key>
-    <string>CodexProIcon</string>
+    <string>CodexSkinStudioIcon</string>
     <key>CFBundleIdentifier</key>
-    <string>com.chenqi.codexpro</string>
+    <string>com.ssyamv.codexskinstudio</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>Codex Pro</string>
+    <string>Codex Skin Studio</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.0.0</string>
+    <string>1.7.0</string>
     <key>CFBundleVersion</key>
     <string>1</string>
     <key>LSApplicationCategoryType</key>

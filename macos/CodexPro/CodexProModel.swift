@@ -3,8 +3,9 @@ import SwiftUI
 
 @MainActor
 final class CodexProModel: ObservableObject {
-    @Published var selectedTheme: CodexTheme = .makima
-    @Published private(set) var statuses: [CodexTheme: CodexRuntimeStatus] = [:]
+    @Published var selectedTheme: CodexTheme = .fallback
+    @Published private(set) var themes: [CodexTheme] = [.fallback]
+    @Published private(set) var statuses: [String: CodexRuntimeStatus] = [:]
     @Published private(set) var isBusy = false
     @Published private(set) var busyMessage = ""
     @Published private(set) var lastMessage = "正在读取运行状态…"
@@ -24,11 +25,11 @@ final class CodexProModel: ObservableObject {
     }
 
     var activeTheme: CodexTheme? {
-        CodexTheme.allCases.first { statuses[$0]?.isLive == true }
+        themes.first { statuses[$0.id]?.isLive == true }
     }
 
     var selectedStatus: CodexRuntimeStatus {
-        statuses[selectedTheme] ?? .stopped(theme: selectedTheme)
+        statuses[selectedTheme.id] ?? .stopped(theme: selectedTheme)
     }
 
     var primaryActionTitle: String {
@@ -42,13 +43,13 @@ final class CodexProModel: ObservableObject {
     var statusTitle: String {
         if isBusy { return "处理中" }
         guard let activeTheme else { return "待机" }
-        return statuses[activeTheme]?.isHealthy == true ? "运行中" : "需要检查"
+        return statuses[activeTheme.id]?.isHealthy == true ? "运行中" : "需要检查"
     }
 
     var statusDetail: String {
         if isBusy { return busyMessage }
         guard let activeTheme else { return "没有皮肤实例正在运行" }
-        let status = statuses[activeTheme] ?? .stopped(theme: activeTheme)
+        let status = statuses[activeTheme.id] ?? .stopped(theme: activeTheme)
         if let reason = status.reasonText { return reason }
         if let version = status.appVersion { return "\(activeTheme.name) · Codex \(version)" }
         return "\(activeTheme.name) 主题已连接"
@@ -133,17 +134,24 @@ final class CodexProModel: ObservableObject {
     private func refreshStatus(showFailure: Bool) async {
         guard let runtimeClient else { return }
         do {
-            async let makima = runtimeClient.status(for: .makima)
-            async let faye = runtimeClient.status(for: .faye)
-            let freshStatuses = try await [
-                CodexTheme.makima: makima,
-                CodexTheme.faye: faye,
-            ]
+            let installedThemes = try await runtimeClient.listThemes()
+            guard !installedThemes.isEmpty else {
+                throw CodexRuntimeError.invalidStatus("没有可用主题")
+            }
+            var freshStatuses: [String: CodexRuntimeStatus] = [:]
+            for theme in installedThemes {
+                freshStatuses[theme.id] = try await runtimeClient.status(for: theme)
+            }
+            themes = installedThemes
             statuses = freshStatuses
             if !initialThemeResolved,
-               let runningTheme = CodexTheme.allCases.first(where: { freshStatuses[$0]?.isLive == true }) {
+               let runningTheme = installedThemes.first(where: { freshStatuses[$0.id]?.isLive == true }) {
                 selectedTheme = runningTheme
                 initialThemeResolved = true
+            } else if let currentTheme = installedThemes.first(where: { $0.id == selectedTheme.id }) {
+                selectedTheme = currentTheme
+            } else if let firstTheme = installedThemes.first {
+                selectedTheme = firstTheme
             }
             if lastMessage == "正在读取运行状态…" {
                 lastMessage = "运行状态已同步"

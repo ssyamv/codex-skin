@@ -40,9 +40,7 @@ struct CodexProView: View {
     }
 
     private var accentColor: Color {
-        model.selectedTheme == .makima
-            ? Color(red: 0.68, green: 0.42, blue: 0.31)
-            : Color(red: 0.82, green: 0.24, blue: 0.31)
+        themeAccent(model.selectedTheme)
     }
 
     private var themeStage: some View {
@@ -85,17 +83,17 @@ struct CodexProView: View {
                     .foregroundStyle(.white.opacity(0.72))
                     .padding(.top, 6)
 
-                HStack(spacing: 10) {
-                    ForEach(CodexTheme.allCases) { theme in
-                        ThemeSelector(
-                            theme: theme,
-                            selected: model.selectedTheme == theme,
-                            running: model.statuses[theme]?.isLive == true,
-                            accent: theme == .makima
-                                ? Color(red: 0.70, green: 0.48, blue: 0.34)
-                                : Color(red: 0.88, green: 0.25, blue: 0.33)
-                        ) {
-                            model.select(theme)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(model.themes) { theme in
+                            ThemeSelector(
+                                theme: theme,
+                                selected: model.selectedTheme == theme,
+                                running: model.statuses[theme.id]?.isLive == true,
+                                accent: themeAccent(theme)
+                            ) {
+                                model.select(theme)
+                            }
                         }
                     }
                 }
@@ -119,7 +117,7 @@ struct CodexProView: View {
                     .fill(.black.opacity(0.34))
                 Circle()
                     .stroke(.white.opacity(0.28), lineWidth: 1)
-                Text("CP")
+                Text("CS")
                     .font(.custom("Avenir Next Demi Bold", size: 11))
                     .tracking(0.8)
                     .foregroundStyle(.white)
@@ -127,7 +125,7 @@ struct CodexProView: View {
             .frame(width: 38, height: 38)
 
             VStack(alignment: .leading, spacing: 1) {
-                Text("CODEX PRO")
+                Text("CODEX SKIN STUDIO")
                     .font(.custom("Avenir Next Demi Bold", size: 12))
                     .tracking(1.5)
                 Text("SKIN CONSOLE")
@@ -231,7 +229,7 @@ struct CodexProView: View {
                     .font(.custom("Avenir Next Demi Bold", size: 11))
                     .tracking(1.8)
                 Spacer()
-                if let port = model.statuses[model.activeTheme ?? model.selectedTheme]?.port {
+                if let port = model.statuses[(model.activeTheme ?? model.selectedTheme).id]?.port {
                     Text(verbatim: "LOCAL :\(port)")
                         .font(.system(size: 9, design: .monospaced).weight(.medium))
                         .foregroundStyle(.white.opacity(0.34))
@@ -243,12 +241,12 @@ struct CodexProView: View {
                 .foregroundStyle(.white.opacity(0.72))
                 .lineLimit(3)
 
-            if let pid = model.statuses[model.activeTheme ?? model.selectedTheme]?.daemonPid {
+            if let pid = model.statuses[(model.activeTheme ?? model.selectedTheme).id]?.daemonPid {
                 HStack(spacing: 18) {
                     RuntimeMetric(label: "DAEMON", value: "#\(pid)")
                     RuntimeMetric(
                         label: "THEME",
-                        value: (model.activeTheme ?? model.selectedTheme).rawValue.uppercased()
+                        value: (model.activeTheme ?? model.selectedTheme).id.uppercased()
                     )
                 }
             }
@@ -265,8 +263,23 @@ struct CodexProView: View {
     private var statusColor: Color {
         if model.isBusy { return .orange }
         guard let activeTheme = model.activeTheme,
-              let status = model.statuses[activeTheme] else { return .gray }
+              let status = model.statuses[activeTheme.id] else { return .gray }
         return status.isHealthy ? Color(red: 0.38, green: 0.78, blue: 0.58) : .orange
+    }
+
+    private func themeAccent(_ theme: CodexTheme) -> Color {
+        switch theme.appearance.lowercased() {
+        case "red", "crimson":
+            Color(red: 0.82, green: 0.24, blue: 0.31)
+        case "violet", "purple":
+            Color(red: 0.56, green: 0.38, blue: 0.86)
+        case "blue", "cool":
+            Color(red: 0.28, green: 0.55, blue: 0.86)
+        case "green", "sage":
+            Color(red: 0.39, green: 0.64, blue: 0.50)
+        default:
+            Color(red: 0.68, green: 0.42, blue: 0.31)
+        }
     }
 
     private var primaryActionIcon: String {
@@ -349,15 +362,12 @@ private struct ThemePreviewImage: View {
 
     var body: some View {
         GeometryReader { proxy in
-            if let imageURL = Bundle.main.url(
-                forResource: theme.previewName,
-                withExtension: "png",
-                subdirectory: "Previews"
-            ), let image = NSImage(contentsOf: imageURL) {
+            if !theme.previewPath.isEmpty,
+               let image = NSImage(contentsOfFile: theme.previewPath) {
                 Image(nsImage: image)
                     .resizable()
                     .scaledToFill()
-                    .offset(x: theme == .makima ? 42 : 0)
+                    .offset(x: theme.id == "makima" ? 42 : 0)
                     .frame(width: proxy.size.width, height: proxy.size.height)
                     .clipped()
             } else {

@@ -1,40 +1,5 @@
 import Foundation
 
-enum CodexTheme: String, CaseIterable, Identifiable, Codable {
-    case makima
-    case faye
-
-    var id: String { rawValue }
-
-    var name: String {
-        switch self {
-        case .makima: "玛奇玛"
-        case .faye: "Faye"
-        }
-    }
-
-    var eyebrow: String {
-        switch self {
-        case .makima: "SAGE CONTRACT ARCHIVE"
-        case .faye: "BEBOP AFTER MIDNIGHT"
-        }
-    }
-
-    var summary: String {
-        switch self {
-        case .makima: "鼠尾草、浅亚麻与旧铜构成的契约档案室。"
-        case .faye: "人物左置，右侧近黑留白的午夜飞船氛围。"
-        }
-    }
-
-    var previewName: String {
-        switch self {
-        case .makima: "makima-preview"
-        case .faye: "faye-preview"
-        }
-    }
-}
-
 struct CodexRuntimeStatus: Decodable {
     let status: String
     let theme: String
@@ -66,7 +31,7 @@ struct CodexRuntimeStatus: Decodable {
     static func stopped(theme: CodexTheme) -> CodexRuntimeStatus {
         CodexRuntimeStatus(
             status: "stopped",
-            theme: theme.rawValue,
+            theme: theme.id,
             themeName: theme.name,
             reasons: nil,
             daemonPid: nil,
@@ -126,7 +91,7 @@ final class CodexRuntimeClient {
     }
 
     func status(for theme: CodexTheme) async throws -> CodexRuntimeStatus {
-        let result = try await run(command: "status", theme: theme, includeJSON: true)
+        let result = try await run(arguments: ["status", "--theme", theme.id, "--json"])
         guard result.exitCode == 0 else {
             throw CodexRuntimeError.commandFailed(result.displayText)
         }
@@ -137,6 +102,21 @@ final class CodexRuntimeClient {
             return try JSONDecoder().decode(CodexRuntimeStatus.self, from: data)
         } catch {
             throw CodexRuntimeError.invalidStatus(error.localizedDescription)
+        }
+    }
+
+    func listThemes() async throws -> [CodexTheme] {
+        let result = try await run(arguments: ["themes", "list", "--json"])
+        guard result.exitCode == 0 else {
+            throw CodexRuntimeError.commandFailed(result.displayText)
+        }
+        guard let data = result.standardOutput.data(using: .utf8) else {
+            throw CodexRuntimeError.invalidStatus("主题列表不是 UTF-8")
+        }
+        do {
+            return try JSONDecoder().decode([CodexTheme].self, from: data)
+        } catch {
+            throw CodexRuntimeError.invalidStatus("主题列表格式错误：\(error.localizedDescription)")
         }
     }
 
@@ -158,9 +138,7 @@ final class CodexRuntimeClient {
         includeJSON: Bool = false
     ) async throws -> String {
         let result = try await run(
-            command: command,
-            theme: theme,
-            includeJSON: includeJSON
+            arguments: [command, "--theme", theme.id] + (includeJSON ? ["--json"] : [])
         )
         guard result.exitCode == 0 else {
             throw CodexRuntimeError.commandFailed(
@@ -170,11 +148,7 @@ final class CodexRuntimeClient {
         return result.displayText
     }
 
-    private func run(
-        command: String,
-        theme: CodexTheme,
-        includeJSON: Bool
-    ) async throws -> CodexCommandResult {
+    private func run(arguments: [String]) async throws -> CodexCommandResult {
         let nodeURL = nodeURL
         let entrypointURL = entrypointURL
 
@@ -185,12 +159,7 @@ final class CodexRuntimeClient {
 
             process.executableURL = nodeURL
             process.currentDirectoryURL = FileManager.default.homeDirectoryForCurrentUser
-            process.arguments = [
-                entrypointURL.path,
-                command,
-                "--theme",
-                theme.rawValue,
-            ] + (includeJSON ? ["--json"] : [])
+            process.arguments = [entrypointURL.path] + arguments
             process.environment = ProcessInfo.processInfo.environment
             process.standardOutput = outputPipe
             process.standardError = errorPipe
