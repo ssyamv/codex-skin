@@ -1,0 +1,137 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: zsh {0}
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-15
+            arch: arm64
+          - runner: macos-15-intel
+            arch: x64
+    runs-on: ${{ matrix.runner }}
+    env:
+      SIGNING_READY: ${{ secrets.MACOS_CERTIFICATE_P12_BASE64 != '' && secrets.MACOS_CERTIFICATE_PASSWORD != '' && secrets.MACOS_SIGNING_IDENTITY != '' && secrets.APPLE_ID != '' && secrets.APPLE_TEAM_ID != '' && secrets.APPLE_APP_SPECIFIC_PASSWORD != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify source
+        run: |
+          npm run verify
+          npm run test:swift
+          npm run validate:skill
+      - name: Build App
+        run: npm run build:app
+      - name: Import Developer ID certificate
+        if: env.SIGNING_READY == 'true'
+        env:
+          CERTIFICATE_P12: ${{ secrets.MACOS_CERTIFICATE_P12_BASE64 }}
+          CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+        run: |
+          keychain="$RUNNER_TEMP/codex-skin-signing.keychain-db"
+          certificate="$RUNNER_TEMP/developer-id.p12"
+          print -r -- "$CERTIFICATE_P12" | /usr/bin/base64 -D > "$certificate"
+          /usr/bin/security create-keychain -p actions "$keychain"
+          /usr/bin/security set-keychain-settings -lut 21600 "$keychain"
+          /usr/bin/security unlock-keychain -p actions "$keychain"
+          /usr/bin/security import "$certificate" -k "$keychain" \
+            -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+          /usr/bin/security set-key-partition-list -S apple-tool:,apple: \
+            -s -k actions "$keychain"
+          /usr/bin/security list-keychains -d user -s "$keychain"
+      - name: Developer ID sign and notarize
+        if: env.SIGNING_READY == 'true'
+        env:
+          SIGNING_IDENTITY: ${{ secrets.MACOS_SIGNING_IDENTITY }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+        run: |
+          app="dist/Codex Skin Studio.app"
+          /usr/bin/codesign --force --deep --options runtime --timestamp \
+            --sign "$SIGNING_IDENTITY" "$app"
+          /usr/bin/codesign --verify --deep --strict "$app"
+          notarization_zip="$RUNNER_TEMP/Codex-Skin-Studio-notarization.zip"
+          /usr/bin/ditto -c -k --keepParent "$app" "$notarization_zip"
+          /usr/bin/xcrun notarytool submit "$notarization_zip" \
+            --apple-id "$APPLE_ID" \
+            --team-id "$APPLE_TEAM_ID" \
+            --password "$APPLE_PASSWORD" \
+            --wait
+          /usr/bin/xcrun stapler staple "$app"
+          /usr/bin/xcrun stapler validate "$app"
+      - name: Package architecture release
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          ./scripts/package-release.zsh \
+            --app "dist/Codex Skin Studio.app" \
+            --skill .agents/skills/customize-codex-theme \
+            --version "$version" \
+            --arch "${{ matrix.arch }}" \
+            --output release
+      - name: Upload packaged assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ matrix.arch }}
+          path: release/
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: macos-15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SIGNING_READY: ${{ secrets.MACOS_CERTIFICATE_P12_BASE64 != '' && secrets.MACOS_CERTIFICATE_PASSWORD != '' && secrets.MACOS_SIGNING_IDENTITY != '' && secrets.APPLE_ID != '' && secrets.APPLE_TEAM_ID != '' && secrets.APPLE_APP_SPECIFIC_PASSWORD != '' }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: release-*
+          path: artifacts
+      - name: Combine and verify assets
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          /bin/mkdir release
+          /bin/cp "artifacts/release-arm64/Codex-Skin-Studio-${version}-macos-arm64.zip" release/
+          /bin/cp "artifacts/release-x64/Codex-Skin-Studio-${version}-macos-x64.zip" release/
+          /bin/cp "artifacts/release-arm64/customize-codex-theme-${version}.zip" release/
+          cd release
+          /usr/bin/shasum -a 256 *.zip > SHA256SUMS
+          /usr/bin/shasum -a 256 -c SHA256SUMS
+      - name: Create GitHub Release
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          notes="$RUNNER_TEMP/release-notes.md"
+          if [[ "$SIGNING_READY" == "true" ]]; then
+            signature_note="Developer ID signed and Apple notarized."
+          else
+            signature_note="Ad-hoc signed and not notarized. Review Gatekeeper guidance in README before installing."
+          fi
+          {
+            print -r -- "Codex Skin Studio ${version}"
+            print -r -- ""
+            print -r -- "- macOS arm64 and x64 App bundles"
+            print -r -- "- Drop-in customize-codex-theme Skill"
+            print -r -- "- SHA-256 checksums"
+            print -r -- ""
+            print -r -- "$signature_note"
+            print -r -- "This is an unofficial project and does not include the official Codex app."
+          } > "$notes"
+          gh release create "$GITHUB_REF_NAME" release/* \
+            --verify-tag \
+            --title "Codex Skin Studio ${version}" \
+            --notes-file "$notes"
