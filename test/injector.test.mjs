@@ -16,7 +16,7 @@ import {
 import { THEMES } from "../src/themes.mjs";
 
 const SAFE_CSS = 'html[data-codex-skin="makima"] { color: #eee; }';
-const SAFE_FAYE_CSS = 'html[data-codex-skin="faye"] { --fy-ink: #080b0e; color: #eee; }';
+const SAFE_FAYE_CSS = 'html[data-codex-skin="faye"] { --cs-faye-ink: #080b0e; color: #eee; }';
 
 test("apply/remove scripts use one stable style id", () => {
   assert.match(buildApplyScript(SAFE_CSS), new RegExp(STYLE_ID));
@@ -68,11 +68,11 @@ test("theme-specific scripts keep Faye markers separate from Makima", () => {
   const impact = buildImpactInspectionScript(THEMES.faye);
   for (const script of [apply, remove]) {
     assert.match(script, /codex-skin-faye/);
-    assert.match(script, /__CODEX_FAYE_STATE__/);
+    assert.match(script, /__CODEX_SKIN_FAYE_STATE__/);
   }
   assert.match(apply, /dataset\.codexSkin = "faye"/);
   assert.match(impact, /"skin":"faye"/);
-  assert.doesNotMatch(apply, /codex-skin-makima|__CODEX_MAKIMA_STATE__/);
+  assert.doesNotMatch(apply, /codex-skin-makima|__CODEX_SKIN_MAKIMA_STATE__/);
 });
 
 test("CSS safety guard rejects layout, hiding, and input-blocking rules", () => {

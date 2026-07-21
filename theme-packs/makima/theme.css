@@ -1,59 +1,59 @@
 html[data-codex-skin="makima"] {
   color-scheme: light !important;
 
-  --mk-void-1000: #e8ebe2;
-  --mk-void-950: #f2f1eb;
-  --mk-ink-900: #30342f;
-  --mk-oxide-800: #f0efe8;
-  --mk-oxide-700: #d8ddd2;
-  --mk-blood-700: #682a37;
-  --mk-blood-600: #7f3442;
-  --mk-blood-500: #924554;
-  --mk-blood-400: #a75a67;
-  --mk-iris-500: #6f5731;
-  --mk-iris-400: #876b3e;
-  --mk-iris-300: #795d34;
-  --mk-sage-700: #596457;
-  --mk-sage-500: #778374;
-  --mk-sage-300: #d8ddd2;
-  --mk-sage-100: #e8ebe2;
-  --mk-copper-500: #876b3e;
-  --mk-control-idle: rgb(247 245 239 / 72%);
-  --mk-control-hover: rgb(232 235 226 / 88%);
-  --mk-control-pressed: rgb(127 52 66 / 13%);
-  --mk-teal-400: #36726f;
-  --mk-ivory-100: #30342f;
-  --mk-ivory-300: #555b51;
-  --mk-ivory-500: #747a70;
-  --mk-green-400: #397348;
-  --mk-red-400: #b33d45;
-  --mk-glass-sidebar: rgb(247 245 239 / 46%);
-  --mk-glass-control: rgb(247 245 239 / 84%);
-  --mk-glass-reading: rgb(247 245 239 / 56%);
-  --mk-glass-code: rgb(247 245 239 / 96%);
-  --mk-edge-soft: rgb(135 107 62 / 15%);
-  --mk-edge-medium: rgb(135 107 62 / 26%);
-  --mk-edge-focus: rgb(127 52 66 / 52%);
+  --cs-makima-void-1000: #e8ebe2;
+  --cs-makima-void-950: #f2f1eb;
+  --cs-makima-ink-900: #30342f;
+  --cs-makima-oxide-800: #f0efe8;
+  --cs-makima-oxide-700: #d8ddd2;
+  --cs-makima-blood-700: #682a37;
+  --cs-makima-blood-600: #7f3442;
+  --cs-makima-blood-500: #924554;
+  --cs-makima-blood-400: #a75a67;
+  --cs-makima-iris-500: #6f5731;
+  --cs-makima-iris-400: #876b3e;
+  --cs-makima-iris-300: #795d34;
+  --cs-makima-sage-700: #596457;
+  --cs-makima-sage-500: #778374;
+  --cs-makima-sage-300: #d8ddd2;
+  --cs-makima-sage-100: #e8ebe2;
+  --cs-makima-copper-500: #876b3e;
+  --cs-makima-control-idle: rgb(247 245 239 / 72%);
+  --cs-makima-control-hover: rgb(232 235 226 / 88%);
+  --cs-makima-control-pressed: rgb(127 52 66 / 13%);
+  --cs-makima-teal-400: #36726f;
+  --cs-makima-ivory-100: #30342f;
+  --cs-makima-ivory-300: #555b51;
+  --cs-makima-ivory-500: #747a70;
+  --cs-makima-green-400: #397348;
+  --cs-makima-red-400: #b33d45;
+  --cs-makima-glass-sidebar: rgb(247 245 239 / 46%);
+  --cs-makima-glass-control: rgb(247 245 239 / 84%);
+  --cs-makima-glass-reading: rgb(247 245 239 / 56%);
+  --cs-makima-glass-code: rgb(247 245 239 / 96%);
+  --cs-makima-edge-soft: rgb(135 107 62 / 15%);
+  --cs-makima-edge-medium: rgb(135 107 62 / 26%);
+  --cs-makima-edge-focus: rgb(127 52 66 / 52%);
 
-  --mk-hero-art: url("__CODEX_SKIN_HERO_IMAGE__");
+  --cs-makima-hero-art: url("__CODEX_SKIN_HERO_IMAGE__");
 
-  --codex-base-accent: var(--mk-blood-500) !important;
+  --codex-base-accent: var(--cs-makima-blood-500) !important;
   --codex-base-contrast: 38 !important;
-  --codex-base-ink: var(--mk-ivory-100) !important;
-  --codex-base-surface: var(--mk-ink-900) !important;
+  --codex-base-ink: var(--cs-makima-ivory-100) !important;
+  --codex-base-surface: var(--cs-makima-ink-900) !important;
 
-  --color-accent-blue: var(--mk-teal-400) !important;
-  --color-accent-purple: var(--mk-blood-400) !important;
-  --color-accent-red: var(--mk-red-400) !important;
-  --color-accent-green: var(--mk-green-400) !important;
-  --color-accent-yellow: var(--mk-iris-300) !important;
+  --color-accent-blue: var(--cs-makima-teal-400) !important;
+  --color-accent-purple: var(--cs-makima-blood-400) !important;
+  --color-accent-red: var(--cs-makima-red-400) !important;
+  --color-accent-green: var(--cs-makima-green-400) !important;
+  --color-accent-yellow: var(--cs-makima-iris-300) !important;
 
   --color-background-surface: rgb(247 245 239 / 84%) !important;
-  --color-background-surface-under: var(--mk-void-1000) !important;
+  --color-background-surface-under: var(--cs-makima-void-1000) !important;
   --color-background-panel: rgb(247 245 239 / 94%) !important;
   --color-background-editor-opaque: #f1f0e9 !important;
   --color-background-control: rgb(216 221 210 / 72%) !important;
-  --color-background-control-opaque: var(--mk-oxide-700) !important;
+  --color-background-control-opaque: var(--cs-makima-oxide-700) !important;
   --color-background-elevated-primary: rgb(247 245 239 / 97%) !important;
   --color-background-elevated-primary-opaque: #f7f5ef !important;
   --color-background-elevated-secondary: rgb(135 107 62 / 6%) !important;
@@ -61,9 +61,9 @@ html[data-codex-skin="makima"] {
   --color-background-accent: rgb(127 52 66 / 9%) !important;
   --color-background-accent-hover: rgb(127 52 66 / 15%) !important;
   --color-background-accent-active: rgb(127 52 66 / 21%) !important;
-  --color-background-button-primary: var(--mk-blood-500) !important;
-  --color-background-button-primary-hover: var(--mk-blood-400) !important;
-  --color-background-button-primary-active: var(--mk-blood-600) !important;
+  --color-background-button-primary: var(--cs-makima-blood-500) !important;
+  --color-background-button-primary-hover: var(--cs-makima-blood-400) !important;
+  --color-background-button-primary-active: var(--cs-makima-blood-600) !important;
   --color-background-button-primary-inactive: rgb(161 51 67 / 36%) !important;
   --color-background-button-secondary: rgb(122 91 50 / 7%) !important;
   --color-background-button-secondary-hover: rgb(122 91 50 / 12%) !important;
@@ -73,26 +73,26 @@ html[data-codex-skin="makima"] {
   --color-background-button-tertiary-hover: rgb(122 91 50 / 9%) !important;
   --color-background-button-tertiary-active: rgb(122 91 50 / 15%) !important;
 
-  --color-text-foreground: var(--mk-ivory-100) !important;
-  --color-text-foreground-secondary: var(--mk-ivory-300) !important;
-  --color-text-foreground-tertiary: var(--mk-ivory-500) !important;
-  --color-text-accent: var(--mk-iris-300) !important;
+  --color-text-foreground: var(--cs-makima-ivory-100) !important;
+  --color-text-foreground-secondary: var(--cs-makima-ivory-300) !important;
+  --color-text-foreground-tertiary: var(--cs-makima-ivory-500) !important;
+  --color-text-accent: var(--cs-makima-iris-300) !important;
   --color-text-on-accent: #fffaf4 !important;
   --color-text-button-primary: #fffaf4 !important;
-  --color-text-button-secondary: var(--mk-ivory-100) !important;
-  --color-text-button-tertiary: var(--mk-ivory-300) !important;
-  --color-icon-primary: var(--mk-ivory-100) !important;
-  --color-icon-secondary: var(--mk-ivory-300) !important;
-  --color-icon-tertiary: var(--mk-ivory-500) !important;
-  --color-icon-accent: var(--mk-blood-600) !important;
+  --color-text-button-secondary: var(--cs-makima-ivory-100) !important;
+  --color-text-button-tertiary: var(--cs-makima-ivory-300) !important;
+  --color-icon-primary: var(--cs-makima-ivory-100) !important;
+  --color-icon-secondary: var(--cs-makima-ivory-300) !important;
+  --color-icon-tertiary: var(--cs-makima-ivory-500) !important;
+  --color-icon-accent: var(--cs-makima-blood-600) !important;
 
-  --color-border: var(--mk-edge-soft) !important;
-  --color-border-heavy: var(--mk-edge-medium) !important;
+  --color-border: var(--cs-makima-edge-soft) !important;
+  --color-border-heavy: var(--cs-makima-edge-medium) !important;
   --color-border-light: rgb(122 91 50 / 9%) !important;
-  --color-border-focus: var(--mk-iris-400) !important;
-  --color-ring: var(--mk-iris-400) !important;
-  --color-decoration-added: var(--mk-green-400) !important;
-  --color-decoration-deleted: var(--mk-red-400) !important;
+  --color-border-focus: var(--cs-makima-iris-400) !important;
+  --color-ring: var(--cs-makima-iris-400) !important;
+  --color-decoration-added: var(--cs-makima-green-400) !important;
+  --color-decoration-deleted: var(--cs-makima-red-400) !important;
   --color-editor-added: #e1f0e5 !important;
   --color-editor-deleted: #f6e1e3 !important;
 
@@ -102,42 +102,42 @@ html[data-codex-skin="makima"] {
   --color-token-bg-tertiary: rgb(216 221 210 / 82%) !important;
   --color-token-bg-fog: rgb(247 245 239 / 94%) !important;
   --color-token-main-surface-primary: rgb(247 245 239 / 42%) !important;
-  --color-token-side-bar-background: var(--mk-glass-sidebar) !important;
-  --color-token-primary: var(--mk-blood-500) !important;
+  --color-token-side-bar-background: var(--cs-makima-glass-sidebar) !important;
+  --color-token-primary: var(--cs-makima-blood-500) !important;
   --color-token-on-accent: #fffaf4 !important;
-  --color-token-foreground: var(--mk-ivory-100) !important;
-  --color-token-text-primary: var(--mk-ivory-100) !important;
-  --color-token-text-secondary: var(--mk-ivory-300) !important;
-  --color-token-text-tertiary: var(--mk-ivory-500) !important;
-  --color-token-description-foreground: var(--mk-ivory-300) !important;
+  --color-token-foreground: var(--cs-makima-ivory-100) !important;
+  --color-token-text-primary: var(--cs-makima-ivory-100) !important;
+  --color-token-text-secondary: var(--cs-makima-ivory-300) !important;
+  --color-token-text-tertiary: var(--cs-makima-ivory-500) !important;
+  --color-token-description-foreground: var(--cs-makima-ivory-300) !important;
   --color-token-disabled-foreground: rgb(89 100 87 / 48%) !important;
-  --color-token-icon-foreground: var(--mk-ivory-300) !important;
-  --color-token-link: var(--mk-iris-300) !important;
-  --color-token-text-link-foreground: var(--mk-iris-300) !important;
+  --color-token-icon-foreground: var(--cs-makima-ivory-300) !important;
+  --color-token-link: var(--cs-makima-iris-300) !important;
+  --color-token-text-link-foreground: var(--cs-makima-iris-300) !important;
   --color-token-text-link-active-foreground: #5f3d11 !important;
-  --color-token-border: var(--mk-edge-soft) !important;
-  --color-token-border-default: var(--mk-edge-soft) !important;
-  --color-token-border-heavy: var(--mk-edge-medium) !important;
+  --color-token-border: var(--cs-makima-edge-soft) !important;
+  --color-token-border-default: var(--cs-makima-edge-soft) !important;
+  --color-token-border-heavy: var(--cs-makima-edge-medium) !important;
   --color-token-border-light: rgb(122 91 50 / 9%) !important;
-  --color-token-focus-border: var(--mk-blood-500) !important;
-  --color-token-list-focus-outline: var(--mk-blood-500) !important;
+  --color-token-focus-border: var(--cs-makima-blood-500) !important;
+  --color-token-list-focus-outline: var(--cs-makima-blood-500) !important;
   --color-token-list-hover-background: rgb(122 91 50 / 8%) !important;
   --color-token-list-active-selection-background: rgb(161 51 67 / 14%) !important;
-  --color-token-list-active-selection-foreground: var(--mk-ivory-100) !important;
-  --color-token-list-active-selection-icon-foreground: var(--mk-blood-400) !important;
+  --color-token-list-active-selection-foreground: var(--cs-makima-ivory-100) !important;
+  --color-token-list-active-selection-icon-foreground: var(--cs-makima-blood-400) !important;
   --color-token-input-background: rgb(247 245 239 / 86%) !important;
   --color-token-input-border: rgb(122 91 50 / 24%) !important;
-  --color-token-input-foreground: var(--mk-ivory-100) !important;
-  --color-token-input-placeholder-foreground: var(--mk-ivory-500) !important;
+  --color-token-input-foreground: var(--cs-makima-ivory-100) !important;
+  --color-token-input-placeholder-foreground: var(--cs-makima-ivory-500) !important;
   --color-token-dropdown-background: rgb(255 251 246 / 98%) !important;
-  --color-token-dropdown-foreground: var(--mk-ivory-100) !important;
+  --color-token-dropdown-foreground: var(--cs-makima-ivory-100) !important;
   --color-token-menu-background: rgb(255 251 246 / 98%) !important;
   --color-token-menu-border: rgb(122 91 50 / 22%) !important;
   --color-token-menubar-selection-background: rgb(161 51 67 / 12%) !important;
-  --color-token-menubar-selection-foreground: var(--mk-ivory-100) !important;
+  --color-token-menubar-selection-foreground: var(--cs-makima-ivory-100) !important;
   --color-token-toolbar-hover-background: rgb(122 91 50 / 9%) !important;
 
-  --color-token-button-background: var(--mk-blood-500) !important;
+  --color-token-button-background: var(--cs-makima-blood-500) !important;
   --color-token-button-border: rgb(118 37 54 / 28%) !important;
   --color-token-button-foreground: #fffaf4 !important;
   --color-token-button-secondary-hover-background: rgb(122 91 50 / 12%) !important;
@@ -147,39 +147,39 @@ html[data-codex-skin="makima"] {
   --color-token-interactive-bg-secondary-hover: rgb(122 91 50 / 9%) !important;
   --color-token-interactive-bg-secondary-press: rgb(122 91 50 / 15%) !important;
   --color-token-interactive-bg-secondary-selected: rgb(161 51 67 / 12%) !important;
-  --color-token-interactive-label-accent-default: var(--mk-blood-600) !important;
-  --color-token-interactive-label-secondary-default: var(--mk-ivory-300) !important;
+  --color-token-interactive-label-accent-default: var(--cs-makima-blood-600) !important;
+  --color-token-interactive-label-secondary-default: var(--cs-makima-ivory-300) !important;
 
-  --color-token-badge-background: var(--mk-blood-600) !important;
+  --color-token-badge-background: var(--cs-makima-blood-600) !important;
   --color-token-badge-foreground: #fffaf4 !important;
-  --color-token-activity-bar-badge-background: var(--mk-blood-500) !important;
+  --color-token-activity-bar-badge-background: var(--cs-makima-blood-500) !important;
   --color-token-activity-bar-badge-foreground: #fffaf4 !important;
-  --color-token-checkbox-background: var(--mk-blood-600) !important;
-  --color-token-checkbox-border: var(--mk-iris-400) !important;
+  --color-token-checkbox-background: var(--cs-makima-blood-600) !important;
+  --color-token-checkbox-border: var(--cs-makima-iris-400) !important;
   --color-token-checkbox-foreground: #fffaf4 !important;
-  --color-token-radio-active-foreground: var(--mk-blood-400) !important;
-  --color-token-radio-inactive-border: var(--mk-edge-medium) !important;
+  --color-token-radio-active-foreground: var(--cs-makima-blood-400) !important;
+  --color-token-radio-inactive-border: var(--cs-makima-edge-medium) !important;
 
-  --color-token-conversation-header: var(--mk-iris-300) !important;
-  --color-token-conversation-body: var(--mk-ivory-300) !important;
-  --color-token-conversation-summary-leading: var(--mk-iris-300) !important;
-  --color-token-conversation-summary-trailing: var(--mk-ivory-500) !important;
-  --color-token-non-assistant-body-descendant: var(--mk-ivory-300) !important;
+  --color-token-conversation-header: var(--cs-makima-iris-300) !important;
+  --color-token-conversation-body: var(--cs-makima-ivory-300) !important;
+  --color-token-conversation-summary-leading: var(--cs-makima-iris-300) !important;
+  --color-token-conversation-summary-trailing: var(--cs-makima-ivory-500) !important;
+  --color-token-non-assistant-body-descendant: var(--cs-makima-ivory-300) !important;
 
-  --color-token-editor-background: var(--mk-glass-code) !important;
-  --color-token-editor-foreground: var(--mk-ivory-100) !important;
+  --color-token-editor-background: var(--cs-makima-glass-code) !important;
+  --color-token-editor-foreground: var(--cs-makima-ivory-100) !important;
   --color-token-editor-widget-background: rgb(255 251 246 / 98%) !important;
   --color-token-editor-selection-background: rgb(161 51 67 / 20%) !important;
   --color-token-editor-find-match-background: rgb(141 100 30 / 24%) !important;
   --color-token-editor-find-match-highlight-background: rgb(141 100 30 / 14%) !important;
-  --color-token-editor-error-foreground: var(--mk-red-400) !important;
-  --color-token-editor-warning-foreground: var(--mk-iris-300) !important;
+  --color-token-editor-error-foreground: var(--cs-makima-red-400) !important;
+  --color-token-editor-warning-foreground: var(--cs-makima-iris-300) !important;
   --color-token-editor-group-drop-background: rgb(54 114 111 / 12%) !important;
   --color-token-editor-group-drop-into-prompt-background: rgb(161 51 67 / 13%) !important;
-  --color-token-editor-group-drop-into-prompt-foreground: var(--mk-ivory-100) !important;
-  --color-token-text-code-block-background: var(--mk-glass-code) !important;
+  --color-token-editor-group-drop-into-prompt-foreground: var(--cs-makima-ivory-100) !important;
+  --color-token-text-code-block-background: var(--cs-makima-glass-code) !important;
   --color-token-text-preformat-background: rgb(141 100 30 / 10%) !important;
-  --color-token-text-preformat-foreground: var(--mk-iris-300) !important;
+  --color-token-text-preformat-foreground: var(--cs-makima-iris-300) !important;
 
   --color-token-diff-surface: #f3ede5 !important;
   --color-token-diff-editor-inserted-line-background: #e1f0e5 !important;
@@ -195,13 +195,13 @@ html[data-codex-skin="makima"] {
   --codex-diffs-placeholder-highlight: #efd7da !important;
   --codex-diffs-addition-hover: #d5e9da !important;
   --codex-diffs-deletion-hover: #efd3d6 !important;
-  --codex-diffs-addition-number: var(--mk-green-400) !important;
-  --codex-diffs-deletion-number: var(--mk-red-400) !important;
-  --codex-diffs-context-number: var(--mk-ivory-500) !important;
+  --codex-diffs-addition-number: var(--cs-makima-green-400) !important;
+  --codex-diffs-deletion-number: var(--cs-makima-red-400) !important;
+  --codex-diffs-context-number: var(--cs-makima-ivory-500) !important;
 
   --color-token-terminal-background: #f7f1e9 !important;
-  --color-token-terminal-foreground: var(--mk-ivory-100) !important;
-  --color-token-terminal-border: var(--mk-edge-soft) !important;
+  --color-token-terminal-foreground: var(--cs-makima-ivory-100) !important;
+  --color-token-terminal-border: var(--cs-makima-edge-soft) !important;
   --color-token-terminal-ansi-black: #332824 !important;
   --color-token-terminal-ansi-bright-black: #79675f !important;
   --color-token-terminal-ansi-red: #a93640 !important;
@@ -219,41 +219,41 @@ html[data-codex-skin="makima"] {
   --color-token-terminal-ansi-white: #5b4c46 !important;
   --color-token-terminal-ansi-bright-white: #332824 !important;
 
-  --color-token-git-decoration-added-resource-foreground: var(--mk-green-400) !important;
-  --color-token-git-decoration-deleted-resource-foreground: var(--mk-red-400) !important;
-  --color-token-git-decoration-modified-resource-foreground: var(--mk-iris-300) !important;
-  --color-token-git-decoration-renamed-resource-foreground: var(--mk-teal-400) !important;
+  --color-token-git-decoration-added-resource-foreground: var(--cs-makima-green-400) !important;
+  --color-token-git-decoration-deleted-resource-foreground: var(--cs-makima-red-400) !important;
+  --color-token-git-decoration-modified-resource-foreground: var(--cs-makima-iris-300) !important;
+  --color-token-git-decoration-renamed-resource-foreground: var(--cs-makima-teal-400) !important;
   --color-token-git-decoration-untracked-resource-foreground: #397348 !important;
-  --color-token-git-decoration-ignored-resource-foreground: var(--mk-ivory-500) !important;
-  --color-token-error-foreground: var(--mk-red-400) !important;
+  --color-token-git-decoration-ignored-resource-foreground: var(--cs-makima-ivory-500) !important;
+  --color-token-error-foreground: var(--cs-makima-red-400) !important;
   --color-token-input-validation-error-background: rgb(179 61 69 / 11%) !important;
-  --color-token-input-validation-error-border: var(--mk-red-400) !important;
+  --color-token-input-validation-error-border: var(--cs-makima-red-400) !important;
   --color-token-input-validation-warning-background: rgb(141 100 30 / 12%) !important;
-  --color-token-input-validation-warning-border: var(--mk-iris-300) !important;
+  --color-token-input-validation-warning-border: var(--cs-makima-iris-300) !important;
   --color-token-input-validation-info-background: rgb(54 114 111 / 10%) !important;
 
-  --color-token-charts-blue: var(--mk-teal-400) !important;
-  --color-token-charts-green: var(--mk-green-400) !important;
+  --color-token-charts-blue: var(--cs-makima-teal-400) !important;
+  --color-token-charts-green: var(--cs-makima-green-400) !important;
   --color-token-charts-orange: #db864f !important;
   --color-token-charts-purple: #b77eaa !important;
-  --color-token-charts-red: var(--mk-blood-400) !important;
-  --color-token-charts-yellow: var(--mk-iris-300) !important;
-  --color-token-progress-bar-background: var(--mk-blood-500) !important;
+  --color-token-charts-red: var(--cs-makima-blood-400) !important;
+  --color-token-charts-yellow: var(--cs-makima-iris-300) !important;
+  --color-token-progress-bar-background: var(--cs-makima-blood-500) !important;
   --color-token-scrollbar-slider-background: rgb(122 91 50 / 18%) !important;
   --color-token-scrollbar-slider-hover-background: rgb(122 91 50 / 30%) !important;
   --color-token-scrollbar-slider-active-background: rgb(161 51 67 / 34%) !important;
 
-  background: var(--mk-void-1000) !important;
-  accent-color: var(--mk-blood-500) !important;
+  background: var(--cs-makima-void-1000) !important;
+  accent-color: var(--cs-makima-blood-500) !important;
   scrollbar-color: rgb(122 91 50 / 24%) transparent;
 }
 
 html[data-codex-skin="makima"] body {
-  background: var(--mk-void-1000) !important;
+  background: var(--cs-makima-void-1000) !important;
 }
 
 html[data-codex-skin="makima"] #root {
-  background-color: var(--mk-void-1000) !important;
+  background-color: var(--cs-makima-void-1000) !important;
   background-image:
     linear-gradient(
       90deg,
@@ -271,7 +271,7 @@ html[data-codex-skin="makima"] #root {
       rgb(216 221 210 / 12%) 100%
     ),
     radial-gradient(circle at 28% 32%, transparent 0 40%, rgb(247 245 239 / 4%) 72%),
-    var(--mk-hero-art) !important;
+    var(--cs-makima-hero-art) !important;
   background-position: center, center, center, center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -306,7 +306,7 @@ html[data-codex-skin="makima"] header.app-header-tint[data-app-shell-header-edge
 html[data-codex-skin="makima"] [data-app-shell-tab-controller]:has([role="tab"][aria-selected="true"]) > [role="button"] {
   background: rgb(255 251 246 / 98%) !important;
   border-radius: 6px 6px 0 0 !important;
-  box-shadow: inset 0 -2px var(--mk-blood-400) !important;
+  box-shadow: inset 0 -2px var(--cs-makima-blood-400) !important;
 }
 
 html[data-codex-skin="makima"] [data-app-shell-tab-controller]:has([role="tab"][aria-selected="true"]) > [role="button"] > .pointer-events-none {
@@ -322,30 +322,30 @@ html[data-codex-skin="makima"] [data-app-shell-tab-controller] [role="tab"][aria
 }
 
 html[data-codex-skin="makima"] [data-app-shell-tab-controller] [role="tab"][aria-selected="true"] svg {
-  color: var(--mk-blood-600) !important;
+  color: var(--cs-makima-blood-600) !important;
 }
 
 html[data-codex-skin="makima"] [data-app-shell-tab-close-button],
 html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller] > [role="tablist"] > button {
-  color: var(--mk-ivory-500) !important;
+  color: var(--cs-makima-ivory-500) !important;
   background: transparent !important;
   box-shadow: none !important;
 }
 
 html[data-codex-skin="makima"] [data-app-shell-tab-close-button] path,
 html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller] > [role="tablist"] > button path {
-  fill: var(--mk-ivory-300) !important;
+  fill: var(--cs-makima-ivory-300) !important;
 }
 
 html[data-codex-skin="makima"] [data-app-shell-tab-close-button]:hover,
 html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller] > [role="tablist"] > button:hover {
-  color: var(--mk-blood-600) !important;
+  color: var(--cs-makima-blood-600) !important;
   background: rgb(122 91 50 / 8%) !important;
 }
 
 html[data-codex-skin="makima"] [data-app-shell-aura-tab-strip] button,
 html[data-codex-skin="makima"] [data-app-shell-header-edge-scroll] button {
-  color: var(--mk-sage-700) !important;
+  color: var(--cs-makima-sage-700) !important;
   background: rgb(247 245 239 / 24%) !important;
   border-color: transparent !important;
   border-radius: 8px;
@@ -359,13 +359,13 @@ html[data-codex-skin="makima"] [data-app-shell-header-edge-scroll] button {
 
 html[data-codex-skin="makima"] [data-app-shell-aura-tab-strip] button svg,
 html[data-codex-skin="makima"] [data-app-shell-header-edge-scroll] button svg {
-  color: var(--mk-copper-500) !important;
+  color: var(--cs-makima-copper-500) !important;
 }
 
 html[data-codex-skin="makima"] [data-app-shell-aura-tab-strip] button:hover,
 html[data-codex-skin="makima"] [data-app-shell-header-edge-scroll] button:hover {
-  color: var(--mk-blood-600) !important;
-  background: var(--mk-control-hover) !important;
+  color: var(--cs-makima-blood-600) !important;
+  background: var(--cs-makima-control-hover) !important;
   border-color: rgb(135 107 62 / 20%) !important;
   box-shadow:
     inset 0 -2px rgb(135 107 62 / 32%),
@@ -374,17 +374,17 @@ html[data-codex-skin="makima"] [data-app-shell-header-edge-scroll] button:hover 
 
 html[data-codex-skin="makima"] [data-app-shell-aura-tab-strip] button:hover svg,
 html[data-codex-skin="makima"] [data-app-shell-header-edge-scroll] button:hover svg {
-  color: var(--mk-blood-600) !important;
+  color: var(--cs-makima-blood-600) !important;
 }
 
 html[data-codex-skin="makima"] [data-app-shell-aura-tab-strip] button:active,
 html[data-codex-skin="makima"] [data-app-shell-header-edge-scroll] button:active,
 html[data-codex-skin="makima"] [data-app-shell-header-edge-scroll] button[aria-pressed="true"] {
-  color: var(--mk-blood-700) !important;
-  background: var(--mk-control-pressed) !important;
+  color: var(--cs-makima-blood-700) !important;
+  background: var(--cs-makima-control-pressed) !important;
   border-color: rgb(127 52 66 / 24%) !important;
   box-shadow:
-    inset 2px 0 var(--mk-blood-500),
+    inset 2px 0 var(--cs-makima-blood-500),
     inset 0 0 0 1px rgb(127 52 66 / 9%) !important;
 }
 
@@ -426,7 +426,7 @@ html[data-codex-skin="makima"] [data-app-action-sidebar-section] {
 }
 
 html[data-codex-skin="makima"] [data-app-action-sidebar-section-heading] {
-  color: var(--mk-iris-500) !important;
+  color: var(--cs-makima-iris-500) !important;
   text-shadow: none;
 }
 
@@ -451,7 +451,7 @@ html[data-codex-skin="makima"] [data-app-action-sidebar-thread-active="true"] {
     rgb(247 245 239 / 82%)
   ) !important;
   box-shadow:
-    inset 2px 0 var(--mk-copper-500),
+    inset 2px 0 var(--cs-makima-copper-500),
     inset 0 0 0 1px rgb(135 107 62 / 30%),
     inset 0 1px rgb(255 255 255 / 68%),
     0 8px 22px rgb(70 60 48 / 9%) !important;
@@ -460,14 +460,14 @@ html[data-codex-skin="makima"] [data-app-action-sidebar-thread-active="true"] {
 html[data-codex-skin="makima"] .app-shell-left-panel button,
 html[data-codex-skin="makima"] [data-app-action-sidebar-project-row],
 html[data-codex-skin="makima"] [data-app-action-sidebar-thread-row] {
-  color: var(--mk-ivory-100) !important;
+  color: var(--cs-makima-ivory-100) !important;
   border-radius: 8px;
 }
 
 html[data-codex-skin="makima"] .app-shell-left-panel button svg,
 html[data-codex-skin="makima"] [data-app-action-sidebar-project-row] svg,
 html[data-codex-skin="makima"] [data-app-action-sidebar-thread-row] svg {
-  color: var(--mk-copper-500) !important;
+  color: var(--cs-makima-copper-500) !important;
   transition: color 120ms ease-out;
 }
 
@@ -485,8 +485,8 @@ html[data-codex-skin="makima"] [data-app-action-sidebar-thread-row] svg path[str
 
 html[data-codex-skin="makima"] .app-shell-left-panel button:hover,
 html[data-codex-skin="makima"] .app-shell-left-panel button[data-state="open"] {
-  color: var(--mk-blood-700) !important;
-  background: var(--mk-control-hover) !important;
+  color: var(--cs-makima-blood-700) !important;
+  background: var(--cs-makima-control-hover) !important;
   box-shadow:
     inset 0 0 0 1px rgb(135 107 62 / 18%),
     0 4px 12px rgb(70 60 48 / 7%) !important;
@@ -494,7 +494,7 @@ html[data-codex-skin="makima"] .app-shell-left-panel button[data-state="open"] {
 
 html[data-codex-skin="makima"] .app-shell-left-panel button:hover svg,
 html[data-codex-skin="makima"] .app-shell-left-panel button[data-state="open"] svg {
-  color: var(--mk-blood-600) !important;
+  color: var(--cs-makima-blood-600) !important;
 }
 
 html[data-codex-skin="makima"] .app-shell-left-panel button[data-app-action-sidebar-section-toggle]:hover {
@@ -503,15 +503,15 @@ html[data-codex-skin="makima"] .app-shell-left-panel button[data-app-action-side
 }
 
 html[data-codex-skin="makima"] [data-app-action-sidebar-thread-active="true"] svg {
-  color: var(--mk-copper-500) !important;
+  color: var(--cs-makima-copper-500) !important;
 }
 
 html[data-codex-skin="makima"] [data-app-action-sidebar-thread-active="true"] svg.icon-xs.shrink-0 {
-  color: var(--mk-blood-600) !important;
+  color: var(--cs-makima-blood-600) !important;
 }
 
 html[data-codex-skin="makima"] [data-app-action-sidebar-thread-pinned] {
-  color: var(--mk-iris-500) !important;
+  color: var(--cs-makima-iris-500) !important;
   text-shadow: none;
 }
 
@@ -550,7 +550,7 @@ html[data-codex-skin="makima"]
   inset: 0 auto 0 0;
   width: 24px;
   pointer-events: none;
-  background-color: var(--mk-void-1000);
+  background-color: var(--cs-makima-void-1000);
   background-image:
     linear-gradient(
       180deg,
@@ -576,7 +576,7 @@ html[data-codex-skin="makima"]
       rgb(216 221 210 / 12%) 100%
     ),
     radial-gradient(circle at 28% 32%, transparent 0 40%, rgb(247 245 239 / 4%) 72%),
-    var(--mk-hero-art);
+    var(--cs-makima-hero-art);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -626,7 +626,7 @@ html[data-codex-skin="makima"] .group\/home-suggestion-list-item:hover {
 
 html[data-codex-skin="makima"] [data-home-ambient-suggestions] button[aria-labelledby]:focus-visible,
 html[data-codex-skin="makima"] .group\/home-suggestion-list-item:focus-visible {
-  border-color: var(--mk-edge-focus) !important;
+  border-color: var(--cs-makima-edge-focus) !important;
   box-shadow:
     inset 0 0 0 1px rgb(161 51 67 / 16%),
     0 0 0 2px rgb(161 51 67 / 14%),
@@ -658,7 +658,7 @@ html[data-codex-skin="makima"] [data-codex-composer-root]:focus-within .composer
 }
 
 html[data-codex-skin="makima"] [data-codex-composer] {
-  caret-color: var(--mk-copper-500) !important;
+  caret-color: var(--cs-makima-copper-500) !important;
 }
 
 html[data-codex-skin="makima"] [data-composer-utility-bar-scroll-area],
@@ -686,8 +686,8 @@ html[data-codex-skin="makima"] [data-composer-overlay-floating-ui] {
 }
 
 html[data-codex-skin="makima"] [data-codex-composer-root] [data-composer-navigation-target] {
-  color: var(--mk-ivory-100) !important;
-  background: var(--mk-control-idle) !important;
+  color: var(--cs-makima-ivory-100) !important;
+  background: var(--cs-makima-control-idle) !important;
   border-color: rgb(135 107 62 / 22%) !important;
   box-shadow:
     inset 0 0 0 1px rgb(255 255 255 / 44%),
@@ -700,14 +700,14 @@ html[data-codex-skin="makima"] [data-codex-composer-root] [data-composer-navigat
 }
 
 html[data-codex-skin="makima"] [data-codex-composer-root] [data-composer-navigation-target] svg {
-  color: var(--mk-copper-500) !important;
+  color: var(--cs-makima-copper-500) !important;
 }
 
 html[data-codex-skin="makima"] [data-codex-composer-root] [data-composer-navigation-target]:hover,
 html[data-codex-skin="makima"] [data-codex-composer-root] [data-composer-navigation-target][aria-expanded="true"],
 html[data-codex-skin="makima"] [data-codex-composer-root] [data-composer-navigation-target][data-state="open"] {
-  color: var(--mk-blood-700) !important;
-  background: var(--mk-control-hover) !important;
+  color: var(--cs-makima-blood-700) !important;
+  background: var(--cs-makima-control-hover) !important;
   border-color: rgb(127 52 66 / 24%) !important;
   box-shadow:
     inset 0 0 0 1px rgb(127 52 66 / 12%),
@@ -717,7 +717,7 @@ html[data-codex-skin="makima"] [data-codex-composer-root] [data-composer-navigat
 html[data-codex-skin="makima"] [data-codex-composer-root] [data-composer-navigation-target]:hover svg,
 html[data-codex-skin="makima"] [data-codex-composer-root] [data-composer-navigation-target][aria-expanded="true"] svg,
 html[data-codex-skin="makima"] [data-codex-composer-root] [data-composer-navigation-target][data-state="open"] svg {
-  color: var(--mk-blood-600) !important;
+  color: var(--cs-makima-blood-600) !important;
 }
 
 html[data-codex-skin="makima"] [data-codex-intelligence-trigger] {
@@ -725,7 +725,7 @@ html[data-codex-skin="makima"] [data-codex-intelligence-trigger] {
     linear-gradient(90deg, rgb(232 235 226 / 92%), rgb(247 245 239 / 88%)) !important;
   border-color: rgb(135 107 62 / 26%) !important;
   box-shadow:
-    inset 2px 0 var(--mk-copper-500),
+    inset 2px 0 var(--cs-makima-copper-500),
     inset 0 0 0 1px rgb(135 107 62 / 8%) !important;
   padding-left: 10px !important;
   padding-right: 10px !important;
@@ -733,12 +733,12 @@ html[data-codex-skin="makima"] [data-codex-intelligence-trigger] {
 }
 
 html[data-codex-skin="makima"] [data-codex-intelligence-trigger] svg {
-  color: var(--mk-blood-600) !important;
+  color: var(--cs-makima-blood-600) !important;
 }
 
 html[data-codex-skin="makima"] [data-codex-composer-root] button[aria-label="听写"],
 html[data-codex-skin="makima"] [data-codex-composer-root] button[aria-label="Dictation"] {
-  color: var(--mk-copper-500) !important;
+  color: var(--cs-makima-copper-500) !important;
   background: transparent !important;
   border-color: transparent !important;
   box-shadow: none !important;
@@ -746,8 +746,8 @@ html[data-codex-skin="makima"] [data-codex-composer-root] button[aria-label="Dic
 
 html[data-codex-skin="makima"] [data-codex-composer-root] button[aria-label="听写"]:hover,
 html[data-codex-skin="makima"] [data-codex-composer-root] button[aria-label="Dictation"]:hover {
-  color: var(--mk-blood-600) !important;
-  background: var(--mk-control-hover) !important;
+  color: var(--cs-makima-blood-600) !important;
+  background: var(--cs-makima-control-hover) !important;
   box-shadow: inset 0 0 0 1px rgb(135 107 62 / 18%) !important;
 }
 
@@ -756,7 +756,7 @@ html[data-codex-skin="makima"] [data-codex-composer-root] button[aria-label="Sen
 html[data-codex-skin="makima"] [data-codex-composer-root] button[aria-label="停止"],
 html[data-codex-skin="makima"] [data-codex-composer-root] button[aria-label="Stop"] {
   color: #fffaf4 !important;
-  background: var(--mk-blood-600) !important;
+  background: var(--cs-makima-blood-600) !important;
   border-color: rgb(118 37 54 / 38%) !important;
   box-shadow:
     inset 0 0 0 1px rgb(255 255 255 / 20%),
@@ -777,8 +777,8 @@ html[data-codex-skin="makima"] [data-content-search-turn-key] {
 }
 
 html[data-codex-skin="makima"] [data-turn-key] > div > div > .text-token-text-secondary > button[aria-expanded] .text-token-conversation-body {
-  color: var(--mk-ink-900) !important;
-  -webkit-text-fill-color: var(--mk-ink-900) !important;
+  color: var(--cs-makima-ink-900) !important;
+  -webkit-text-fill-color: var(--cs-makima-ink-900) !important;
 }
 
 html[data-codex-skin="makima"] [data-turn-key] > div > div > .text-token-text-secondary > button[aria-expanded] {
@@ -791,7 +791,7 @@ html[data-codex-skin="makima"] [data-turn-key] > div > div > .text-token-text-se
 
 html[data-codex-skin="makima"] [data-response-annotation-conversation],
 html[data-codex-skin="makima"] [data-local-conversation-final-assistant]:not(:has([data-response-annotation-conversation])) {
-  background: var(--mk-glass-reading) !important;
+  background: var(--cs-makima-glass-reading) !important;
   border-color: transparent !important;
   border-radius: 16px;
   box-shadow: 0 14px 38px rgb(70 60 48 / 7%) !important;
@@ -828,7 +828,7 @@ html[data-codex-skin="makima"] [data-user-message-bubble] {
 }
 
 html[data-codex-skin="makima"] [data-assistant-message-sent-time] {
-  color: var(--mk-ivory-500) !important;
+  color: var(--cs-makima-ivory-500) !important;
   text-shadow: none;
 }
 
@@ -838,7 +838,7 @@ html[data-codex-skin="makima"] [data-codex-approval-surface] {
     rgb(255 248 244 / 96%) !important;
   border-color: rgb(161 51 67 / 26%) !important;
   box-shadow:
-    inset 2px 0 var(--mk-blood-400),
+    inset 2px 0 var(--cs-makima-blood-400),
     inset 0 0 0 1px rgb(122 91 50 / 9%),
     0 16px 38px rgb(85 61 45 / 12%) !important;
 }
@@ -850,7 +850,7 @@ html[data-codex-skin="makima"] [data-local-conversation-item-target-ids] {
 }
 
 html[data-codex-skin="makima"] [data-local-conversation-item-target-ids] .group\/activity-header {
-  color: var(--mk-iris-500) !important;
+  color: var(--cs-makima-iris-500) !important;
   padding-left: 10px !important;
   padding-right: 10px !important;
   padding-top: 4px !important;
@@ -859,7 +859,7 @@ html[data-codex-skin="makima"] [data-local-conversation-item-target-ids] .group\
 }
 
 html[data-codex-skin="makima"] [data-local-conversation-item-target-ids] .group\/activity-header:hover {
-  color: var(--mk-blood-600) !important;
+  color: var(--cs-makima-blood-600) !important;
   text-shadow: none;
 }
 
@@ -874,7 +874,7 @@ html[data-codex-skin="makima"] [data-local-conversation-item-target-ids]:has(.gr
 }
 
 html[data-codex-skin="makima"] [data-local-conversation-item-target-ids]:has(.loading-shimmer-pure-text) > div > div > .group\/activity-header {
-  color: var(--mk-ink-900) !important;
+  color: var(--cs-makima-ink-900) !important;
   background: linear-gradient(
     90deg,
     rgb(247 245 239 / 96%),
@@ -888,11 +888,11 @@ html[data-codex-skin="makima"] [data-local-conversation-item-target-ids]:has(.lo
 }
 
 html[data-codex-skin="makima"] [data-local-conversation-item-target-ids]:has(.loading-shimmer-pure-text) > div > div > .group\/activity-header svg {
-  color: var(--mk-copper-500) !important;
+  color: var(--cs-makima-copper-500) !important;
 }
 
 html[data-codex-skin="makima"] [data-local-conversation-item-target-ids]:has(.loading-shimmer-pure-text) > div > div > .group\/activity-header:hover {
-  color: var(--mk-ink-900) !important;
+  color: var(--cs-makima-ink-900) !important;
   background: linear-gradient(
     90deg,
     rgb(255 251 246 / 98%),
@@ -916,8 +916,8 @@ html[data-codex-skin="makima"] [data-local-conversation-item-target-ids] .vertic
 }
 
 html[data-codex-skin="makima"] [data-local-conversation-item-target-ids] .loading-shimmer-pure-text {
-  color: var(--mk-ink-900) !important;
-  -webkit-text-fill-color: var(--mk-ink-900) !important;
+  color: var(--cs-makima-ink-900) !important;
+  -webkit-text-fill-color: var(--cs-makima-ink-900) !important;
   background-image: none !important;
   background-color: transparent !important;
   transition: none !important;
@@ -925,8 +925,8 @@ html[data-codex-skin="makima"] [data-local-conversation-item-target-ids] .loadin
 }
 
 html[data-codex-skin="makima"] [data-local-conversation-item-target-ids] .loading-shimmer-pure-text > span:not([aria-hidden="true"]) {
-  color: var(--mk-ink-900) !important;
-  -webkit-text-fill-color: var(--mk-ink-900) !important;
+  color: var(--cs-makima-ink-900) !important;
+  -webkit-text-fill-color: var(--cs-makima-ink-900) !important;
 }
 
 html[data-codex-skin="makima"] [data-local-conversation-item-target-ids] .loading-shimmer-pure-text [aria-hidden="true"] {
@@ -934,14 +934,14 @@ html[data-codex-skin="makima"] [data-local-conversation-item-target-ids] .loadin
 }
 
 html[data-codex-skin="makima"] [data-agent-activity-file-link] {
-  color: var(--mk-iris-500) !important;
+  color: var(--cs-makima-iris-500) !important;
   background: rgb(122 91 50 / 7%) !important;
   border-radius: 8px;
   box-shadow: none !important;
 }
 
 html[data-codex-skin="makima"] [data-nested-in-plan] {
-  color: var(--mk-ivory-300) !important;
+  color: var(--cs-makima-ivory-300) !important;
   background:
     linear-gradient(90deg, rgb(161 51 67 / 8%), transparent 38%),
     rgb(247 245 239 / 68%) !important;
@@ -952,22 +952,22 @@ html[data-codex-skin="makima"] [data-nested-in-plan] {
 }
 
 html[data-codex-skin="makima"] [data-nested-in-plan] [data-status="completed"] {
-  color: var(--mk-green-400) !important;
+  color: var(--cs-makima-green-400) !important;
 }
 
 html[data-codex-skin="makima"] [data-nested-in-plan] [data-status="in_progress"],
 html[data-codex-skin="makima"] [data-nested-in-plan] [data-status="running"] {
-  color: var(--mk-iris-500) !important;
+  color: var(--cs-makima-iris-500) !important;
 }
 
 html[data-codex-skin="makima"] [data-nested-in-plan] [data-status="failed"],
 html[data-codex-skin="makima"] [data-nested-in-plan] [data-status="error"] {
-  color: var(--mk-red-400) !important;
+  color: var(--cs-makima-red-400) !important;
 }
 
 html[data-codex-skin="makima"] [data-post-command-hook],
 html[data-codex-skin="makima"] [data-affiliation-command] {
-  color: var(--mk-ivory-300) !important;
+  color: var(--cs-makima-ivory-300) !important;
   background: rgb(247 245 239 / 66%) !important;
   border-radius: 10px;
   box-shadow:
@@ -996,8 +996,8 @@ html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] > div 
 }
 
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-icon-button"] {
-  color: var(--mk-copper-500) !important;
-  background: var(--mk-control-idle) !important;
+  color: var(--cs-makima-copper-500) !important;
+  background: var(--cs-makima-control-idle) !important;
   border-color: rgb(135 107 62 / 20%) !important;
   border-radius: 8px;
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / 38%) !important;
@@ -1010,8 +1010,8 @@ html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-
 
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-icon-button"]:hover,
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-icon-button"][data-state="open"] {
-  color: var(--mk-blood-600) !important;
-  background: var(--mk-control-hover) !important;
+  color: var(--cs-makima-blood-600) !important;
+  background: var(--cs-makima-control-hover) !important;
   border-color: rgb(127 52 66 / 22%) !important;
   box-shadow:
     inset 0 0 0 1px rgb(127 52 66 / 12%),
@@ -1019,7 +1019,7 @@ html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-
 }
 
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-item-button"] {
-  color: var(--mk-ivory-100) !important;
+  color: var(--cs-makima-ivory-100) !important;
   background: transparent !important;
   border-radius: 8px;
   box-shadow: inset 2px 0 rgb(127 52 66 / 0%) !important;
@@ -1033,23 +1033,23 @@ html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-
 
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-item-button"]:hover,
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-item-button"]:focus-visible {
-  color: var(--mk-blood-700) !important;
-  background: var(--mk-control-hover) !important;
+  color: var(--cs-makima-blood-700) !important;
+  background: var(--cs-makima-control-hover) !important;
   box-shadow: inset 0 0 0 1px rgb(135 107 62 / 16%) !important;
 }
 
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-item-leading"] svg,
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-item-button"] svg {
-  color: var(--mk-copper-500) !important;
+  color: var(--cs-makima-copper-500) !important;
 }
 
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] button[aria-expanded] {
-  color: var(--mk-sage-700) !important;
+  color: var(--cs-makima-sage-700) !important;
   border-radius: 6px;
 }
 
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] button[aria-expanded]:hover {
-  color: var(--mk-blood-600) !important;
+  color: var(--cs-makima-blood-600) !important;
   background: rgb(232 235 226 / 72%) !important;
   box-shadow: inset 0 -1px rgb(135 107 62 / 24%) !important;
 }
@@ -1057,12 +1057,12 @@ html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] button
 html[data-codex-skin="makima"] [data-local-conversation-item-target-ids] svg,
 html[data-codex-skin="makima"] [data-agent-activity-file-link] svg,
 html[data-codex-skin="makima"] [data-codex-approval-surface] svg {
-  color: var(--mk-copper-500) !important;
+  color: var(--cs-makima-copper-500) !important;
 }
 
 html[data-codex-skin="makima"] [data-wide-markdown-block]:not(:has(img)):not(:has([data-markdown-image-preview-trigger])),
 html[data-codex-skin="makima"] pre {
-  background: var(--mk-glass-code) !important;
+  background: var(--cs-makima-glass-code) !important;
   border-color: rgb(122 91 50 / 16%) !important;
   box-shadow:
     inset 0 1px rgb(122 91 50 / 9%),
@@ -1078,7 +1078,7 @@ html[data-codex-skin="makima"] [data-wide-markdown-block]:has([data-markdown-ima
 
 html[data-codex-skin="makima"] :not(pre) > code {
   background-color: rgb(122 91 50 / 8%) !important;
-  color: var(--mk-iris-500) !important;
+  color: var(--cs-makima-iris-500) !important;
 }
 
 html[data-codex-skin="makima"] [data-codex-terminal],
@@ -1139,14 +1139,14 @@ html[data-codex-skin="makima"] [data-mcp-app-expanding-placeholder],
 html[data-codex-skin="makima"] [data-w-loading-line] {
   background:
     linear-gradient(90deg, rgb(161 51 67 / 7%), rgb(141 100 30 / 12%), rgb(161 51 67 / 7%)) !important;
-  color: var(--mk-iris-500) !important;
+  color: var(--cs-makima-iris-500) !important;
   box-shadow: inset 0 0 0 1px rgb(122 91 50 / 9%) !important;
 }
 
 html[data-codex-skin="makima"] [role="menuitem"],
 html[data-codex-skin="makima"] [role="option"],
 html[data-codex-skin="makima"] [data-radix-collection-item] {
-  color: var(--mk-ivory-100) !important;
+  color: var(--cs-makima-ivory-100) !important;
   border-radius: 8px;
   transition:
     background-color 120ms ease-out,
@@ -1158,7 +1158,7 @@ html[data-codex-skin="makima"] [role="menuitem"]:hover,
 html[data-codex-skin="makima"] [role="option"]:hover,
 html[data-codex-skin="makima"] [data-radix-collection-item][data-highlighted],
 html[data-codex-skin="makima"] [role="option"][aria-selected="true"] {
-  color: var(--mk-ink-900) !important;
+  color: var(--cs-makima-ink-900) !important;
   background: rgb(244 239 232 / 92%) !important;
   box-shadow: inset 0 0 0 1px rgb(135 107 62 / 16%) !important;
 }
@@ -1182,7 +1182,7 @@ html[data-codex-skin="makima"] textarea:focus-visible,
 html[data-codex-skin="makima"] select:focus-visible,
 html[data-codex-skin="makima"] [role="button"]:focus-visible,
 html[data-codex-skin="makima"] [tabindex]:focus-visible {
-  outline-color: var(--mk-blood-500) !important;
+  outline-color: var(--cs-makima-blood-500) !important;
   box-shadow:
     0 0 0 1px rgb(161 51 67 / 42%),
     0 0 0 3px rgb(161 51 67 / 14%),
@@ -1191,9 +1191,9 @@ html[data-codex-skin="makima"] [tabindex]:focus-visible {
 
 html[data-codex-skin="makima"] [role="menu"][data-state="open"] [role="menuitem"]:focus,
 html[data-codex-skin="makima"] [role="menu"][data-state="open"] [role="menuitem"]:focus-visible {
-  color: var(--mk-ink-900) !important;
+  color: var(--cs-makima-ink-900) !important;
   background: rgb(244 239 232 / 94%) !important;
-  outline-color: var(--mk-copper-500) !important;
+  outline-color: var(--cs-makima-copper-500) !important;
   box-shadow:
     0 0 0 1px rgb(135 107 62 / 34%),
     0 0 0 3px rgb(135 107 62 / 11%) !important;
@@ -1204,7 +1204,7 @@ html[data-codex-skin="makima"] a[href] {
 }
 
 html[data-codex-skin="makima"] ::selection {
-  color: var(--mk-ink-900);
+  color: var(--cs-makima-ink-900);
   background: rgb(161 51 67 / 22%);
 }
 
@@ -1239,7 +1239,7 @@ html[data-codex-skin="makima"] ::-webkit-scrollbar-thumb:active {
 
 @media (forced-colors: active) {
   html[data-codex-skin="makima"] {
-    --mk-hero-art: none;
+    --cs-makima-hero-art: none;
   }
 
   html[data-codex-skin="makima"] #root {

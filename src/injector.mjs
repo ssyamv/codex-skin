@@ -6,7 +6,7 @@ import { DEFAULT_THEME } from "./themes.mjs";
 export const STYLE_ID = DEFAULT_THEME.styleId;
 export const HERO_IMAGE_PLACEHOLDER = "__CODEX_SKIN_HERO_IMAGE__";
 export const DIFF_SHADOW_STYLE_SUFFIX = "-diffs-shadow";
-export const HEADER_OPAQUE_END_VAR = "--mk-header-opaque-end";
+export const HEADER_OPAQUE_END_VAR = "--cs-makima-header-opaque-end";
 // Kept as a stable public alias for existing callers and tests.
 export const IMAGE_PLACEHOLDER = HERO_IMAGE_PLACEHOLDER;
 

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "makima",
+  "displayName": "玛奇玛",
+  "eyebrow": "SAGE CONTRACT ARCHIVE",
+  "summary": "鼠尾草、浅亚麻与旧铜构成的契约档案室。",
+  "appearance": "light",
+  "cssFile": "theme.css",
+  "heroFile": "hero.webp",
+  "previewFile": "preview.png"
+}

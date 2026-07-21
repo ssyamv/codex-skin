@@ -12,10 +12,10 @@ import {
 import { DEFAULT_THEME, THEMES, resolveTheme } from "../src/themes.mjs";
 
 const root = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
-const themePath = path.join(root, "themes", "makima.css");
-const heroImagePath = path.join(root, "assets", "makima-hero-sage.webp");
-const fayeThemePath = path.join(root, "themes", "faye.css");
-const fayeHeroImagePath = path.join(root, "assets", "faye-hero-left.webp");
+const themePath = path.join(root, "theme-packs", "makima", "theme.css");
+const heroImagePath = path.join(root, "theme-packs", "makima", "hero.webp");
+const fayeThemePath = path.join(root, "theme-packs", "faye", "theme.css");
+const fayeHeroImagePath = path.join(root, "theme-packs", "faye", "hero.webp");
 
 test("主题注册表保持玛奇玛默认值并隔离 Faye 运行状态", () => {
   assert.equal(resolveTheme(), DEFAULT_THEME);
@@ -31,7 +31,7 @@ test("玛奇玛回合处理耗时使用主文字色", async () => {
   const css = await readFile(themePath, "utf8");
   assert.match(
     css,
-    /\[data-turn-key\]\s*>\s*div\s*>\s*div\s*>\s*\.text-token-text-secondary\s*>\s*button\[aria-expanded\]\s+\.text-token-conversation-body\s*\{[^}]*color:\s*var\(--mk-ink-900\)[^}]*-webkit-text-fill-color:\s*var\(--mk-ink-900\)/s,
+    /\[data-turn-key\]\s*>\s*div\s*>\s*div\s*>\s*\.text-token-text-secondary\s*>\s*button\[aria-expanded\]\s+\.text-token-conversation-body\s*\{[^}]*color:\s*var\(--cs-makima-ink-900\)[^}]*-webkit-text-fill-color:\s*var\(--cs-makima-ink-900\)/s,
   );
 });
 
@@ -47,7 +47,7 @@ test("玛奇玛运行摘要禁用 shimmer 颜色过渡", async () => {
   const css = await readFile(themePath, "utf8");
   assert.match(
     css,
-    /\[data-local-conversation-item-target-ids\]\s+\.loading-shimmer-pure-text\s*\{[^}]*color:\s*var\(--mk-ink-900\)[^}]*-webkit-text-fill-color:\s*var\(--mk-ink-900\)[^}]*transition:\s*none/s,
+    /\[data-local-conversation-item-target-ids\]\s+\.loading-shimmer-pure-text\s*\{[^}]*color:\s*var\(--cs-makima-ink-900\)[^}]*-webkit-text-fill-color:\s*var\(--cs-makima-ink-900\)[^}]*transition:\s*none/s,
   );
 });
 
@@ -62,10 +62,10 @@ test("玛奇玛运行摘要使用高不透明度浅色背景", async () => {
 test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () => {
   const css = await readFile(themePath, "utf8");
   assert.equal(css.split(HERO_IMAGE_PLACEHOLDER).length - 1, 1);
-  assert.doesNotMatch(css, /--mk-hero-art-(?:motion|still|active)/);
+  assert.doesNotMatch(css, /--cs-makima-hero-art-(?:motion|still|active)/);
   assert.match(css, /color-scheme:\s*light/);
-  assert.match(css, /--mk-glass-sidebar:\s*rgb\(247 245 239 \/ 46%\)/);
-  assert.match(css, /--mk-glass-reading:\s*rgb\(247 245 239 \/ 56%\)/);
+  assert.match(css, /--cs-makima-glass-sidebar:\s*rgb\(247 245 239 \/ 46%\)/);
+  assert.match(css, /--cs-makima-glass-reading:\s*rgb\(247 245 239 \/ 56%\)/);
   assert.doesNotMatch(css, /\.app-shell-left-panel\s*\{[^}]*blur\(/s);
   for (const token of [
     "--color-token-diff-surface",
@@ -111,16 +111,16 @@ test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () =
   }
 
   for (const [token, value] of [
-    ["--color-token-conversation-header", "var(--mk-iris-300)"],
-    ["--color-token-conversation-body", "var(--mk-ivory-300)"],
-    ["--color-token-conversation-summary-leading", "var(--mk-iris-300)"],
-    ["--color-token-conversation-summary-trailing", "var(--mk-ivory-500)"],
+    ["--color-token-conversation-header", "var(--cs-makima-iris-300)"],
+    ["--color-token-conversation-body", "var(--cs-makima-ivory-300)"],
+    ["--color-token-conversation-summary-leading", "var(--cs-makima-iris-300)"],
+    ["--color-token-conversation-summary-trailing", "var(--cs-makima-ivory-500)"],
   ]) {
     assert.match(css, new RegExp(`${token}:\\s*${value.replace(/[()]/g, "\\$&")}`));
   }
   assert.match(
     css,
-    /\[data-local-conversation-item-target-ids\]\s+\.loading-shimmer-pure-text\s*\{[^}]*color:\s*var\(--mk-ink-900\)[^}]*-webkit-text-fill-color:\s*var\(--mk-ink-900\)[^}]*background-image:\s*none/s,
+    /\[data-local-conversation-item-target-ids\]\s+\.loading-shimmer-pure-text\s*\{[^}]*color:\s*var\(--cs-makima-ink-900\)[^}]*-webkit-text-fill-color:\s*var\(--cs-makima-ink-900\)[^}]*background-image:\s*none/s,
   );
   assert.match(
     css,
@@ -128,7 +128,7 @@ test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () =
   );
   assert.match(
     css,
-    /\[data-local-conversation-item-target-ids\]:has\(\.loading-shimmer-pure-text\)\s*>\s*div\s*>\s*div\s*>\s*\.group\\\/activity-header\s*\{[^}]*color:\s*var\(--mk-ink-900\)[^}]*rgb\(247 245 239 \/ 96%\)[^}]*rgb\(232 235 226 \/ 94%\)[^}]*border-radius:\s*999px[^}]*0 4px 14px rgb\(70 60 48 \/ 9%\)[^}]*transition:\s*none/s,
+    /\[data-local-conversation-item-target-ids\]:has\(\.loading-shimmer-pure-text\)\s*>\s*div\s*>\s*div\s*>\s*\.group\\\/activity-header\s*\{[^}]*color:\s*var\(--cs-makima-ink-900\)[^}]*rgb\(247 245 239 \/ 96%\)[^}]*rgb\(232 235 226 \/ 94%\)[^}]*border-radius:\s*999px[^}]*0 4px 14px rgb\(70 60 48 \/ 9%\)[^}]*transition:\s*none/s,
   );
   assert.doesNotMatch(
     css,
@@ -169,11 +169,11 @@ test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () =
   );
   assert.match(
     css,
-    /\[role="tab"\]\[aria-selected="true"\]\s+svg\s*\{[^}]*color:\s*var\(--mk-blood-600\)/s,
+    /\[role="tab"\]\[aria-selected="true"\]\s+svg\s*\{[^}]*color:\s*var\(--cs-makima-blood-600\)/s,
   );
   assert.match(
     css,
-    /\[data-app-shell-tab-close-button\][^{]*\{[^}]*color:\s*var\(--mk-ivory-500\)[^}]*background:\s*transparent[^}]*box-shadow:\s*none/s,
+    /\[data-app-shell-tab-close-button\][^{]*\{[^}]*color:\s*var\(--cs-makima-ivory-500\)[^}]*background:\s*transparent[^}]*box-shadow:\s*none/s,
   );
   assert.match(
     css,
@@ -189,7 +189,7 @@ test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () =
   );
   assert.match(
     css,
-    /\[data-app-action-sidebar-thread-active="true"\]\s*\{[^}]*background:\s*linear-gradient\([^}]*rgb\(216 221 210 \/ 94%\)[^}]*rgb\(247 245 239 \/ 82%\)[^}]*inset 2px 0 var\(--mk-copper-500\)[^}]*inset 0 0 0 1px rgb\(135 107 62 \/ 30%\)/s,
+    /\[data-app-action-sidebar-thread-active="true"\]\s*\{[^}]*background:\s*linear-gradient\([^}]*rgb\(216 221 210 \/ 94%\)[^}]*rgb\(247 245 239 \/ 82%\)[^}]*inset 2px 0 var\(--cs-makima-copper-500\)[^}]*inset 0 0 0 1px rgb\(135 107 62 \/ 30%\)/s,
   );
   assert.doesNotMatch(
     css,
@@ -197,7 +197,7 @@ test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () =
   );
   assert.doesNotMatch(
     css,
-    /\[data-app-action-sidebar-thread-active="true"\]\s*\{[^}]*box-shadow:[^}]*var\(--mk-blood-/s,
+    /\[data-app-action-sidebar-thread-active="true"\]\s*\{[^}]*box-shadow:[^}]*var\(--cs-makima-blood-/s,
   );
   assert.doesNotMatch(
     css,
@@ -205,7 +205,7 @@ test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () =
   );
   assert.match(
     css,
-    /\[data-app-action-sidebar-thread-active="true"\]\s+svg\.icon-xs\.shrink-0\s*\{[^}]*color:\s*var\(--mk-blood-600\)/s,
+    /\[data-app-action-sidebar-thread-active="true"\]\s+svg\.icon-xs\.shrink-0\s*\{[^}]*color:\s*var\(--cs-makima-blood-600\)/s,
   );
   assert.match(
     css,
@@ -221,11 +221,11 @@ test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () =
   );
   assert.doesNotMatch(
     css,
-    /\[data-codex-composer-root\](?::focus-within)?[^{}]*\.composer-surface-chrome\s*\{[^}]*(?:rgb\(161 51 67|inset|var\(--mk-edge-focus\))/s,
+    /\[data-codex-composer-root\](?::focus-within)?[^{}]*\.composer-surface-chrome\s*\{[^}]*(?:rgb\(161 51 67|inset|var\(--cs-makima-edge-focus\))/s,
   );
   assert.match(
     css,
-    /\[data-codex-composer\]\s*\{[^}]*caret-color:\s*var\(--mk-copper-500\)/s,
+    /\[data-codex-composer\]\s*\{[^}]*caret-color:\s*var\(--cs-makima-copper-500\)/s,
   );
   assert.match(
     css,
@@ -241,7 +241,7 @@ test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () =
   );
   assert.match(
     css,
-    /\[role="menu"\]\[data-state="open"\]\s+\[role="menuitem"\]:focus[^{]*,[^{]*\[role="menu"\]\[data-state="open"\]\s+\[role="menuitem"\]:focus-visible\s*\{[^}]*background:\s*rgb\(244 239 232 \/ 94%\)[^}]*outline-color:\s*var\(--mk-copper-500\)/s,
+    /\[role="menu"\]\[data-state="open"\]\s+\[role="menuitem"\]:focus[^{]*,[^{]*\[role="menu"\]\[data-state="open"\]\s+\[role="menuitem"\]:focus-visible\s*\{[^}]*background:\s*rgb\(244 239 232 \/ 94%\)[^}]*outline-color:\s*var\(--cs-makima-copper-500\)/s,
   );
   for (const selector of [
     ".app-shell-left-panel button svg",
@@ -254,10 +254,10 @@ test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () =
   ]) {
     assert.match(css, new RegExp(selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
-  assert.match(css, /--mk-control-hover:\s*rgb\(232 235 226 \/ 88%\)/);
+  assert.match(css, /--cs-makima-control-hover:\s*rgb\(232 235 226 \/ 88%\)/);
   assert.match(
     css,
-    /\[data-codex-intelligence-trigger\][^{]*\{[^}]*inset 2px 0 var\(--mk-copper-500\)/s,
+    /\[data-codex-intelligence-trigger\][^{]*\{[^}]*inset 2px 0 var\(--cs-makima-copper-500\)/s,
   );
   assert.match(
     css,
@@ -362,7 +362,7 @@ test("主题只编译一个静态主视觉并保留强制颜色回退", async ()
   assert.equal((compiled.match(/data:image\/webp;base64,/g) || []).length, 1);
   assert.match(
     compiled,
-    /@media \(forced-colors: active\)[\s\S]*--mk-hero-art:\s*none/,
+    /@media \(forced-colors: active\)[\s\S]*--cs-makima-hero-art:\s*none/,
   );
   assert.match(
     compiled,
@@ -375,7 +375,7 @@ test("Faye 主题独立覆盖完整 Codex 表面和活动状态", async () => {
   const css = await readFile(fayeThemePath, "utf8");
   assert.equal(css.split(HERO_IMAGE_PLACEHOLDER).length - 1, 1);
   assert.doesNotThrow(() => assertThemeSafety(css, { theme: THEMES.faye }));
-  assert.doesNotMatch(css, /data-codex-skin="makima"|--mk-/);
+  assert.doesNotMatch(css, /data-codex-skin="makima"|--cs-makima-/);
   assert.doesNotMatch(css, /([;{]|^)\s*font(?:-family|-size)?\s*:/im);
   assert.doesNotMatch(css, /\b(?:width|height|padding|margin)\s*:/i);
 
@@ -411,7 +411,7 @@ test("Faye 主题编译自己的单张静态主视觉", async () => {
   assert.equal((compiled.match(/data:image\/webp;base64,/g) || []).length, 1);
   assert.match(
     compiled,
-    /@media \(forced-colors: active\)[\s\S]*--fy-hero-art:\s*none/,
+    /@media \(forced-colors: active\)[\s\S]*--cs-faye-hero-art:\s*none/,
   );
   assert.ok(Buffer.byteLength(compiled) < 500_000);
 });

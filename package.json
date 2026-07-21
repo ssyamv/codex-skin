@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node ./bin/codex-skin.mjs start",
     "stop": "node ./bin/codex-skin.mjs stop",
-    "check": "node --check ./bin/codex-skin.mjs && node --check ./src/cdp.mjs && node --check ./src/injector.mjs && node --check ./src/runtime.mjs && node --check ./src/themes.mjs && node --check ./scripts/runtime-probe.mjs",
+    "check": "node --check ./bin/codex-skin.mjs && node --check ./src/cdp.mjs && node --check ./src/injector.mjs && node --check ./src/runtime.mjs && node --check ./src/theme-store.mjs && node --check ./src/themes.mjs && node --check ./scripts/runtime-probe.mjs",
     "test": "node --test",
     "verify": "npm run check && npm test",
     "build:app": "./scripts/build-codex-pro.zsh",

@@ -204,7 +204,7 @@ test("Faye doctor 编译独立主题与主视觉", () => {
   const output = JSON.parse(result.stdout);
   assert.equal(output.theme.id, "faye");
   assert.equal(output.theme.name, "Faye");
-  assert.match(output.theme.css, /themes\/faye\.css$/);
-  assert.match(output.theme.heroArt, /assets\/faye-hero-left\.webp$/);
+  assert.match(output.theme.css, /theme-packs\/faye\/theme\.css$/);
+  assert.match(output.theme.heroArt, /theme-packs\/faye\/hero\.webp$/);
   assert.ok(output.theme.compiledCssBytes > output.theme.cssBytes);
 });

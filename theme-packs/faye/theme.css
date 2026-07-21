@@ -2,53 +2,53 @@ html[data-codex-skin="faye"] {
   color-scheme: dark !important;
 
   /* Bebop After Midnight: spacecraft black, leather wine, eye green, ember gold. */
-  --fy-void-1000: #050709;
-  --fy-void-950: #080b0e;
-  --fy-ink-900: #0e1217;
-  --fy-oxide-800: #161b22;
-  --fy-oxide-700: #20262f;
-  --fy-blood-700: #541d27;
-  --fy-blood-600: #722638;
-  --fy-blood-500: #8f3044;
-  --fy-blood-400: #b7475d;
-  --fy-iris-500: #387f73;
-  --fy-iris-400: #5fafa0;
-  --fy-iris-300: #83cbbb;
-  --fy-teal-400: #7395a8;
-  --fy-ivory-100: #e9efef;
-  --fy-ivory-300: #c2cbcc;
-  --fy-ivory-500: #849094;
-  --fy-green-400: #66bd83;
-  --fy-red-400: #e26f73;
-  --fy-ember-400: #e57a38;
-  --fy-gold-400: #c9a84f;
-  --fy-glass-sidebar: rgb(6 9 12 / 26%);
-  --fy-glass-control: rgb(15 19 24 / 86%);
-  --fy-glass-reading: rgb(8 11 14 / 88%);
-  --fy-glass-code: rgb(4 6 8 / 96%);
-  --fy-edge-soft: rgb(95 175 157 / 12%);
-  --fy-edge-medium: rgb(95 175 157 / 24%);
-  --fy-edge-focus: rgb(131 203 187 / 58%);
+  --cs-faye-void-1000: #050709;
+  --cs-faye-void-950: #080b0e;
+  --cs-faye-ink-900: #0e1217;
+  --cs-faye-oxide-800: #161b22;
+  --cs-faye-oxide-700: #20262f;
+  --cs-faye-blood-700: #541d27;
+  --cs-faye-blood-600: #722638;
+  --cs-faye-blood-500: #8f3044;
+  --cs-faye-blood-400: #b7475d;
+  --cs-faye-iris-500: #387f73;
+  --cs-faye-iris-400: #5fafa0;
+  --cs-faye-iris-300: #83cbbb;
+  --cs-faye-teal-400: #7395a8;
+  --cs-faye-ivory-100: #e9efef;
+  --cs-faye-ivory-300: #c2cbcc;
+  --cs-faye-ivory-500: #849094;
+  --cs-faye-green-400: #66bd83;
+  --cs-faye-red-400: #e26f73;
+  --cs-faye-ember-400: #e57a38;
+  --cs-faye-gold-400: #c9a84f;
+  --cs-faye-glass-sidebar: rgb(6 9 12 / 26%);
+  --cs-faye-glass-control: rgb(15 19 24 / 86%);
+  --cs-faye-glass-reading: rgb(8 11 14 / 88%);
+  --cs-faye-glass-code: rgb(4 6 8 / 96%);
+  --cs-faye-edge-soft: rgb(95 175 157 / 12%);
+  --cs-faye-edge-medium: rgb(95 175 157 / 24%);
+  --cs-faye-edge-focus: rgb(131 203 187 / 58%);
 
-  --fy-hero-art: url("__CODEX_SKIN_HERO_IMAGE__");
+  --cs-faye-hero-art: url("__CODEX_SKIN_HERO_IMAGE__");
 
-  --codex-base-accent: var(--fy-blood-500) !important;
+  --codex-base-accent: var(--cs-faye-blood-500) !important;
   --codex-base-contrast: 64 !important;
-  --codex-base-ink: var(--fy-ivory-100) !important;
-  --codex-base-surface: var(--fy-ink-900) !important;
+  --codex-base-ink: var(--cs-faye-ivory-100) !important;
+  --codex-base-surface: var(--cs-faye-ink-900) !important;
 
-  --color-accent-blue: var(--fy-teal-400) !important;
-  --color-accent-purple: var(--fy-blood-400) !important;
-  --color-accent-red: var(--fy-red-400) !important;
-  --color-accent-green: var(--fy-green-400) !important;
-  --color-accent-yellow: var(--fy-iris-300) !important;
+  --color-accent-blue: var(--cs-faye-teal-400) !important;
+  --color-accent-purple: var(--cs-faye-blood-400) !important;
+  --color-accent-red: var(--cs-faye-red-400) !important;
+  --color-accent-green: var(--cs-faye-green-400) !important;
+  --color-accent-yellow: var(--cs-faye-iris-300) !important;
 
   --color-background-surface: rgb(14 18 23 / 86%) !important;
-  --color-background-surface-under: var(--fy-void-1000) !important;
+  --color-background-surface-under: var(--cs-faye-void-1000) !important;
   --color-background-panel: rgb(15 19 24 / 88%) !important;
   --color-background-editor-opaque: #070a0d !important;
   --color-background-control: rgb(23 27 34 / 86%) !important;
-  --color-background-control-opaque: var(--fy-oxide-700) !important;
+  --color-background-control-opaque: var(--cs-faye-oxide-700) !important;
   --color-background-elevated-primary: rgb(20 23 29 / 90%) !important;
   --color-background-elevated-primary-opaque: #141921 !important;
   --color-background-elevated-secondary: rgb(242 233 222 / 5%) !important;
@@ -56,9 +56,9 @@ html[data-codex-skin="faye"] {
   --color-background-accent: rgb(143 48 68 / 20%) !important;
   --color-background-accent-hover: rgb(143 48 68 / 28%) !important;
   --color-background-accent-active: rgb(143 48 68 / 36%) !important;
-  --color-background-button-primary: var(--fy-blood-500) !important;
-  --color-background-button-primary-hover: var(--fy-blood-400) !important;
-  --color-background-button-primary-active: var(--fy-blood-600) !important;
+  --color-background-button-primary: var(--cs-faye-blood-500) !important;
+  --color-background-button-primary-hover: var(--cs-faye-blood-400) !important;
+  --color-background-button-primary-active: var(--cs-faye-blood-600) !important;
   --color-background-button-primary-inactive: rgb(143 48 68 / 42%) !important;
   --color-background-button-secondary: rgb(95 175 157 / 8%) !important;
   --color-background-button-secondary-hover: rgb(95 175 157 / 14%) !important;
@@ -68,26 +68,26 @@ html[data-codex-skin="faye"] {
   --color-background-button-tertiary-hover: rgb(95 175 157 / 10%) !important;
   --color-background-button-tertiary-active: rgb(95 175 157 / 16%) !important;
 
-  --color-text-foreground: var(--fy-ivory-100) !important;
-  --color-text-foreground-secondary: var(--fy-ivory-300) !important;
-  --color-text-foreground-tertiary: var(--fy-ivory-500) !important;
-  --color-text-accent: var(--fy-iris-300) !important;
+  --color-text-foreground: var(--cs-faye-ivory-100) !important;
+  --color-text-foreground-secondary: var(--cs-faye-ivory-300) !important;
+  --color-text-foreground-tertiary: var(--cs-faye-ivory-500) !important;
+  --color-text-accent: var(--cs-faye-iris-300) !important;
   --color-text-on-accent: #f4f8f8 !important;
   --color-text-button-primary: #f4f8f8 !important;
-  --color-text-button-secondary: var(--fy-ivory-100) !important;
-  --color-text-button-tertiary: var(--fy-ivory-300) !important;
-  --color-icon-primary: var(--fy-ivory-100) !important;
-  --color-icon-secondary: var(--fy-ivory-300) !important;
-  --color-icon-tertiary: var(--fy-ivory-500) !important;
-  --color-icon-accent: var(--fy-blood-400) !important;
+  --color-text-button-secondary: var(--cs-faye-ivory-100) !important;
+  --color-text-button-tertiary: var(--cs-faye-ivory-300) !important;
+  --color-icon-primary: var(--cs-faye-ivory-100) !important;
+  --color-icon-secondary: var(--cs-faye-ivory-300) !important;
+  --color-icon-tertiary: var(--cs-faye-ivory-500) !important;
+  --color-icon-accent: var(--cs-faye-blood-400) !important;
 
-  --color-border: var(--fy-edge-soft) !important;
-  --color-border-heavy: var(--fy-edge-medium) !important;
+  --color-border: var(--cs-faye-edge-soft) !important;
+  --color-border-heavy: var(--cs-faye-edge-medium) !important;
   --color-border-light: rgb(95 175 157 / 7%) !important;
-  --color-border-focus: var(--fy-iris-400) !important;
-  --color-ring: var(--fy-iris-400) !important;
-  --color-decoration-added: var(--fy-green-400) !important;
-  --color-decoration-deleted: var(--fy-red-400) !important;
+  --color-border-focus: var(--cs-faye-iris-400) !important;
+  --color-ring: var(--cs-faye-iris-400) !important;
+  --color-decoration-added: var(--cs-faye-green-400) !important;
+  --color-decoration-deleted: var(--cs-faye-red-400) !important;
   --color-editor-added: #10231a !important;
   --color-editor-deleted: #2a1418 !important;
 
@@ -97,42 +97,42 @@ html[data-codex-skin="faye"] {
   --color-token-bg-tertiary: rgb(15 19 24 / 86%) !important;
   --color-token-bg-fog: rgb(20 23 29 / 88%) !important;
   --color-token-main-surface-primary: rgb(8 11 14 / 34%) !important;
-  --color-token-side-bar-background: var(--fy-glass-sidebar) !important;
-  --color-token-primary: var(--fy-blood-500) !important;
+  --color-token-side-bar-background: var(--cs-faye-glass-sidebar) !important;
+  --color-token-primary: var(--cs-faye-blood-500) !important;
   --color-token-on-accent: #f4f8f8 !important;
-  --color-token-foreground: var(--fy-ivory-100) !important;
-  --color-token-text-primary: var(--fy-ivory-100) !important;
-  --color-token-text-secondary: var(--fy-ivory-300) !important;
-  --color-token-text-tertiary: var(--fy-ivory-500) !important;
-  --color-token-description-foreground: var(--fy-ivory-300) !important;
+  --color-token-foreground: var(--cs-faye-ivory-100) !important;
+  --color-token-text-primary: var(--cs-faye-ivory-100) !important;
+  --color-token-text-secondary: var(--cs-faye-ivory-300) !important;
+  --color-token-text-tertiary: var(--cs-faye-ivory-500) !important;
+  --color-token-description-foreground: var(--cs-faye-ivory-300) !important;
   --color-token-disabled-foreground: rgb(169 155 145 / 58%) !important;
-  --color-token-icon-foreground: var(--fy-ivory-300) !important;
-  --color-token-link: var(--fy-iris-300) !important;
-  --color-token-text-link-foreground: var(--fy-iris-300) !important;
+  --color-token-icon-foreground: var(--cs-faye-ivory-300) !important;
+  --color-token-link: var(--cs-faye-iris-300) !important;
+  --color-token-text-link-foreground: var(--cs-faye-iris-300) !important;
   --color-token-text-link-active-foreground: #a9e2d5 !important;
-  --color-token-border: var(--fy-edge-soft) !important;
-  --color-token-border-default: var(--fy-edge-soft) !important;
-  --color-token-border-heavy: var(--fy-edge-medium) !important;
+  --color-token-border: var(--cs-faye-edge-soft) !important;
+  --color-token-border-default: var(--cs-faye-edge-soft) !important;
+  --color-token-border-heavy: var(--cs-faye-edge-medium) !important;
   --color-token-border-light: rgb(95 175 157 / 7%) !important;
-  --color-token-focus-border: var(--fy-iris-400) !important;
-  --color-token-list-focus-outline: var(--fy-iris-400) !important;
+  --color-token-focus-border: var(--cs-faye-iris-400) !important;
+  --color-token-list-focus-outline: var(--cs-faye-iris-400) !important;
   --color-token-list-hover-background: rgb(95 175 157 / 8%) !important;
   --color-token-list-active-selection-background: rgb(143 48 68 / 28%) !important;
-  --color-token-list-active-selection-foreground: var(--fy-ivory-100) !important;
-  --color-token-list-active-selection-icon-foreground: var(--fy-blood-400) !important;
+  --color-token-list-active-selection-foreground: var(--cs-faye-ivory-100) !important;
+  --color-token-list-active-selection-icon-foreground: var(--cs-faye-blood-400) !important;
   --color-token-input-background: rgb(20 23 29 / 88%) !important;
   --color-token-input-border: rgb(95 175 157 / 20%) !important;
-  --color-token-input-foreground: var(--fy-ivory-100) !important;
-  --color-token-input-placeholder-foreground: var(--fy-ivory-500) !important;
+  --color-token-input-foreground: var(--cs-faye-ivory-100) !important;
+  --color-token-input-placeholder-foreground: var(--cs-faye-ivory-500) !important;
   --color-token-dropdown-background: rgb(20 23 29 / 96%) !important;
-  --color-token-dropdown-foreground: var(--fy-ivory-100) !important;
+  --color-token-dropdown-foreground: var(--cs-faye-ivory-100) !important;
   --color-token-menu-background: rgb(20 23 29 / 96%) !important;
   --color-token-menu-border: rgb(95 175 157 / 22%) !important;
   --color-token-menubar-selection-background: rgb(143 48 68 / 24%) !important;
-  --color-token-menubar-selection-foreground: var(--fy-ivory-100) !important;
+  --color-token-menubar-selection-foreground: var(--cs-faye-ivory-100) !important;
   --color-token-toolbar-hover-background: rgb(95 175 157 / 10%) !important;
 
-  --color-token-button-background: var(--fy-blood-500) !important;
+  --color-token-button-background: var(--cs-faye-blood-500) !important;
   --color-token-button-border: rgb(131 203 187 / 30%) !important;
   --color-token-button-foreground: #f4f8f8 !important;
   --color-token-button-secondary-hover-background: rgb(95 175 157 / 14%) !important;
@@ -142,39 +142,39 @@ html[data-codex-skin="faye"] {
   --color-token-interactive-bg-secondary-hover: rgb(95 175 157 / 10%) !important;
   --color-token-interactive-bg-secondary-press: rgb(95 175 157 / 17%) !important;
   --color-token-interactive-bg-secondary-selected: rgb(143 48 68 / 24%) !important;
-  --color-token-interactive-label-accent-default: var(--fy-iris-300) !important;
-  --color-token-interactive-label-secondary-default: var(--fy-ivory-300) !important;
+  --color-token-interactive-label-accent-default: var(--cs-faye-iris-300) !important;
+  --color-token-interactive-label-secondary-default: var(--cs-faye-ivory-300) !important;
 
-  --color-token-badge-background: var(--fy-blood-600) !important;
+  --color-token-badge-background: var(--cs-faye-blood-600) !important;
   --color-token-badge-foreground: #f4f8f8 !important;
-  --color-token-activity-bar-badge-background: var(--fy-blood-500) !important;
+  --color-token-activity-bar-badge-background: var(--cs-faye-blood-500) !important;
   --color-token-activity-bar-badge-foreground: #f4f8f8 !important;
-  --color-token-checkbox-background: var(--fy-blood-600) !important;
-  --color-token-checkbox-border: var(--fy-iris-400) !important;
+  --color-token-checkbox-background: var(--cs-faye-blood-600) !important;
+  --color-token-checkbox-border: var(--cs-faye-iris-400) !important;
   --color-token-checkbox-foreground: #f4f8f8 !important;
-  --color-token-radio-active-foreground: var(--fy-blood-400) !important;
-  --color-token-radio-inactive-border: var(--fy-edge-medium) !important;
+  --color-token-radio-active-foreground: var(--cs-faye-blood-400) !important;
+  --color-token-radio-inactive-border: var(--cs-faye-edge-medium) !important;
 
-  --color-token-conversation-header: var(--fy-iris-300) !important;
-  --color-token-conversation-body: var(--fy-ivory-300) !important;
-  --color-token-conversation-summary-leading: var(--fy-iris-300) !important;
-  --color-token-conversation-summary-trailing: var(--fy-ivory-500) !important;
-  --color-token-non-assistant-body-descendant: var(--fy-ivory-300) !important;
+  --color-token-conversation-header: var(--cs-faye-iris-300) !important;
+  --color-token-conversation-body: var(--cs-faye-ivory-300) !important;
+  --color-token-conversation-summary-leading: var(--cs-faye-iris-300) !important;
+  --color-token-conversation-summary-trailing: var(--cs-faye-ivory-500) !important;
+  --color-token-non-assistant-body-descendant: var(--cs-faye-ivory-300) !important;
 
-  --color-token-editor-background: var(--fy-glass-code) !important;
-  --color-token-editor-foreground: var(--fy-ivory-100) !important;
+  --color-token-editor-background: var(--cs-faye-glass-code) !important;
+  --color-token-editor-foreground: var(--cs-faye-ivory-100) !important;
   --color-token-editor-widget-background: rgb(20 23 29 / 97%) !important;
   --color-token-editor-selection-background: rgb(143 48 68 / 36%) !important;
   --color-token-editor-find-match-background: rgb(95 175 157 / 32%) !important;
   --color-token-editor-find-match-highlight-background: rgb(95 175 157 / 18%) !important;
-  --color-token-editor-error-foreground: var(--fy-red-400) !important;
-  --color-token-editor-warning-foreground: var(--fy-iris-300) !important;
+  --color-token-editor-error-foreground: var(--cs-faye-red-400) !important;
+  --color-token-editor-warning-foreground: var(--cs-faye-iris-300) !important;
   --color-token-editor-group-drop-background: rgb(98 170 168 / 16%) !important;
   --color-token-editor-group-drop-into-prompt-background: rgb(143 48 68 / 22%) !important;
-  --color-token-editor-group-drop-into-prompt-foreground: var(--fy-ivory-100) !important;
-  --color-token-text-code-block-background: var(--fy-glass-code) !important;
+  --color-token-editor-group-drop-into-prompt-foreground: var(--cs-faye-ivory-100) !important;
+  --color-token-text-code-block-background: var(--cs-faye-glass-code) !important;
   --color-token-text-preformat-background: rgb(95 175 157 / 9%) !important;
-  --color-token-text-preformat-foreground: var(--fy-iris-300) !important;
+  --color-token-text-preformat-foreground: var(--cs-faye-iris-300) !important;
 
   --color-token-diff-surface: #070a0d !important;
   --color-token-diff-editor-inserted-line-background: #10231a !important;
@@ -190,13 +190,13 @@ html[data-codex-skin="faye"] {
   --codex-diffs-placeholder-highlight: #34151f !important;
   --codex-diffs-addition-hover: #163a24 !important;
   --codex-diffs-deletion-hover: #451a20 !important;
-  --codex-diffs-addition-number: var(--fy-green-400) !important;
-  --codex-diffs-deletion-number: var(--fy-red-400) !important;
-  --codex-diffs-context-number: var(--fy-ivory-500) !important;
+  --codex-diffs-addition-number: var(--cs-faye-green-400) !important;
+  --codex-diffs-deletion-number: var(--cs-faye-red-400) !important;
+  --codex-diffs-context-number: var(--cs-faye-ivory-500) !important;
 
   --color-token-terminal-background: #05080b !important;
-  --color-token-terminal-foreground: var(--fy-ivory-100) !important;
-  --color-token-terminal-border: var(--fy-edge-soft) !important;
+  --color-token-terminal-foreground: var(--cs-faye-ivory-100) !important;
+  --color-token-terminal-border: var(--cs-faye-edge-soft) !important;
   --color-token-terminal-ansi-black: #151a1f !important;
   --color-token-terminal-ansi-bright-black: #657178 !important;
   --color-token-terminal-ansi-red: #d75b59 !important;
@@ -214,41 +214,41 @@ html[data-codex-skin="faye"] {
   --color-token-terminal-ansi-white: #c2cbcc !important;
   --color-token-terminal-ansi-bright-white: #f4f8f8 !important;
 
-  --color-token-git-decoration-added-resource-foreground: var(--fy-green-400) !important;
-  --color-token-git-decoration-deleted-resource-foreground: var(--fy-red-400) !important;
-  --color-token-git-decoration-modified-resource-foreground: var(--fy-iris-300) !important;
-  --color-token-git-decoration-renamed-resource-foreground: var(--fy-teal-400) !important;
+  --color-token-git-decoration-added-resource-foreground: var(--cs-faye-green-400) !important;
+  --color-token-git-decoration-deleted-resource-foreground: var(--cs-faye-red-400) !important;
+  --color-token-git-decoration-modified-resource-foreground: var(--cs-faye-iris-300) !important;
+  --color-token-git-decoration-renamed-resource-foreground: var(--cs-faye-teal-400) !important;
   --color-token-git-decoration-untracked-resource-foreground: #85d99a !important;
-  --color-token-git-decoration-ignored-resource-foreground: var(--fy-ivory-500) !important;
-  --color-token-error-foreground: var(--fy-red-400) !important;
+  --color-token-git-decoration-ignored-resource-foreground: var(--cs-faye-ivory-500) !important;
+  --color-token-error-foreground: var(--cs-faye-red-400) !important;
   --color-token-input-validation-error-background: rgb(84 29 39 / 34%) !important;
-  --color-token-input-validation-error-border: var(--fy-red-400) !important;
+  --color-token-input-validation-error-border: var(--cs-faye-red-400) !important;
   --color-token-input-validation-warning-background: rgb(185 135 50 / 20%) !important;
-  --color-token-input-validation-warning-border: var(--fy-iris-300) !important;
+  --color-token-input-validation-warning-border: var(--cs-faye-iris-300) !important;
   --color-token-input-validation-info-background: rgb(98 170 168 / 15%) !important;
 
-  --color-token-charts-blue: var(--fy-teal-400) !important;
-  --color-token-charts-green: var(--fy-green-400) !important;
+  --color-token-charts-blue: var(--cs-faye-teal-400) !important;
+  --color-token-charts-green: var(--cs-faye-green-400) !important;
   --color-token-charts-orange: #db864f !important;
   --color-token-charts-purple: #b77eaa !important;
-  --color-token-charts-red: var(--fy-blood-400) !important;
-  --color-token-charts-yellow: var(--fy-iris-300) !important;
-  --color-token-progress-bar-background: var(--fy-blood-500) !important;
+  --color-token-charts-red: var(--cs-faye-blood-400) !important;
+  --color-token-charts-yellow: var(--cs-faye-iris-300) !important;
+  --color-token-progress-bar-background: var(--cs-faye-blood-500) !important;
   --color-token-scrollbar-slider-background: rgb(95 175 157 / 16%) !important;
   --color-token-scrollbar-slider-hover-background: rgb(95 175 157 / 28%) !important;
   --color-token-scrollbar-slider-active-background: rgb(143 48 68 / 44%) !important;
 
-  background: var(--fy-void-1000) !important;
-  accent-color: var(--fy-blood-500) !important;
+  background: var(--cs-faye-void-1000) !important;
+  accent-color: var(--cs-faye-blood-500) !important;
   scrollbar-color: rgb(95 175 157 / 24%) rgb(5 7 9 / 32%);
 }
 
 html[data-codex-skin="faye"] body {
-  background: var(--fy-void-1000) !important;
+  background: var(--cs-faye-void-1000) !important;
 }
 
 html[data-codex-skin="faye"] #root {
-  background-color: var(--fy-void-1000) !important;
+  background-color: var(--cs-faye-void-1000) !important;
   background-image:
     linear-gradient(
       90deg,
@@ -266,7 +266,7 @@ html[data-codex-skin="faye"] #root {
       rgb(5 7 9 / 76%) 100%
     ),
     radial-gradient(circle at 28% 32%, transparent 0 18%, rgb(5 7 9 / 42%) 60%),
-    var(--fy-hero-art) !important;
+    var(--cs-faye-hero-art) !important;
   background-position: center, center, center, center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -286,7 +286,7 @@ html[data-codex-skin="faye"] .app-shell-tab-background {
 html[data-codex-skin="faye"] [data-app-shell-tab-controller][aria-selected="true"] {
   background: linear-gradient(180deg, rgb(143 48 68 / 20%), rgb(95 175 157 / 5%)) !important;
   box-shadow:
-    inset 0 -1px var(--fy-blood-400),
+    inset 0 -1px var(--cs-faye-blood-400),
     inset 0 0 0 1px rgb(95 175 157 / 10%) !important;
 }
 
@@ -328,7 +328,7 @@ html[data-codex-skin="faye"] [data-app-action-sidebar-section] {
 }
 
 html[data-codex-skin="faye"] [data-app-action-sidebar-section-heading] {
-  color: var(--fy-iris-300) !important;
+  color: var(--cs-faye-iris-300) !important;
   text-shadow: 0 0 16px rgb(95 175 157 / 22%);
 }
 
@@ -358,13 +358,13 @@ html[data-codex-skin="faye"] [data-app-action-sidebar-thread-active="true"] {
     ),
     linear-gradient(90deg, rgb(143 48 68 / 40%), rgb(84 29 39 / 17%)) !important;
   box-shadow:
-    inset 2px 0 var(--fy-blood-400),
+    inset 2px 0 var(--cs-faye-blood-400),
     inset 0 0 0 1px rgb(183 71 93 / 42%),
     0 10px 28px rgb(84 29 39 / 15%) !important;
 }
 
 html[data-codex-skin="faye"] [data-app-action-sidebar-thread-pinned] {
-  color: var(--fy-iris-300) !important;
+  color: var(--cs-faye-iris-300) !important;
   text-shadow: 0 0 12px rgb(95 175 157 / 22%);
 }
 
@@ -425,7 +425,7 @@ html[data-codex-skin="faye"] .group\/home-suggestion-list-item:hover {
 
 html[data-codex-skin="faye"] [data-home-ambient-suggestions] button[aria-labelledby]:focus-visible,
 html[data-codex-skin="faye"] .group\/home-suggestion-list-item:focus-visible {
-  border-color: var(--fy-edge-focus) !important;
+  border-color: var(--cs-faye-edge-focus) !important;
   box-shadow:
     inset 0 0 0 1px rgb(131 203 187 / 20%),
     0 0 0 2px rgb(143 48 68 / 22%),
@@ -435,7 +435,7 @@ html[data-codex-skin="faye"] .group\/home-suggestion-list-item:focus-visible {
 html[data-codex-skin="faye"] [data-codex-composer-root] .composer-surface-chrome {
   background:
     radial-gradient(circle at 92% 16%, rgb(143 48 68 / 13%), transparent 34%),
-    var(--fy-glass-control) !important;
+    var(--cs-faye-glass-control) !important;
   border-color: rgb(95 175 157 / 30%) !important;
   box-shadow:
     inset 0 0 0 1px rgb(95 175 157 / 10%),
@@ -448,7 +448,7 @@ html[data-codex-skin="faye"] [data-codex-composer-root] .composer-surface-chrome
 }
 
 html[data-codex-skin="faye"] [data-codex-composer-root]:focus-within .composer-surface-chrome {
-  border-color: var(--fy-edge-focus) !important;
+  border-color: var(--cs-faye-edge-focus) !important;
   box-shadow:
     inset 0 0 0 1px rgb(131 203 187 / 20%),
     inset 0 1px rgb(182 231 217 / 12%),
@@ -458,11 +458,11 @@ html[data-codex-skin="faye"] [data-codex-composer-root]:focus-within .composer-s
 }
 
 html[data-codex-skin="faye"] [data-codex-composer] {
-  caret-color: var(--fy-ember-400) !important;
+  caret-color: var(--cs-faye-ember-400) !important;
 }
 
 html[data-codex-skin="faye"] [data-codex-intelligence-trigger] {
-  color: var(--fy-gold-400) !important;
+  color: var(--cs-faye-gold-400) !important;
   background: rgb(229 122 56 / 8%) !important;
   border-color: rgb(229 122 56 / 20%) !important;
   box-shadow:
@@ -512,11 +512,11 @@ html[data-codex-skin="faye"] [data-content-search-turn-key] {
 
 html[data-codex-skin="faye"] [data-response-annotation-conversation],
 html[data-codex-skin="faye"] [data-local-conversation-final-assistant] {
-  background: var(--fy-glass-reading) !important;
+  background: var(--cs-faye-glass-reading) !important;
   border-color: rgb(95 175 157 / 14%) !important;
   border-radius: 16px;
   box-shadow:
-    0 0 0 8px var(--fy-glass-reading),
+    0 0 0 8px var(--cs-faye-glass-reading),
     0 18px 52px rgb(0 0 0 / 22%) !important;
 }
 
@@ -531,7 +531,7 @@ html[data-codex-skin="faye"] [data-user-message-bubble] {
 }
 
 html[data-codex-skin="faye"] [data-assistant-message-sent-time] {
-  color: var(--fy-ivory-500) !important;
+  color: var(--cs-faye-ivory-500) !important;
   text-shadow: 0 0 14px rgb(95 175 157 / 10%);
 }
 
@@ -541,7 +541,7 @@ html[data-codex-skin="faye"] [data-codex-approval-surface] {
     rgb(15 19 24 / 92%) !important;
   border-color: rgb(183 71 93 / 34%) !important;
   box-shadow:
-    inset 2px 0 var(--fy-blood-400),
+    inset 2px 0 var(--cs-faye-blood-400),
     inset 0 0 0 1px rgb(95 175 157 / 10%),
     0 18px 48px rgb(0 0 0 / 28%) !important;
 }
@@ -559,12 +559,12 @@ html[data-codex-skin="faye"] [data-local-conversation-item-target-ids] {
 }
 
 html[data-codex-skin="faye"] [data-local-conversation-item-target-ids] .group\/activity-header {
-  color: var(--fy-iris-300) !important;
+  color: var(--cs-faye-iris-300) !important;
   text-shadow: 0 0 16px rgb(95 175 157 / 17%);
 }
 
 html[data-codex-skin="faye"] [data-local-conversation-item-target-ids] .group\/activity-header:hover {
-  color: var(--fy-ivory-100) !important;
+  color: var(--cs-faye-ivory-100) !important;
   text-shadow: 0 0 18px rgb(143 48 68 / 24%);
 }
 
@@ -577,27 +577,27 @@ html[data-codex-skin="faye"] [data-local-conversation-item-target-ids] .vertical
 }
 
 html[data-codex-skin="faye"] .loading-shimmer-pure-text {
-  color: var(--fy-iris-300) !important;
+  color: var(--cs-faye-iris-300) !important;
   background-image: linear-gradient(
     90deg,
-    var(--fy-iris-500),
-    var(--fy-iris-300),
-    var(--fy-ember-400),
-    var(--fy-iris-300),
-    var(--fy-iris-500)
+    var(--cs-faye-iris-500),
+    var(--cs-faye-iris-300),
+    var(--cs-faye-ember-400),
+    var(--cs-faye-iris-300),
+    var(--cs-faye-iris-500)
   ) !important;
   text-shadow: 0 0 18px rgb(95 175 157 / 20%);
 }
 
 html[data-codex-skin="faye"] [data-agent-activity-file-link] {
-  color: var(--fy-iris-300) !important;
+  color: var(--cs-faye-iris-300) !important;
   background: rgb(95 175 157 / 7%) !important;
   border-radius: 8px;
   box-shadow: inset 0 0 0 1px rgb(95 175 157 / 12%) !important;
 }
 
 html[data-codex-skin="faye"] [data-nested-in-plan] {
-  color: var(--fy-ivory-300) !important;
+  color: var(--cs-faye-ivory-300) !important;
   background:
     linear-gradient(90deg, rgb(143 48 68 / 12%), transparent 38%),
     rgb(8 11 14 / 76%) !important;
@@ -608,22 +608,22 @@ html[data-codex-skin="faye"] [data-nested-in-plan] {
 }
 
 html[data-codex-skin="faye"] [data-nested-in-plan] [data-status="completed"] {
-  color: var(--fy-green-400) !important;
+  color: var(--cs-faye-green-400) !important;
 }
 
 html[data-codex-skin="faye"] [data-nested-in-plan] [data-status="in_progress"],
 html[data-codex-skin="faye"] [data-nested-in-plan] [data-status="running"] {
-  color: var(--fy-iris-300) !important;
+  color: var(--cs-faye-iris-300) !important;
 }
 
 html[data-codex-skin="faye"] [data-nested-in-plan] [data-status="failed"],
 html[data-codex-skin="faye"] [data-nested-in-plan] [data-status="error"] {
-  color: var(--fy-red-400) !important;
+  color: var(--cs-faye-red-400) !important;
 }
 
 html[data-codex-skin="faye"] [data-post-command-hook],
 html[data-codex-skin="faye"] [data-affiliation-command] {
-  color: var(--fy-ivory-300) !important;
+  color: var(--cs-faye-ivory-300) !important;
   background: #070a0d !important;
   border-radius: 10px;
   box-shadow:
@@ -642,7 +642,7 @@ html[data-codex-skin="faye"] [data-pip-obstacle="thread-summary-panel"] {
 
 html[data-codex-skin="faye"] [data-wide-markdown-block],
 html[data-codex-skin="faye"] pre {
-  background: var(--fy-glass-code) !important;
+  background: var(--cs-faye-glass-code) !important;
   border-color: rgb(95 175 157 / 16%) !important;
   box-shadow:
     inset 0 1px rgb(95 175 157 / 10%),
@@ -651,7 +651,7 @@ html[data-codex-skin="faye"] pre {
 
 html[data-codex-skin="faye"] :not(pre) > code {
   background-color: rgb(95 175 157 / 8%) !important;
-  color: var(--fy-iris-300) !important;
+  color: var(--cs-faye-iris-300) !important;
 }
 
 html[data-codex-skin="faye"] [data-codex-terminal],
@@ -710,7 +710,7 @@ html[data-codex-skin="faye"] [data-mcp-app-expanding-placeholder],
 html[data-codex-skin="faye"] [data-w-loading-line] {
   background:
     linear-gradient(90deg, rgb(84 29 39 / 12%), rgb(95 175 157 / 18%), rgb(84 29 39 / 12%)) !important;
-  color: var(--fy-iris-300) !important;
+  color: var(--cs-faye-iris-300) !important;
   box-shadow: inset 0 0 0 1px rgb(95 175 157 / 8%) !important;
 }
 
@@ -721,7 +721,7 @@ html[data-codex-skin="faye"] textarea:focus-visible,
 html[data-codex-skin="faye"] select:focus-visible,
 html[data-codex-skin="faye"] [role="button"]:focus-visible,
 html[data-codex-skin="faye"] [tabindex]:focus-visible {
-  outline-color: var(--fy-iris-300) !important;
+  outline-color: var(--cs-faye-iris-300) !important;
   box-shadow:
     0 0 0 1px rgb(131 203 187 / 48%),
     0 0 0 3px rgb(143 48 68 / 18%),
@@ -768,7 +768,7 @@ html[data-codex-skin="faye"] ::-webkit-scrollbar-thumb:active {
 
 @media (forced-colors: active) {
   html[data-codex-skin="faye"] {
-    --fy-hero-art: none;
+    --cs-faye-hero-art: none;
   }
 
   html[data-codex-skin="faye"] #root {
