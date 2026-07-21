@@ -8,11 +8,13 @@ import { fileURLToPath } from "node:url";
 import {
   ensureRuntimeHome,
   getRuntimePaths,
+  resolveCodexApp,
   writeState,
 } from "../src/runtime.mjs";
 
 const projectRoot = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const cli = path.join(projectRoot, "bin", "codex-skin.mjs");
+const installedCodexApp = await resolveCodexApp().catch(() => null);
 
 test("status 在 daemon 消失后报告 degraded 且保留状态", async (context) => {
   const container = await mkdtemp(path.join(os.tmpdir(), "codex-skin-status-"));
@@ -179,11 +181,13 @@ test("生命周期命令拒绝皮肤目录与当前 CODEX_HOME 重叠", async (c
   await assert.rejects(access(runtimeHome), { code: "ENOENT" });
 });
 
-test("doctor 人类可读输出只报告静态主视觉", () => {
+test("doctor 人类可读输出只报告静态主视觉", {
+  skip: installedCodexApp ? false : "需要已安装的官方 Codex Desktop",
+}, () => {
   const result = spawnSync(process.execPath, [cli, "doctor"], {
     cwd: projectRoot,
     encoding: "utf8",
-    env: process.env,
+    env: { ...process.env, CODEX_APP_PATH: installedCodexApp.appPath },
   });
 
   assert.equal(result.status, 0, result.stderr);
@@ -193,11 +197,13 @@ test("doctor 人类可读输出只报告静态主视觉", () => {
   assert.match(result.stdout, /编译后 CSS：\d+ bytes/);
 });
 
-test("Faye doctor 编译独立主题与主视觉", () => {
+test("Faye doctor 编译独立主题与主视觉", {
+  skip: installedCodexApp ? false : "需要已安装的官方 Codex Desktop",
+}, () => {
   const result = spawnSync(process.execPath, [cli, "doctor", "--theme", "faye", "--json"], {
     cwd: projectRoot,
     encoding: "utf8",
-    env: process.env,
+    env: { ...process.env, CODEX_APP_PATH: installedCodexApp.appPath },
   });
 
   assert.equal(result.status, 0, result.stderr);

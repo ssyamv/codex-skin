@@ -6,8 +6,11 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { resolveCodexApp } from "../src/runtime.mjs";
+
 const projectRoot = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const cli = path.join(projectRoot, "bin", "codex-skin.mjs");
+const installedCodexApp = await resolveCodexApp().catch(() => null);
 const PNG_1X1 = Buffer.from(
   "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
   "base64",
@@ -25,6 +28,7 @@ async function makeContext() {
       ...process.env,
       HOME: home,
       CODEX_SKIN_STUDIO_HOME: studioHome,
+      ...(installedCodexApp ? { CODEX_APP_PATH: installedCodexApp.appPath } : {}),
     },
   };
 }
@@ -88,7 +92,7 @@ test("themes list 和 validate 输出 Swift 可消费的主题 JSON", async () =
   assert.equal(validated.styleId, "codex-skin-moonlit-archive");
 });
 
-test("themes install、replace、uninstall 和 remove 保持职责分离", async () => {
+test("themes install、replace 和 remove 保持职责分离", async () => {
   const { root, env } = await makeContext();
   const pack = await writePack(root);
 
@@ -109,17 +113,25 @@ test("themes install、replace、uninstall 和 remove 保持职责分离", async
   const list = parseSuccess(run(["themes", "list", "--json"], env));
   assert.deepEqual(list.map(({ id }) => id), ["makima", "faye", "moonlit-archive"]);
 
-  const uninstall = run(["uninstall", "--theme", "moonlit-archive", "--json"], env);
-  assert.equal(uninstall.status, 0, uninstall.stderr);
-  const afterUninstall = parseSuccess(run(["themes", "list", "--json"], env));
-  assert.ok(afterUninstall.some(({ id }) => id === "moonlit-archive"));
-
   const removed = parseSuccess(
     run(["themes", "remove", "moonlit-archive", "--json"], env),
   );
   assert.deepEqual(removed, { id: "moonlit-archive", removed: true });
   const finalThemes = parseSuccess(run(["themes", "list", "--json"], env));
   assert.deepEqual(finalThemes.map(({ id }) => id), ["makima", "faye"]);
+});
+
+test("uninstall 只清理运行时并保留主题包", {
+  skip: installedCodexApp ? false : "需要已安装的官方 Codex Desktop",
+}, async () => {
+  const { root, env } = await makeContext();
+  const pack = await writePack(root);
+  parseSuccess(run(["themes", "install", pack, "--json"], env));
+
+  const uninstall = run(["uninstall", "--theme", "moonlit-archive", "--json"], env);
+  assert.equal(uninstall.status, 0, uninstall.stderr);
+  const afterUninstall = parseSuccess(run(["themes", "list", "--json"], env));
+  assert.ok(afterUninstall.some(({ id }) => id === "moonlit-archive"));
 });
 
 test("themes 命令拒绝缺失位置参数和内置主题删除", async () => {
