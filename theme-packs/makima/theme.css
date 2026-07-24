@@ -1371,12 +1371,6 @@ html[data-codex-skin="makima"] ::-webkit-scrollbar-thumb:active {
   background-color: rgb(135 107 62 / 34%) !important;
 }
 
-/* Codex only remembers this dismissal for the current app session. */
-html[data-codex-skin="makima"]
-  div.relative.z-0.-mb-8.overflow-hidden.rounded-t-3xl.bg-token-input-validation-error-background\/70 {
-  display: none !important;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html[data-codex-skin="makima"] [data-app-action-sidebar-thread-row],
   html[data-codex-skin="makima"] [data-app-action-sidebar-project-row],

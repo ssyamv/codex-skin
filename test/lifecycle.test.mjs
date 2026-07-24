@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { access, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { access, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -15,6 +15,56 @@ import {
 const projectRoot = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const cli = path.join(projectRoot, "bin", "codex-skin.mjs");
 const installedCodexApp = await resolveCodexApp().catch(() => null);
+
+async function writeCodexAppFixture(root) {
+  const appPath = path.join(root, "Codex.app");
+  const contents = path.join(appPath, "Contents");
+  await mkdir(path.join(contents, "MacOS"), { recursive: true });
+  await writeFile(path.join(contents, "MacOS", "Codex"), "fixture\n");
+  await writeFile(path.join(contents, "Info.plist"), `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+<key>CFBundleIdentifier</key><string>com.openai.codex</string>
+<key>CFBundleExecutable</key><string>Codex</string>
+<key>CFBundleShortVersionString</key><string>1.0</string>
+<key>CFBundleVersion</key><string>1</string>
+</dict></plist>
+`);
+  return appPath;
+}
+
+test("无效开发主题不阻断 status 和 stop 使用稳定运行目录", async (context) => {
+  const container = await mkdtemp(path.join(os.tmpdir(), "codex-skin-invalid-source-"));
+  context.after(() => rm(container, { recursive: true, force: true }));
+  const appPath = await writeCodexAppFixture(container);
+  const sourceRoot = path.join(container, "invalid-theme-packs");
+  await mkdir(path.join(sourceRoot, "makima"), { recursive: true });
+  const env = {
+    ...process.env,
+    HOME: container,
+    CODEX_APP_PATH: appPath,
+    CODEX_SKIN_THEME_SOURCE_ROOT: sourceRoot,
+  };
+  delete env.CODEX_SKIN_HOME;
+  delete env.CODEX_SKIN_PROFILE_DIR;
+  await ensureRuntimeHome(getRuntimePaths(env));
+
+  const status = spawnSync(process.execPath, [cli, "status", "--json"], {
+    cwd: projectRoot,
+    encoding: "utf8",
+    env,
+  });
+  const stop = spawnSync(process.execPath, [cli, "stop"], {
+    cwd: projectRoot,
+    encoding: "utf8",
+    env,
+  });
+
+  assert.equal(status.status, 0, status.stderr);
+  assert.equal(JSON.parse(status.stdout).status, "stopped");
+  assert.equal(stop.status, 0, stop.stderr);
+  assert.match(stop.stdout, /当前未运行/);
+});
 
 test("status 在 daemon 消失后报告 degraded 且保留状态", async (context) => {
   const container = await mkdtemp(path.join(os.tmpdir(), "codex-skin-status-"));
