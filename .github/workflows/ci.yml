@@ -29,6 +29,6 @@ jobs:
           ./scripts/package-release.zsh \
             --app "dist/Codex Skin Studio.app" \
             --skill .agents/skills/customize-codex-theme \
-            --version 1.7.1 \
+            --version 1.8.0 \
             --arch arm64 \
             --output dist/ci-release
