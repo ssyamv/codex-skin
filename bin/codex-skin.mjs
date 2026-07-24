@@ -7,6 +7,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { isDeepStrictEqual } from "node:util";
 import { CdpClient, fetchCdpJson, listCdpTargets } from "../src/cdp.mjs";
+import { ThemeCssHotReloader } from "../src/hot-reload.mjs";
 import {
   ThemeMonitor,
   inspectImpactOnPort,
@@ -33,7 +34,7 @@ import {
   writeState,
 } from "../src/runtime.mjs";
 import { validateThemePack } from "../src/theme-store.mjs";
-import { createThemeStore } from "../src/themes.mjs";
+import { createThemeStore, resolveRuntimeTheme } from "../src/themes.mjs";
 
 const entrypoint = fileURLToPath(import.meta.url);
 const projectRoot = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
@@ -49,7 +50,10 @@ try {
   if (command === "themes") {
     await themesCommand(positionals[0] || "list", positionals.slice(1));
   } else {
-    theme = await themeStore.resolve(options.theme);
+    theme = await resolveRuntimeTheme(await themeStore.resolve(options.theme), {
+      entrypointPath: entrypoint,
+      environment: process.env,
+    });
     themePath = theme.cssPath;
     heroImagePath = theme.heroPath;
     paths = getRuntimePaths(process.env, {
@@ -270,9 +274,21 @@ async function daemonCommand() {
       latestReport = report;
     },
   });
+  const hotReloader = new ThemeCssHotReloader({
+    cssPath: themePath,
+    compileCss: () => loadThemeCss(themePath, { heroImagePath, theme }),
+    applyCss: (nextCss) => monitor.updateCss(nextCss),
+    onReload: ({ result }) => appendLog(
+      result.changed
+        ? `CSS 热重载完成，已更新 ${result.targetCount} 个页面`
+        : "CSS 保存完成，内容未变化",
+    ),
+    onError: (error) => appendLog(`CSS 热重载失败，已保留上一版：${error.message}`),
+  });
 
   try {
     await monitor.start();
+    hotReloader.start();
     await writeState(paths, {
       schemaVersion: 1,
       theme: theme.id,
@@ -286,10 +302,15 @@ async function daemonCommand() {
       appFingerprint: fingerprint,
       signature,
       startedAt: new Date().toISOString(),
+      hotReload: {
+        enabled: true,
+        cssPath: themePath,
+        source: theme.developmentSourcePath ? "development" : theme.source,
+      },
       report: latestReport,
     });
     await appendLog(
-      `守护进程启动，PID ${process.pid}，CDP ${port}，target ${latestReport?.targetCount ?? 0}`,
+      `守护进程启动，PID ${process.pid}，CDP ${port}，target ${latestReport?.targetCount ?? 0}，CSS 热重载 ${themePath}`,
     );
     const appWatch = options.appPid ? setInterval(() => {
       if (!isProcessAlive(Number(options.appPid))) resolveStop();
@@ -299,6 +320,7 @@ async function daemonCommand() {
   } finally {
     let cleanupError = null;
     try {
+      await hotReloader.stop();
       await monitor.stop();
     } catch (error) {
       cleanupError = error;
@@ -451,6 +473,7 @@ async function statusCommand() {
     appVersion: state.appVersion,
     browser: browser?.Browser || null,
     targets,
+    hotReload: state.hotReload ?? { enabled: false },
   });
 }
 
@@ -749,6 +772,11 @@ function printResult(result, humanPrinter = null) {
     );
     if (result.browser) console.log(`Browser：${result.browser}`);
     console.log(`Profile：${result.profileDir || paths.profileDir}`);
+    console.log(
+      result.hotReload?.enabled
+        ? `CSS 热重载：已开启（${result.hotReload.cssPath}）`
+        : "CSS 热重载：未开启",
+    );
     for (const target of result.targets) {
       console.log(
         `- ${target.targetId.slice(0, 8)}：主题 ${target.health.applied ? "已应用" : "未应用"}，样式节点 ${target.health.styleCount}`,
@@ -823,6 +851,7 @@ function printHelp() {
 
 start 前必须先正常退出所有普通 Codex；检测到共享 ~/.codex 的进程时会拒绝启动，绝不会代为终止。
 每个主题使用独立 profile 启动官方 Codex；stop 只会移除所选主题并关闭对应 Codex，普通 Codex 和其他主题不受影响。
+主题运行期间会监听当前 theme.css，安全校验通过后立即更新所有页面；本地 dist 应用会自动读取同仓库 theme-packs 源码。
 uninstall 清理本工具状态与日志并保留独立 profile；themes remove 才删除用户主题。
 工具不会修改应用包、app.asar 或官方 Chromium profile，也不会直接编辑 ~/.codex。`);
 }

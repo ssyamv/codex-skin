@@ -1,27 +1,27 @@
 html[data-codex-skin="makima"] {
   color-scheme: light !important;
 
-  --cs-makima-void-1000: #e8ebe2;
-  --cs-makima-void-950: #f2f1eb;
+  --cs-makima-void-1000: #efeae1;
+  --cs-makima-void-950: #f5f1e9;
   --cs-makima-ink-900: #30342f;
-  --cs-makima-oxide-800: #f0efe8;
-  --cs-makima-oxide-700: #d8ddd2;
-  --cs-makima-blood-700: #682a37;
-  --cs-makima-blood-600: #7f3442;
-  --cs-makima-blood-500: #924554;
-  --cs-makima-blood-400: #a75a67;
+  --cs-makima-oxide-800: #f3eee5;
+  --cs-makima-oxide-700: #ded6ca;
+  --cs-makima-blood-700: #5f492b;
+  --cs-makima-blood-600: #6f5731;
+  --cs-makima-blood-500: #876b3e;
+  --cs-makima-blood-400: #9a7b48;
   --cs-makima-iris-500: #6f5731;
   --cs-makima-iris-400: #876b3e;
   --cs-makima-iris-300: #795d34;
-  --cs-makima-sage-700: #596457;
-  --cs-makima-sage-500: #778374;
-  --cs-makima-sage-300: #d8ddd2;
-  --cs-makima-sage-100: #e8ebe2;
+  --cs-makima-sage-700: #555750;
+  --cs-makima-sage-500: #747269;
+  --cs-makima-sage-300: #ded8cf;
+  --cs-makima-sage-100: #f0ebe2;
   --cs-makima-copper-500: #876b3e;
   --cs-makima-control-idle: rgb(247 245 239 / 72%);
-  --cs-makima-control-hover: rgb(232 235 226 / 88%);
-  --cs-makima-control-pressed: rgb(127 52 66 / 13%);
-  --cs-makima-teal-400: #36726f;
+  --cs-makima-control-hover: rgb(244 239 232 / 90%);
+  --cs-makima-control-pressed: rgb(135 107 62 / 13%);
+  --cs-makima-teal-400: #596b73;
   --cs-makima-ivory-100: #30342f;
   --cs-makima-ivory-300: #555b51;
   --cs-makima-ivory-500: #747a70;
@@ -33,7 +33,7 @@ html[data-codex-skin="makima"] {
   --cs-makima-glass-code: rgb(247 245 239 / 96%);
   --cs-makima-edge-soft: rgb(135 107 62 / 15%);
   --cs-makima-edge-medium: rgb(135 107 62 / 26%);
-  --cs-makima-edge-focus: rgb(127 52 66 / 52%);
+  --cs-makima-edge-focus: rgb(135 107 62 / 52%);
 
   --cs-makima-hero-art: url("__CODEX_SKIN_HERO_IMAGE__");
 
@@ -43,7 +43,7 @@ html[data-codex-skin="makima"] {
   --codex-base-surface: var(--cs-makima-ink-900) !important;
 
   --color-accent-blue: var(--cs-makima-teal-400) !important;
-  --color-accent-purple: var(--cs-makima-blood-400) !important;
+  --color-accent-purple: #8a6f87 !important;
   --color-accent-red: var(--cs-makima-red-400) !important;
   --color-accent-green: var(--cs-makima-green-400) !important;
   --color-accent-yellow: var(--cs-makima-iris-300) !important;
@@ -52,19 +52,19 @@ html[data-codex-skin="makima"] {
   --color-background-surface-under: var(--cs-makima-void-1000) !important;
   --color-background-panel: rgb(247 245 239 / 94%) !important;
   --color-background-editor-opaque: #f1f0e9 !important;
-  --color-background-control: rgb(216 221 210 / 72%) !important;
+  --color-background-control: rgb(238 232 223 / 76%) !important;
   --color-background-control-opaque: var(--cs-makima-oxide-700) !important;
   --color-background-elevated-primary: rgb(247 245 239 / 97%) !important;
   --color-background-elevated-primary-opaque: #f7f5ef !important;
   --color-background-elevated-secondary: rgb(135 107 62 / 6%) !important;
-  --color-background-elevated-secondary-opaque: #e8ebe2 !important;
-  --color-background-accent: rgb(127 52 66 / 9%) !important;
-  --color-background-accent-hover: rgb(127 52 66 / 15%) !important;
-  --color-background-accent-active: rgb(127 52 66 / 21%) !important;
+  --color-background-elevated-secondary-opaque: #f0ebe2 !important;
+  --color-background-accent: rgb(135 107 62 / 9%) !important;
+  --color-background-accent-hover: rgb(135 107 62 / 15%) !important;
+  --color-background-accent-active: rgb(135 107 62 / 21%) !important;
   --color-background-button-primary: var(--cs-makima-blood-500) !important;
   --color-background-button-primary-hover: var(--cs-makima-blood-400) !important;
   --color-background-button-primary-active: var(--cs-makima-blood-600) !important;
-  --color-background-button-primary-inactive: rgb(161 51 67 / 36%) !important;
+  --color-background-button-primary-inactive: rgb(135 107 62 / 36%) !important;
   --color-background-button-secondary: rgb(122 91 50 / 7%) !important;
   --color-background-button-secondary-hover: rgb(122 91 50 / 12%) !important;
   --color-background-button-secondary-active: rgb(122 91 50 / 18%) !important;
@@ -96,10 +96,10 @@ html[data-codex-skin="makima"] {
   --color-editor-added: #e1f0e5 !important;
   --color-editor-deleted: #f6e1e3 !important;
 
-  --color-token-bg-appshot: rgb(232 235 226 / 84%) !important;
+  --color-token-bg-appshot: rgb(244 239 232 / 84%) !important;
   --color-token-bg-primary: rgb(247 245 239 / 86%) !important;
-  --color-token-bg-secondary: rgb(232 235 226 / 84%) !important;
-  --color-token-bg-tertiary: rgb(216 221 210 / 82%) !important;
+  --color-token-bg-secondary: rgb(244 239 232 / 84%) !important;
+  --color-token-bg-tertiary: rgb(238 232 223 / 82%) !important;
   --color-token-bg-fog: rgb(247 245 239 / 94%) !important;
   --color-token-main-surface-primary: rgb(247 245 239 / 42%) !important;
   --color-token-side-bar-background: var(--cs-makima-glass-sidebar) !important;
@@ -110,7 +110,7 @@ html[data-codex-skin="makima"] {
   --color-token-text-secondary: var(--cs-makima-ivory-300) !important;
   --color-token-text-tertiary: var(--cs-makima-ivory-500) !important;
   --color-token-description-foreground: var(--cs-makima-ivory-300) !important;
-  --color-token-disabled-foreground: rgb(89 100 87 / 48%) !important;
+  --color-token-disabled-foreground: rgb(100 100 94 / 48%) !important;
   --color-token-icon-foreground: var(--cs-makima-ivory-300) !important;
   --color-token-link: var(--cs-makima-iris-300) !important;
   --color-token-text-link-foreground: var(--cs-makima-iris-300) !important;
@@ -122,7 +122,7 @@ html[data-codex-skin="makima"] {
   --color-token-focus-border: var(--cs-makima-blood-500) !important;
   --color-token-list-focus-outline: var(--cs-makima-blood-500) !important;
   --color-token-list-hover-background: rgb(122 91 50 / 8%) !important;
-  --color-token-list-active-selection-background: rgb(161 51 67 / 14%) !important;
+  --color-token-list-active-selection-background: rgb(135 107 62 / 14%) !important;
   --color-token-list-active-selection-foreground: var(--cs-makima-ivory-100) !important;
   --color-token-list-active-selection-icon-foreground: var(--cs-makima-blood-400) !important;
   --color-token-input-background: rgb(247 245 239 / 86%) !important;
@@ -133,20 +133,20 @@ html[data-codex-skin="makima"] {
   --color-token-dropdown-foreground: var(--cs-makima-ivory-100) !important;
   --color-token-menu-background: rgb(255 251 246 / 98%) !important;
   --color-token-menu-border: rgb(122 91 50 / 22%) !important;
-  --color-token-menubar-selection-background: rgb(161 51 67 / 12%) !important;
+  --color-token-menubar-selection-background: rgb(135 107 62 / 12%) !important;
   --color-token-menubar-selection-foreground: var(--cs-makima-ivory-100) !important;
   --color-token-toolbar-hover-background: rgb(122 91 50 / 9%) !important;
 
   --color-token-button-background: var(--cs-makima-blood-500) !important;
-  --color-token-button-border: rgb(118 37 54 / 28%) !important;
+  --color-token-button-border: rgb(135 107 62 / 28%) !important;
   --color-token-button-foreground: #fffaf4 !important;
   --color-token-button-secondary-hover-background: rgb(122 91 50 / 12%) !important;
-  --color-token-interactive-bg-accent-muted-context: rgb(161 51 67 / 9%) !important;
-  --color-token-interactive-bg-accent-muted-hover: rgb(161 51 67 / 15%) !important;
-  --color-token-interactive-bg-accent-muted-press: rgb(161 51 67 / 21%) !important;
+  --color-token-interactive-bg-accent-muted-context: rgb(135 107 62 / 9%) !important;
+  --color-token-interactive-bg-accent-muted-hover: rgb(135 107 62 / 15%) !important;
+  --color-token-interactive-bg-accent-muted-press: rgb(135 107 62 / 21%) !important;
   --color-token-interactive-bg-secondary-hover: rgb(122 91 50 / 9%) !important;
   --color-token-interactive-bg-secondary-press: rgb(122 91 50 / 15%) !important;
-  --color-token-interactive-bg-secondary-selected: rgb(161 51 67 / 12%) !important;
+  --color-token-interactive-bg-secondary-selected: rgb(135 107 62 / 12%) !important;
   --color-token-interactive-label-accent-default: var(--cs-makima-blood-600) !important;
   --color-token-interactive-label-secondary-default: var(--cs-makima-ivory-300) !important;
 
@@ -169,13 +169,13 @@ html[data-codex-skin="makima"] {
   --color-token-editor-background: var(--cs-makima-glass-code) !important;
   --color-token-editor-foreground: var(--cs-makima-ivory-100) !important;
   --color-token-editor-widget-background: rgb(255 251 246 / 98%) !important;
-  --color-token-editor-selection-background: rgb(161 51 67 / 20%) !important;
+  --color-token-editor-selection-background: rgb(135 107 62 / 20%) !important;
   --color-token-editor-find-match-background: rgb(141 100 30 / 24%) !important;
   --color-token-editor-find-match-highlight-background: rgb(141 100 30 / 14%) !important;
   --color-token-editor-error-foreground: var(--cs-makima-red-400) !important;
   --color-token-editor-warning-foreground: var(--cs-makima-iris-300) !important;
-  --color-token-editor-group-drop-background: rgb(54 114 111 / 12%) !important;
-  --color-token-editor-group-drop-into-prompt-background: rgb(161 51 67 / 13%) !important;
+  --color-token-editor-group-drop-background: rgb(89 107 115 / 12%) !important;
+  --color-token-editor-group-drop-into-prompt-background: rgb(135 107 62 / 13%) !important;
   --color-token-editor-group-drop-into-prompt-foreground: var(--cs-makima-ivory-100) !important;
   --color-token-text-code-block-background: var(--cs-makima-glass-code) !important;
   --color-token-text-preformat-background: rgb(141 100 30 / 10%) !important;
@@ -230,18 +230,18 @@ html[data-codex-skin="makima"] {
   --color-token-input-validation-error-border: var(--cs-makima-red-400) !important;
   --color-token-input-validation-warning-background: rgb(141 100 30 / 12%) !important;
   --color-token-input-validation-warning-border: var(--cs-makima-iris-300) !important;
-  --color-token-input-validation-info-background: rgb(54 114 111 / 10%) !important;
+  --color-token-input-validation-info-background: rgb(89 107 115 / 10%) !important;
 
   --color-token-charts-blue: var(--cs-makima-teal-400) !important;
   --color-token-charts-green: var(--cs-makima-green-400) !important;
   --color-token-charts-orange: #db864f !important;
   --color-token-charts-purple: #b77eaa !important;
-  --color-token-charts-red: var(--cs-makima-blood-400) !important;
+  --color-token-charts-red: var(--cs-makima-red-400) !important;
   --color-token-charts-yellow: var(--cs-makima-iris-300) !important;
   --color-token-progress-bar-background: var(--cs-makima-blood-500) !important;
   --color-token-scrollbar-slider-background: rgb(122 91 50 / 18%) !important;
   --color-token-scrollbar-slider-hover-background: rgb(122 91 50 / 30%) !important;
-  --color-token-scrollbar-slider-active-background: rgb(161 51 67 / 34%) !important;
+  --color-token-scrollbar-slider-active-background: rgb(135 107 62 / 34%) !important;
 
   background: var(--cs-makima-void-1000) !important;
   accent-color: var(--cs-makima-blood-500) !important;
@@ -267,8 +267,8 @@ html[data-codex-skin="makima"] #root {
     linear-gradient(
       180deg,
       rgb(247 245 239 / 2%) 0%,
-      rgb(232 235 226 / 5%) 54%,
-      rgb(216 221 210 / 12%) 100%
+      rgb(244 239 232 / 5%) 54%,
+      rgb(238 232 223 / 12%) 100%
     ),
     radial-gradient(circle at 28% 32%, transparent 0 40%, rgb(247 245 239 / 4%) 72%),
     var(--cs-makima-hero-art) !important;
@@ -286,8 +286,8 @@ html[data-codex-skin="makima"] .app-shell-tab-background {
       180deg,
       rgb(247 245 239 / 97%) 0%,
       rgb(247 245 239 / 92%) 42%,
-      rgb(232 235 226 / 56%) 78%,
-      rgb(232 235 226 / 14%) 100%
+      rgb(244 239 232 / 56%) 78%,
+      rgb(244 239 232 / 14%) 100%
     ) !important;
   box-shadow: 0 8px 24px rgb(70 60 48 / 4%) !important;
 }
@@ -295,30 +295,59 @@ html[data-codex-skin="makima"] .app-shell-tab-background {
 html[data-codex-skin="makima"] header.app-header-tint[data-app-shell-header-edge-scroll] {
   background:
     linear-gradient(
-      180deg,
-      rgb(247 245 239 / 97%) 0%,
-      rgb(247 245 239 / 92%) 42%,
-      rgb(232 235 226 / 56%) 78%,
-      rgb(232 235 226 / 14%) 100%
+      90deg,
+      rgb(247 245 239 / 97%) 0 var(--cs-makima-header-opaque-end),
+      transparent var(--cs-makima-header-opaque-end) 100%
     ) !important;
 }
 
 html[data-codex-skin="makima"] [data-app-shell-tab-controller]:has([role="tab"][aria-selected="true"]) > [role="button"] {
-  background: rgb(255 251 246 / 98%) !important;
+  background: #f7f5ef !important;
   border-radius: 6px 6px 0 0 !important;
-  box-shadow: inset 0 -2px var(--cs-makima-blood-400) !important;
+  box-shadow:
+    inset 0 -2px var(--cs-makima-copper-500),
+    inset 0 0 0 1px rgb(135 107 62 / 12%) !important;
 }
 
 html[data-codex-skin="makima"] [data-app-shell-tab-controller]:has([role="tab"][aria-selected="true"]) > [role="button"] > .pointer-events-none {
   background: transparent !important;
 }
 
+html[data-codex-skin="makima"] [data-app-shell-tab-controller],
+html[data-codex-skin="makima"] [data-app-shell-tab-controller] > [role="button"],
+html[data-codex-skin="makima"] [data-app-shell-tab-controller] [role="tab"],
+html[data-codex-skin="makima"] [data-app-shell-tab-controller] [role="tab"] * {
+  opacity: 1 !important;
+}
+
+html[data-codex-skin="makima"] [data-app-shell-tab-controller] [role="tab"],
+html[data-codex-skin="makima"] [data-app-shell-tab-controller] [role="tab"] span {
+  color: #20231f !important;
+  -webkit-text-fill-color: #20231f !important;
+  -webkit-text-stroke: 0.35px #20231f !important;
+  text-shadow: none !important;
+}
+
+html[data-codex-skin="makima"] [data-app-shell-tab-controller] [role="tab"] svg {
+  color: var(--cs-makima-blood-600) !important;
+}
+
+html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller="right"] [role="tab"],
+html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller="right"] [role="tab"] span {
+  color: var(--cs-makima-ink-900) !important;
+  -webkit-text-fill-color: var(--cs-makima-ink-900) !important;
+  text-shadow: none !important;
+}
+
+html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller="right"] [role="tab"] svg {
+  color: var(--cs-makima-blood-700) !important;
+}
+
 html[data-codex-skin="makima"] [data-app-shell-tab-controller] [role="tab"][aria-selected="true"],
 html[data-codex-skin="makima"] [data-app-shell-tab-controller] [role="tab"][aria-selected="true"] span {
-  color: #5f2030 !important;
-  -webkit-text-fill-color: #5f2030 !important;
-  -webkit-text-stroke: 0.25px rgb(95 32 48 / 30%) !important;
-  text-shadow: none !important;
+  color: #20231f !important;
+  -webkit-text-fill-color: #20231f !important;
+  -webkit-text-stroke: 0.25px #20231f !important;
 }
 
 html[data-codex-skin="makima"] [data-app-shell-tab-controller] [role="tab"][aria-selected="true"] svg {
@@ -326,19 +355,32 @@ html[data-codex-skin="makima"] [data-app-shell-tab-controller] [role="tab"][aria
 }
 
 html[data-codex-skin="makima"] [data-app-shell-tab-close-button],
-html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller] > [role="tablist"] > button {
-  color: var(--cs-makima-ivory-500) !important;
+html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller] > [role="tablist"] > button,
+html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller="right"] > div > button {
+  opacity: 1 !important;
+  color: var(--cs-makima-blood-700) !important;
   background: transparent !important;
   box-shadow: none !important;
 }
 
 html[data-codex-skin="makima"] [data-app-shell-tab-close-button] path,
-html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller] > [role="tablist"] > button path {
-  fill: var(--cs-makima-ivory-300) !important;
+html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller] > [role="tablist"] > button path,
+html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller="right"] > div > button path {
+  fill: var(--cs-makima-blood-700) !important;
+  stroke: var(--cs-makima-blood-700) !important;
+  stroke-width: 0.3px !important;
+}
+
+html[data-codex-skin="makima"] [data-app-shell-tab-controller]:has([role="tab"][aria-selected="true"]) [data-app-shell-tab-close-button],
+html[data-codex-skin="makima"] [data-app-shell-tab-controller]:has([role="tab"][aria-selected="true"]) [data-app-shell-tab-close-button] path {
+  color: var(--cs-makima-blood-600) !important;
+  fill: var(--cs-makima-blood-600) !important;
+  stroke: var(--cs-makima-blood-600) !important;
 }
 
 html[data-codex-skin="makima"] [data-app-shell-tab-close-button]:hover,
-html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller] > [role="tablist"] > button:hover {
+html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller] > [role="tablist"] > button:hover,
+html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller="right"] > div > button:hover {
   color: var(--cs-makima-blood-600) !important;
   background: rgb(122 91 50 / 8%) !important;
 }
@@ -382,16 +424,57 @@ html[data-codex-skin="makima"] [data-app-shell-header-edge-scroll] button:active
 html[data-codex-skin="makima"] [data-app-shell-header-edge-scroll] button[aria-pressed="true"] {
   color: var(--cs-makima-blood-700) !important;
   background: var(--cs-makima-control-pressed) !important;
-  border-color: rgb(127 52 66 / 24%) !important;
+  border-color: rgb(135 107 62 / 24%) !important;
   box-shadow:
     inset 2px 0 var(--cs-makima-blood-500),
-    inset 0 0 0 1px rgb(127 52 66 / 9%) !important;
+    inset 0 0 0 1px rgb(135 107 62 / 9%) !important;
+}
+
+html[data-codex-skin="makima"]
+  [data-app-shell-header-edge-scroll]
+  [role="group"][aria-label="Composer mode"] {
+  background: linear-gradient(
+    135deg,
+    rgb(247 245 239 / 78%),
+    rgb(240 239 232 / 72%)
+  ) !important;
+  box-shadow: inset 0 0 0 1px rgb(135 107 62 / 14%) !important;
+}
+
+html[data-codex-skin="makima"]
+  [data-app-shell-header-edge-scroll]
+  [role="group"][aria-label="Composer mode"]
+  > button[aria-pressed] {
+  color: var(--cs-makima-ivory-300) !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-codex-skin="makima"]
+  [data-app-shell-header-edge-scroll]
+  [role="group"][aria-label="Composer mode"]
+  > button[aria-pressed="false"]:hover {
+  color: var(--cs-makima-ink-900) !important;
+  background: rgb(255 251 246 / 68%) !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-codex-skin="makima"]
+  [data-app-shell-header-edge-scroll]
+  [role="group"][aria-label="Composer mode"]
+  > button[aria-pressed="true"] {
+  color: var(--cs-makima-ink-900) !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
 }
 
 html[data-codex-skin="makima"] .app-shell-left-panel {
   background: linear-gradient(
     90deg,
-    rgb(232 235 226 / 38%) 0%,
+    rgb(244 239 232 / 38%) 0%,
     rgb(247 245 239 / 44%) 58%,
     rgb(247 245 239 / 52%) 100%
   ) !important;
@@ -411,7 +494,7 @@ html[data-codex-skin="makima"] .app-shell-left-panel::before {
     180deg,
     rgb(247 245 239 / 14%),
     transparent 42%,
-    rgb(216 221 210 / 30%)
+    rgb(238 232 223 / 30%)
   );
   background-position: center;
   background-repeat: no-repeat;
@@ -445,16 +528,10 @@ html[data-codex-skin="makima"] [data-app-action-sidebar-project-row]:hover {
 }
 
 html[data-codex-skin="makima"] [data-app-action-sidebar-thread-active="true"] {
-  background: linear-gradient(
-    90deg,
-    rgb(216 221 210 / 94%),
-    rgb(247 245 239 / 82%)
-  ) !important;
+  background: rgb(247 245 239 / 92%) !important;
   box-shadow:
-    inset 2px 0 var(--cs-makima-copper-500),
-    inset 0 0 0 1px rgb(135 107 62 / 30%),
-    inset 0 1px rgb(255 255 255 / 68%),
-    0 8px 22px rgb(70 60 48 / 9%) !important;
+    inset 0 0 0 1px rgb(135 107 62 / 16%),
+    0 6px 16px rgb(70 60 48 / 7%) !important;
 }
 
 html[data-codex-skin="makima"] .app-shell-left-panel button,
@@ -487,14 +564,48 @@ html[data-codex-skin="makima"] .app-shell-left-panel button:hover,
 html[data-codex-skin="makima"] .app-shell-left-panel button[data-state="open"] {
   color: var(--cs-makima-blood-700) !important;
   background: var(--cs-makima-control-hover) !important;
-  box-shadow:
-    inset 0 0 0 1px rgb(135 107 62 / 18%),
-    0 4px 12px rgb(70 60 48 / 7%) !important;
+  box-shadow: none !important;
 }
 
 html[data-codex-skin="makima"] .app-shell-left-panel button:hover svg,
 html[data-codex-skin="makima"] .app-shell-left-panel button[data-state="open"] svg {
   color: var(--cs-makima-blood-600) !important;
+}
+
+html[data-codex-skin="makima"]
+  .app-shell-left-panel
+  button[class~="bg-token-charts-blue"][aria-label][title] {
+  color: var(--color-text-on-accent) !important;
+  background: var(--color-background-button-primary) !important;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 250 244 / 22%),
+    0 2px 8px rgb(85 61 45 / 20%) !important;
+}
+
+html[data-codex-skin="makima"]
+  .app-shell-left-panel
+  button[class~="bg-token-charts-blue"][aria-label][title]:hover,
+html[data-codex-skin="makima"]
+  .app-shell-left-panel
+  button[class~="bg-token-charts-blue"][aria-label][title]:focus-visible {
+  color: var(--color-text-on-accent) !important;
+  background: var(--color-background-button-primary-hover) !important;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 250 244 / 28%),
+    0 3px 10px rgb(85 61 45 / 24%) !important;
+}
+
+html[data-codex-skin="makima"]
+  .app-shell-left-panel
+  button[class~="bg-token-charts-blue"][aria-label][title]:active {
+  background: var(--color-background-button-primary-active) !important;
+}
+
+html[data-codex-skin="makima"]
+  .app-shell-left-panel
+  button[class~="bg-token-charts-blue"][aria-label][title]
+  svg {
+  color: var(--color-text-on-accent) !important;
 }
 
 html[data-codex-skin="makima"] .app-shell-left-panel button[data-app-action-sidebar-section-toggle]:hover {
@@ -529,7 +640,7 @@ html[data-codex-skin="makima"] .browser-main-surface {
       rgb(247 245 239 / 24%) 58%,
       rgb(247 245 239 / 38%) 100%
     ),
-    radial-gradient(circle at 50% 26%, rgb(127 52 66 / 2%), transparent 46%) !important;
+    radial-gradient(circle at 50% 26%, rgb(135 107 62 / 2%), transparent 46%) !important;
   box-shadow:
     inset 1px 0 rgb(122 91 50 / 10%),
     inset -1px 0 rgb(122 91 50 / 10%) !important;
@@ -559,7 +670,7 @@ html[data-codex-skin="makima"]
       rgb(247 245 239 / 24%) 58%,
       rgb(247 245 239 / 38%) 100%
     ),
-    radial-gradient(circle at 50% 26%, rgb(127 52 66 / 2%), transparent 46%),
+    radial-gradient(circle at 50% 26%, rgb(135 107 62 / 2%), transparent 46%),
     linear-gradient(
       90deg,
       rgb(247 245 239 / 4%) 0%,
@@ -572,8 +683,8 @@ html[data-codex-skin="makima"]
     linear-gradient(
       180deg,
       rgb(247 245 239 / 2%) 0%,
-      rgb(232 235 226 / 5%) 54%,
-      rgb(216 221 210 / 12%) 100%
+      rgb(244 239 232 / 5%) 54%,
+      rgb(238 232 223 / 12%) 100%
     ),
     radial-gradient(circle at 28% 32%, transparent 0 40%, rgb(247 245 239 / 4%) 72%),
     var(--cs-makima-hero-art);
@@ -599,13 +710,13 @@ html[data-codex-skin="makima"] [data-app-shell-tabs="true"] {
 
 html[data-codex-skin="makima"] [data-home-ambient-suggestions] button[aria-labelledby],
 html[data-codex-skin="makima"] .group\/home-suggestion-list-item {
-  background:
-    radial-gradient(circle at 88% 18%, rgb(161 51 67 / 8%), transparent 34%),
-    linear-gradient(145deg, rgb(255 251 246 / 98%), rgb(241 233 224 / 94%)) !important;
-  border-color: rgb(122 91 50 / 20%) !important;
+  background: rgb(247 245 239 / 94%) !important;
+  border-color: rgb(135 107 62 / 16%) !important;
+  padding-left: 14px !important;
+  padding-right: 14px !important;
   box-shadow:
-    inset 0 0 0 1px rgb(122 91 50 / 7%),
-    0 14px 34px rgb(85 61 45 / 10%) !important;
+    inset 0 0 0 1px rgb(135 107 62 / 7%),
+    0 10px 28px rgb(70 60 48 / 8%) !important;
   backdrop-filter: blur(6px) saturate(0.94);
   transition:
     background-color 120ms ease-out,
@@ -613,23 +724,29 @@ html[data-codex-skin="makima"] .group\/home-suggestion-list-item {
     box-shadow 180ms ease-out;
 }
 
+html[data-codex-skin="makima"]
+  [data-home-ambient-suggestions]
+  button[aria-labelledby]:not(:last-child),
+html[data-codex-skin="makima"]
+  .group\/home-suggestion-list-item:not(:last-child) {
+  margin-bottom: 8px !important;
+}
+
 html[data-codex-skin="makima"] [data-home-ambient-suggestions] button[aria-labelledby]:hover,
 html[data-codex-skin="makima"] .group\/home-suggestion-list-item:hover {
-  background:
-    radial-gradient(circle at 84% 20%, rgb(161 51 67 / 12%), transparent 38%),
-    linear-gradient(145deg, rgb(255 251 246 / 99%), rgb(245 231 229 / 94%)) !important;
-  border-color: rgb(161 51 67 / 24%) !important;
+  background: rgb(255 251 246 / 98%) !important;
+  border-color: rgb(135 107 62 / 24%) !important;
   box-shadow:
-    inset 0 0 0 1px rgb(161 51 67 / 8%),
-    0 16px 38px rgb(85 61 45 / 11%) !important;
+    inset 0 0 0 1px rgb(135 107 62 / 9%),
+    0 12px 30px rgb(70 60 48 / 9%) !important;
 }
 
 html[data-codex-skin="makima"] [data-home-ambient-suggestions] button[aria-labelledby]:focus-visible,
 html[data-codex-skin="makima"] .group\/home-suggestion-list-item:focus-visible {
   border-color: var(--cs-makima-edge-focus) !important;
   box-shadow:
-    inset 0 0 0 1px rgb(161 51 67 / 16%),
-    0 0 0 2px rgb(161 51 67 / 14%),
+    inset 0 0 0 1px rgb(135 107 62 / 16%),
+    0 0 0 2px rgb(135 107 62 / 14%),
     0 18px 42px rgb(85 61 45 / 12%) !important;
 }
 
@@ -708,9 +825,9 @@ html[data-codex-skin="makima"] [data-codex-composer-root] [data-composer-navigat
 html[data-codex-skin="makima"] [data-codex-composer-root] [data-composer-navigation-target][data-state="open"] {
   color: var(--cs-makima-blood-700) !important;
   background: var(--cs-makima-control-hover) !important;
-  border-color: rgb(127 52 66 / 24%) !important;
+  border-color: rgb(135 107 62 / 24%) !important;
   box-shadow:
-    inset 0 0 0 1px rgb(127 52 66 / 12%),
+    inset 0 0 0 1px rgb(135 107 62 / 12%),
     0 6px 16px rgb(70 60 48 / 8%) !important;
 }
 
@@ -722,11 +839,9 @@ html[data-codex-skin="makima"] [data-codex-composer-root] [data-composer-navigat
 
 html[data-codex-skin="makima"] [data-codex-intelligence-trigger] {
   background:
-    linear-gradient(90deg, rgb(232 235 226 / 92%), rgb(247 245 239 / 88%)) !important;
+    linear-gradient(90deg, rgb(244 239 232 / 92%), rgb(247 245 239 / 88%)) !important;
   border-color: rgb(135 107 62 / 26%) !important;
-  box-shadow:
-    inset 2px 0 var(--cs-makima-copper-500),
-    inset 0 0 0 1px rgb(135 107 62 / 8%) !important;
+  box-shadow: inset 0 0 0 1px rgb(135 107 62 / 10%) !important;
   padding-left: 10px !important;
   padding-right: 10px !important;
   margin-right: 6px !important;
@@ -757,10 +872,10 @@ html[data-codex-skin="makima"] [data-codex-composer-root] button[aria-label="停
 html[data-codex-skin="makima"] [data-codex-composer-root] button[aria-label="Stop"] {
   color: #fffaf4 !important;
   background: var(--cs-makima-blood-600) !important;
-  border-color: rgb(118 37 54 / 38%) !important;
+  border-color: rgb(135 107 62 / 38%) !important;
   box-shadow:
     inset 0 0 0 1px rgb(255 255 255 / 20%),
-    0 5px 16px rgb(127 52 66 / 22%) !important;
+    0 5px 16px rgb(85 61 45 / 20%) !important;
 }
 
 html[data-codex-skin="makima"] [data-codex-composer-root] button[aria-label="发送"] svg,
@@ -772,7 +887,7 @@ html[data-codex-skin="makima"] [data-codex-composer-root] button[aria-label="Sto
 
 html[data-codex-skin="makima"] [data-turn-key],
 html[data-codex-skin="makima"] [data-content-search-turn-key] {
-  background: linear-gradient(90deg, transparent, rgb(247 245 239 / 14%) 18%, rgb(232 235 226 / 18%) 82%, transparent) !important;
+  background: linear-gradient(90deg, transparent, rgb(247 245 239 / 14%) 18%, rgb(244 239 232 / 18%) 82%, transparent) !important;
   box-shadow: inset 0 1px rgb(122 91 50 / 6%) !important;
 }
 
@@ -782,11 +897,28 @@ html[data-codex-skin="makima"] [data-turn-key] > div > div > .text-token-text-se
 }
 
 html[data-codex-skin="makima"] [data-turn-key] > div > div > .text-token-text-secondary > button[aria-expanded] {
-  background: rgb(247 245 239 / 94%) !important;
+  background: rgb(247 245 239 / 82%) !important;
   border-radius: 6px;
-  box-shadow:
-    0 0 0 4px rgb(247 245 239 / 82%),
-    0 4px 14px rgb(70 60 48 / 9%) !important;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+  box-shadow: none !important;
+}
+
+html[data-codex-skin="makima"]
+  [data-turn-key]
+  .text-token-text-secondary:has(> .text-token-conversation-body)
+  > .text-token-conversation-body {
+  color: var(--cs-makima-ink-900) !important;
+  -webkit-text-fill-color: var(--cs-makima-ink-900) !important;
+  background: rgb(247 245 239 / 82%) !important;
+  border-radius: 6px;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+  box-shadow: none !important;
 }
 
 html[data-codex-skin="makima"] [data-response-annotation-conversation],
@@ -817,10 +949,12 @@ html[data-codex-skin="makima"] [data-response-annotation-conversation] [data-wid
   --wide-block-width: 100% !important;
 }
 
+html[data-codex-skin="makima"] [data-response-annotation-conversation] [data-wide-markdown-block][data-wide-markdown-block-kind="mermaid"] {
+  --wide-block-width: 100% !important;
+}
+
 html[data-codex-skin="makima"] [data-user-message-bubble] {
-  background:
-    radial-gradient(circle at 92% 18%, rgb(135 107 62 / 7%), transparent 38%),
-    linear-gradient(135deg, rgb(232 235 226 / 90%), rgb(247 245 239 / 80%)) !important;
+  background: rgb(247 245 239 / 94%) !important;
   border-color: rgb(135 107 62 / 24%) !important;
   box-shadow:
     inset 0 0 0 1px rgb(135 107 62 / 9%),
@@ -834,9 +968,9 @@ html[data-codex-skin="makima"] [data-assistant-message-sent-time] {
 
 html[data-codex-skin="makima"] [data-codex-approval-surface] {
   background:
-    radial-gradient(circle at 92% 12%, rgb(161 51 67 / 10%), transparent 38%),
+    radial-gradient(circle at 92% 12%, rgb(135 107 62 / 10%), transparent 38%),
     rgb(255 248 244 / 96%) !important;
-  border-color: rgb(161 51 67 / 26%) !important;
+  border-color: rgb(135 107 62 / 26%) !important;
   box-shadow:
     inset 2px 0 var(--cs-makima-blood-400),
     inset 0 0 0 1px rgb(122 91 50 / 9%),
@@ -844,7 +978,7 @@ html[data-codex-skin="makima"] [data-codex-approval-surface] {
 }
 
 html[data-codex-skin="makima"] [data-local-conversation-item-target-ids] {
-  background: linear-gradient(90deg, rgb(247 245 239 / 52%), rgb(232 235 226 / 58%)) !important;
+  background: linear-gradient(90deg, rgb(247 245 239 / 52%), rgb(244 239 232 / 58%)) !important;
   border-radius: 10px;
   box-shadow: none !important;
 }
@@ -875,11 +1009,7 @@ html[data-codex-skin="makima"] [data-local-conversation-item-target-ids]:has(.gr
 
 html[data-codex-skin="makima"] [data-local-conversation-item-target-ids]:has(.loading-shimmer-pure-text) > div > div > .group\/activity-header {
   color: var(--cs-makima-ink-900) !important;
-  background: linear-gradient(
-    90deg,
-    rgb(247 245 239 / 96%),
-    rgb(232 235 226 / 94%)
-  ) !important;
+  background: rgb(247 245 239 / 96%) !important;
   border-radius: 999px;
   box-shadow:
     inset 0 0 0 1px rgb(135 107 62 / 14%),
@@ -893,11 +1023,7 @@ html[data-codex-skin="makima"] [data-local-conversation-item-target-ids]:has(.lo
 
 html[data-codex-skin="makima"] [data-local-conversation-item-target-ids]:has(.loading-shimmer-pure-text) > div > div > .group\/activity-header:hover {
   color: var(--cs-makima-ink-900) !important;
-  background: linear-gradient(
-    90deg,
-    rgb(255 251 246 / 98%),
-    rgb(232 235 226 / 96%)
-  ) !important;
+  background: rgb(255 251 246 / 98%) !important;
   box-shadow:
     inset 0 0 0 1px rgb(135 107 62 / 18%),
     0 4px 14px rgb(70 60 48 / 10%) !important;
@@ -943,7 +1069,7 @@ html[data-codex-skin="makima"] [data-agent-activity-file-link] {
 html[data-codex-skin="makima"] [data-nested-in-plan] {
   color: var(--cs-makima-ivory-300) !important;
   background:
-    linear-gradient(90deg, rgb(161 51 67 / 8%), transparent 38%),
+    linear-gradient(90deg, rgb(135 107 62 / 8%), transparent 38%),
     rgb(247 245 239 / 68%) !important;
   border-radius: 12px;
   box-shadow:
@@ -971,7 +1097,7 @@ html[data-codex-skin="makima"] [data-affiliation-command] {
   background: rgb(247 245 239 / 66%) !important;
   border-radius: 10px;
   box-shadow:
-    inset 3px 0 rgb(161 51 67 / 28%),
+    inset 3px 0 rgb(135 107 62 / 28%),
     inset 0 0 0 1px rgb(122 91 50 / 10%) !important;
 }
 
@@ -997,10 +1123,10 @@ html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] > div 
 
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-icon-button"] {
   color: var(--cs-makima-copper-500) !important;
-  background: var(--cs-makima-control-idle) !important;
-  border-color: rgb(135 107 62 / 20%) !important;
+  background: transparent !important;
+  border-color: transparent !important;
   border-radius: 8px;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 38%) !important;
+  box-shadow: none !important;
   transition:
     background-color 120ms ease-out,
     border-color 120ms ease-out,
@@ -1008,13 +1134,17 @@ html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-
     color 120ms ease-out;
 }
 
+html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-icon-button"] svg {
+  color: var(--cs-makima-copper-500) !important;
+}
+
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-icon-button"]:hover,
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-icon-button"][data-state="open"] {
   color: var(--cs-makima-blood-600) !important;
   background: var(--cs-makima-control-hover) !important;
-  border-color: rgb(127 52 66 / 22%) !important;
+  border-color: rgb(135 107 62 / 22%) !important;
   box-shadow:
-    inset 0 0 0 1px rgb(127 52 66 / 12%),
+    inset 0 0 0 1px rgb(135 107 62 / 12%),
     0 4px 12px rgb(70 60 48 / 7%) !important;
 }
 
@@ -1022,7 +1152,7 @@ html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-
   color: var(--cs-makima-ivory-100) !important;
   background: transparent !important;
   border-radius: 8px;
-  box-shadow: inset 2px 0 rgb(127 52 66 / 0%) !important;
+  box-shadow: inset 2px 0 rgb(135 107 62 / 0%) !important;
   padding-left: 8px !important;
   padding-right: 8px !important;
   transition:
@@ -1038,19 +1168,25 @@ html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-
   box-shadow: inset 0 0 0 1px rgb(135 107 62 / 16%) !important;
 }
 
+html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-item-button"]:has([data-slot="thread-summary-panel-item-avatar-group"]):hover,
+html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-item-button"]:has([data-slot="thread-summary-panel-item-avatar-group"]):focus-visible {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-item-leading"] svg,
 html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-item-button"] svg {
   color: var(--cs-makima-copper-500) !important;
 }
 
-html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] button[aria-expanded] {
+html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] section > header > button[aria-expanded] {
   color: var(--cs-makima-sage-700) !important;
   border-radius: 6px;
 }
 
-html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] button[aria-expanded]:hover {
+html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"] section > header > button[aria-expanded]:hover {
   color: var(--cs-makima-blood-600) !important;
-  background: rgb(232 235 226 / 72%) !important;
+  background: rgb(244 239 232 / 72%) !important;
   box-shadow: inset 0 -1px rgb(135 107 62 / 24%) !important;
 }
 
@@ -1060,7 +1196,7 @@ html[data-codex-skin="makima"] [data-codex-approval-surface] svg {
   color: var(--cs-makima-copper-500) !important;
 }
 
-html[data-codex-skin="makima"] [data-wide-markdown-block]:not(:has(img)):not(:has([data-markdown-image-preview-trigger])),
+html[data-codex-skin="makima"] [data-wide-markdown-block]:not([data-wide-markdown-block-kind="mermaid"]):not(:has(img)):not(:has([data-markdown-image-preview-trigger])),
 html[data-codex-skin="makima"] pre {
   background: var(--cs-makima-glass-code) !important;
   border-color: rgb(122 91 50 / 16%) !important;
@@ -1084,7 +1220,7 @@ html[data-codex-skin="makima"] :not(pre) > code {
 html[data-codex-skin="makima"] [data-codex-terminal],
 html[data-codex-skin="makima"] [data-codex-xterm] {
   background:
-    radial-gradient(circle at 50% 100%, rgb(161 51 67 / 6%), transparent 42%),
+    radial-gradient(circle at 50% 100%, rgb(135 107 62 / 6%), transparent 42%),
     #f7f1e9 !important;
   border-color: rgb(122 91 50 / 16%) !important;
   box-shadow:
@@ -1105,7 +1241,7 @@ html[data-codex-skin="makima"] [data-inline-file-diff-review-viewport] {
 
 html[data-codex-skin="makima"] [data-diffs-header] {
   background:
-    linear-gradient(90deg, rgb(161 51 67 / 9%), rgb(122 91 50 / 4%)),
+    linear-gradient(90deg, rgb(135 107 62 / 9%), rgb(122 91 50 / 4%)),
     rgb(238 228 217 / 94%) !important;
   border-bottom-color: rgb(122 91 50 / 16%) !important;
   box-shadow: inset 0 -1px rgb(122 91 50 / 8%) !important;
@@ -1138,7 +1274,7 @@ html[data-codex-skin="makima"] [data-mcp-app-loading],
 html[data-codex-skin="makima"] [data-mcp-app-expanding-placeholder],
 html[data-codex-skin="makima"] [data-w-loading-line] {
   background:
-    linear-gradient(90deg, rgb(161 51 67 / 7%), rgb(141 100 30 / 12%), rgb(161 51 67 / 7%)) !important;
+    linear-gradient(90deg, rgb(135 107 62 / 7%), rgb(141 100 30 / 12%), rgb(135 107 62 / 7%)) !important;
   color: var(--cs-makima-iris-500) !important;
   box-shadow: inset 0 0 0 1px rgb(122 91 50 / 9%) !important;
 }
@@ -1163,16 +1299,24 @@ html[data-codex-skin="makima"] [role="option"][aria-selected="true"] {
   box-shadow: inset 0 0 0 1px rgb(135 107 62 / 16%) !important;
 }
 
+html[data-codex-skin="makima"] button:not(:disabled),
+html[data-codex-skin="makima"] a[href],
+html[data-codex-skin="makima"] [role="button"]:not([aria-disabled="true"]):not(:disabled),
+html[data-codex-skin="makima"] [role="link"]:not([aria-disabled="true"]),
+html[data-codex-skin="makima"] summary {
+  cursor: pointer !important;
+}
+
 html[data-codex-skin="makima"] button:disabled,
 html[data-codex-skin="makima"] [role="button"][aria-disabled="true"] {
-  color: rgb(89 100 87 / 52%) !important;
-  background: rgb(216 221 210 / 34%) !important;
+  color: rgb(100 100 94 / 52%) !important;
+  background: rgb(238 232 223 / 38%) !important;
   box-shadow: none !important;
 }
 
 html[data-codex-skin="makima"] button:disabled svg,
 html[data-codex-skin="makima"] [role="button"][aria-disabled="true"] svg {
-  color: rgb(89 100 87 / 52%) !important;
+  color: rgb(100 100 94 / 52%) !important;
 }
 
 html[data-codex-skin="makima"] a[href]:focus-visible,
@@ -1184,19 +1328,19 @@ html[data-codex-skin="makima"] [role="button"]:focus-visible,
 html[data-codex-skin="makima"] [tabindex]:focus-visible {
   outline-color: var(--cs-makima-blood-500) !important;
   box-shadow:
-    0 0 0 1px rgb(161 51 67 / 42%),
-    0 0 0 3px rgb(161 51 67 / 14%),
-    0 0 18px rgb(161 51 67 / 8%) !important;
+    0 0 0 1px rgb(135 107 62 / 42%),
+    0 0 0 3px rgb(135 107 62 / 14%),
+    0 0 18px rgb(135 107 62 / 8%) !important;
 }
 
+html[data-codex-skin="makima"] [role="menu"][data-state="open"] [role="menuitem"]:hover,
+html[data-codex-skin="makima"] [role="menu"][data-state="open"] [role="menuitem"][data-highlighted],
 html[data-codex-skin="makima"] [role="menu"][data-state="open"] [role="menuitem"]:focus,
 html[data-codex-skin="makima"] [role="menu"][data-state="open"] [role="menuitem"]:focus-visible {
   color: var(--cs-makima-ink-900) !important;
   background: rgb(244 239 232 / 94%) !important;
   outline-color: var(--cs-makima-copper-500) !important;
-  box-shadow:
-    0 0 0 1px rgb(135 107 62 / 34%),
-    0 0 0 3px rgb(135 107 62 / 11%) !important;
+  box-shadow: none !important;
 }
 
 html[data-codex-skin="makima"] a[href] {
@@ -1205,7 +1349,7 @@ html[data-codex-skin="makima"] a[href] {
 
 html[data-codex-skin="makima"] ::selection {
   color: var(--cs-makima-ink-900);
-  background: rgb(161 51 67 / 22%);
+  background: rgb(135 107 62 / 22%);
 }
 
 html[data-codex-skin="makima"] ::-webkit-scrollbar-track,
@@ -1224,7 +1368,13 @@ html[data-codex-skin="makima"] ::-webkit-scrollbar-thumb:hover {
 }
 
 html[data-codex-skin="makima"] ::-webkit-scrollbar-thumb:active {
-  background-color: rgb(161 51 67 / 34%) !important;
+  background-color: rgb(135 107 62 / 34%) !important;
+}
+
+/* Codex only remembers this dismissal for the current app session. */
+html[data-codex-skin="makima"]
+  div.relative.z-0.-mb-8.overflow-hidden.rounded-t-3xl.bg-token-input-validation-error-background\/70 {
+  display: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -83,6 +83,8 @@ npm run build:app
 
 输出为 `dist/Codex Skin Studio.app`，包含当前架构的 Swift 可执行文件、Node.js 22 运行时、CLI 与内置主题包。
 
+从仓库 `dist/` 运行该 App 时，守护进程会自动监听同仓库的 `theme-packs/<主题 ID>/theme.css`。保存 CSS 后会重新执行安全校验，并同步更新当前页面和后续新页面；校验失败时继续保留上一版。安装在其他目录的发布版只监听自身主题或用户已安装主题，不会回写签名应用包。也可以通过 `CODEX_SKIN_THEME_SOURCE_ROOT` 显式指定包含各主题目录的开发主题根目录。
+
 ## 动态主题 CLI
 
 源码目录可运行：
