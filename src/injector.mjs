@@ -161,7 +161,6 @@ export function validateSkinCss(css, { theme = DEFAULT_THEME } = {}) {
   ].join(", ");
   const completedTurnStatusSelector = `${rootSelector} [data-turn-key] > div > div > .text-token-text-secondary > button[aria-expanded]`;
   const runningTurnStatusSelector = `${rootSelector} [data-turn-key] .text-token-text-secondary:has(> .text-token-conversation-body) > .text-token-conversation-body`;
-  const fullAccessWarningSelector = `${rootSelector} div.relative.z-0.-mb-8.overflow-hidden.rounded-t-3xl.bg-token-input-validation-error-background\\/70`;
   const tabReadabilitySelector = [
     `${rootSelector} [data-app-shell-tab-controller]`,
     `${rootSelector} [data-app-shell-tab-controller] > [role="button"]`,
@@ -415,7 +414,6 @@ export function validateSkinCss(css, { theme = DEFAULT_THEME } = {}) {
     ["cursor", new Map([
       [interactiveCursorSelector, "pointer"],
     ])],
-    ["display", new Map([[fullAccessWarningSelector, "none"]])],
     ["padding-left", new Map([
       [activityHeaderSelector, "10px"],
       [responseAnnotationSelector, "10px"],
@@ -1053,11 +1051,14 @@ export class ThemeMonitor {
   #onReport;
   #pollMs;
   #healthMs;
+  #listTargets;
+  #createThemeSession;
   #sessions = new Map();
   #timer = null;
   #running = false;
   #lastHealth = 0;
   #tickPromise = null;
+  #updatePromise = null;
 
   constructor({
     port,
@@ -1066,6 +1067,8 @@ export class ThemeMonitor {
     onReport,
     pollMs = 1_000,
     healthMs = 5_000,
+    listTargets = listCdpTargets,
+    createThemeSession = createSession,
   }) {
     this.#port = port;
     this.#css = css;
@@ -1073,6 +1076,8 @@ export class ThemeMonitor {
     this.#onReport = onReport ?? (() => {});
     this.#pollMs = pollMs;
     this.#healthMs = healthMs;
+    this.#listTargets = listTargets;
+    this.#createThemeSession = createThemeSession;
   }
 
   async start() {
@@ -1083,10 +1088,10 @@ export class ThemeMonitor {
   }
 
   async stop() {
-    if (!this.#running && !this.#tickPromise) return;
+    if (!this.#running && !this.#tickPromise && !this.#updatePromise) return;
     this.#running = false;
     clearInterval(this.#timer);
-    await this.#tickPromise?.catch(() => {});
+    await Promise.allSettled([this.#tickPromise, this.#updatePromise]);
     const cleanupResults = await Promise.allSettled(
       [...this.#sessions.values()].map(removeSession),
     );
@@ -1102,33 +1107,63 @@ export class ThemeMonitor {
 
   async updateCss(css) {
     if (!this.#running) throw new Error("Theme monitor is not running");
+    while (this.#tickPromise || this.#updatePromise) {
+      const pending = this.#tickPromise || this.#updatePromise;
+      await pending.catch(() => {});
+    }
+    if (!this.#running) throw new Error("Theme monitor stopped during CSS reload");
     if (css === this.#css) {
       return { changed: false, targetCount: this.#sessions.size };
     }
-    await this.#tickPromise?.catch(() => {});
-    if (!this.#running) throw new Error("Theme monitor stopped during CSS reload");
-    this.#css = css;
+    const task = this.#updateCssTransaction(css);
+    this.#updatePromise = task;
+    try {
+      return await task;
+    } finally {
+      if (this.#updatePromise === task) this.#updatePromise = null;
+    }
+  }
+
+  async #updateCssTransaction(css) {
+    const previousCss = this.#css;
     const sessions = [...this.#sessions.entries()];
     const results = await Promise.allSettled(
       sessions.map(([, session]) => updateThemeSessionCss(session, css)),
     );
     const failures = [];
+    const updatedSessions = [];
     results.forEach((result, index) => {
-      if (result.status === "fulfilled") return;
       const [id, session] = sessions[index];
+      if (result.status === "fulfilled") {
+        updatedSessions.push([id, session]);
+        return;
+      }
       session.client.close();
       this.#sessions.delete(id);
       failures.push(result.reason);
     });
     this.#lastHealth = 0;
     if (failures.length > 0) {
+      const rollbacks = await Promise.allSettled(
+        updatedSessions.map(([, session]) =>
+          updateThemeSessionCss(session, previousCss)),
+      );
+      rollbacks.forEach((result, index) => {
+        if (result.status === "fulfilled") return;
+        const [id, session] = updatedSessions[index];
+        session.client.close();
+        this.#sessions.delete(id);
+        failures.push(result.reason);
+      });
       throw new AggregateError(failures, "One or more theme sessions failed to hot reload");
     }
+    this.#css = css;
     return { changed: true, targetCount: sessions.length };
   }
 
   async #runTick() {
     if (!this.#running) return;
+    if (this.#updatePromise) return;
     if (this.#tickPromise) return this.#tickPromise;
     const task = this.#tick();
     this.#tickPromise = task;
@@ -1141,7 +1176,7 @@ export class ThemeMonitor {
 
   async #tick() {
     try {
-      const targets = await listCdpTargets(this.#port);
+      const targets = await this.#listTargets(this.#port);
       const targetIds = new Set(targets.map((target) => target.id));
       for (const [id, session] of this.#sessions) {
         if (!targetIds.has(id) || session.client.closed) {
@@ -1153,7 +1188,7 @@ export class ThemeMonitor {
         if (!this.#sessions.has(target.id)) {
           this.#sessions.set(
             target.id,
-            await createSession(target, this.#css, this.#theme),
+            await this.#createThemeSession(target, this.#css, this.#theme),
           );
         }
       }

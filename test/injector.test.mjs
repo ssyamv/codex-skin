@@ -9,6 +9,7 @@ import {
   DIFF_SHADOW_STYLE_SUFFIX,
   HEADER_OPAQUE_END_VAR,
   STYLE_ID,
+  ThemeMonitor,
   assertThemeSafety,
   buildApplyScript,
   buildImpactInspectionScript,
@@ -210,11 +211,6 @@ test("CSS safety guard rejects layout, hiding, and input-blocking rules", () => 
       + 'html[data-codex-skin="makima"] summary { cursor: pointer; }',
   ));
   assert.doesNotThrow(() => assertThemeSafety(
-    'html[data-codex-skin="makima"] '
-      + 'div.relative.z-0.-mb-8.overflow-hidden.rounded-t-3xl'
-      + '.bg-token-input-validation-error-background\\/70 { display: none; }',
-  ));
-  assert.doesNotThrow(() => assertThemeSafety(
     'html[data-codex-skin="makima"] [data-app-shell-tab-controller], '
       + 'html[data-codex-skin="makima"] [data-app-shell-tab-controller] > [role="button"], '
       + 'html[data-codex-skin="makima"] [data-app-shell-tab-controller] [role="tab"], '
@@ -230,6 +226,7 @@ test("CSS safety guard rejects layout, hiding, and input-blocking rules", () => 
   const rejected = [
     ['html[data-codex-skin="makima"] { font-family: serif; }', /font declarations/],
     ['html[data-codex-skin="makima"] button { display: none; }', /display/],
+    ['html[data-codex-skin="makima"] div.relative.z-0.-mb-8.overflow-hidden.rounded-t-3xl.bg-token-input-validation-error-background\\/70 { display: none; }', /display/],
     ['html[data-codex-skin="makima"] button { visibility: hidden; }', /visibility/],
     ['html[data-codex-skin="makima"] main { content-visibility: auto; }', /content-visibility/],
     ['html[data-codex-skin="makima"] main { z-index: 2; }', /z-index/],
@@ -407,4 +404,156 @@ test("热重载同时替换当前页面样式和后续导航注入脚本", async
     ],
   );
   assert.equal(calls[2].params.identifier, "old-script");
+});
+
+test("多页面热重载部分失败时回滚并保留旧版 canonical CSS", async () => {
+  const oldCss = "old-css-token";
+  const newCss = "new-css-token";
+  let targets = [{ id: "first" }, { id: "failing" }];
+  const created = [];
+  const sessionsByTarget = new Map();
+  const createThemeSession = async (target, css, theme) => {
+    let sequence = 0;
+    const client = {
+      closed: false,
+      currentCss: css,
+      async call(method, params = {}) {
+        if (method === "Page.addScriptToEvaluateOnNewDocument") {
+          sequence += 1;
+          return { identifier: `${target.id}-script-${sequence}` };
+        }
+        if (
+          method === "Runtime.evaluate"
+          && target.id === "failing"
+          && params.expression.includes(newCss)
+        ) {
+          throw new Error("reload failed");
+        }
+        if (method === "Runtime.evaluate") {
+          if (params.expression.includes(oldCss)) this.currentCss = oldCss;
+          if (params.expression.includes(newCss)) this.currentCss = newCss;
+          return { result: { value: { applied: true } } };
+        }
+        return {};
+      },
+      close() {
+        this.closed = true;
+      },
+    };
+    const session = {
+      target,
+      client,
+      identifier: `${target.id}-script-0`,
+      applyScript: buildApplyScript(css, theme),
+      theme,
+    };
+    created.push({ targetId: target.id, css });
+    sessionsByTarget.set(target.id, session);
+    return session;
+  };
+  const monitor = new ThemeMonitor({
+    port: 1,
+    css: oldCss,
+    pollMs: 5,
+    healthMs: Number.POSITIVE_INFINITY,
+    listTargets: async () => targets,
+    createThemeSession,
+  });
+
+  await monitor.start();
+  const failedSession = sessionsByTarget.get("failing");
+  targets = [...targets, { id: "later" }];
+  try {
+    await assert.rejects(monitor.updateCss(newCss), /failed to hot reload/);
+    const deadline = Date.now() + 500;
+    while (created.length < 4 && Date.now() < deadline) {
+      await new Promise((resolve) => setTimeout(resolve, 5));
+    }
+
+    assert.equal(failedSession.client.closed, true);
+    assert.equal(sessionsByTarget.get("first").client.currentCss, oldCss);
+    assert.deepEqual(created.slice(2), [
+      { targetId: "failing", css: oldCss },
+      { targetId: "later", css: oldCss },
+    ]);
+  } finally {
+    await monitor.stop();
+  }
+});
+
+test("并发热重载严格串行并提交最后一版 canonical CSS", async () => {
+  const oldCss = "old-concurrent-css";
+  const firstCss = "first-concurrent-css";
+  const secondCss = "second-concurrent-css";
+  let targets = [{ id: "first" }];
+  let releaseFirst;
+  const firstGate = new Promise((resolve) => {
+    releaseFirst = resolve;
+  });
+  const events = [];
+  const created = [];
+  const createThemeSession = async (target, css, theme) => {
+    let sequence = 0;
+    const client = {
+      closed: false,
+      async call(method, params = {}) {
+        if (method === "Page.addScriptToEvaluateOnNewDocument") {
+          sequence += 1;
+          return { identifier: `${target.id}-concurrent-${sequence}` };
+        }
+        if (method === "Runtime.evaluate" && params.expression.includes(firstCss)) {
+          events.push("first:start");
+          await firstGate;
+          events.push("first:end");
+        } else if (
+          method === "Runtime.evaluate"
+          && params.expression.includes(secondCss)
+        ) {
+          events.push("second");
+        }
+        return { result: { value: { applied: true } } };
+      },
+      close() {
+        this.closed = true;
+      },
+    };
+    created.push({ targetId: target.id, css });
+    return {
+      target,
+      client,
+      identifier: `${target.id}-concurrent-0`,
+      applyScript: buildApplyScript(css, theme),
+      theme,
+    };
+  };
+  const monitor = new ThemeMonitor({
+    port: 1,
+    css: oldCss,
+    pollMs: 5,
+    healthMs: Number.POSITIVE_INFINITY,
+    listTargets: async () => targets,
+    createThemeSession,
+  });
+
+  await monitor.start();
+  try {
+    const first = monitor.updateCss(firstCss);
+    const second = monitor.updateCss(secondCss);
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.deepEqual(events, ["first:start"]);
+
+    releaseFirst();
+    await Promise.all([first, second]);
+    assert.deepEqual(events, ["first:start", "first:end", "second"]);
+
+    targets = [...targets, { id: "later" }];
+    const deadline = Date.now() + 500;
+    while (created.length < 2 && Date.now() < deadline) {
+      await new Promise((resolve) => setTimeout(resolve, 5));
+    }
+    assert.deepEqual(created.at(-1), { targetId: "later", css: secondCss });
+  } finally {
+    releaseFirst();
+    await monitor.stop();
+  }
 });

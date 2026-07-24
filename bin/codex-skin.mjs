@@ -40,6 +40,7 @@ const entrypoint = fileURLToPath(import.meta.url);
 const projectRoot = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const { command, options, positionals } = parseArguments(process.argv.slice(2));
 const themeStore = createThemeStore({ environment: process.env });
+const sourceThemeCommands = new Set(["start", "doctor", "verify", "daemon"]);
 let theme;
 let themePath;
 let heroImagePath;
@@ -49,26 +50,30 @@ try {
   assertSupportedNode();
   if (command === "themes") {
     await themesCommand(positionals[0] || "list", positionals.slice(1));
+  } else if (["help", "--help", "-h"].includes(command)) {
+    printHelp();
   } else {
-    theme = await resolveRuntimeTheme(await themeStore.resolve(options.theme), {
-      entrypointPath: entrypoint,
-      environment: process.env,
-    });
+    theme = await themeStore.resolve(options.theme);
+    if (sourceThemeCommands.has(command)) {
+      theme = await resolveRuntimeTheme(theme, {
+        entrypointPath: entrypoint,
+        environment: process.env,
+      });
+    }
     themePath = theme.cssPath;
     heroImagePath = theme.heroPath;
     paths = getRuntimePaths(process.env, {
       runtimeDirectory: theme.runtimeDirectory,
     });
     if (command === "start") await startCommand();
-  else if (command === "stop") await stopCommand();
-  else if (command === "status") await statusCommand();
-  else if (command === "doctor") await doctorCommand();
-  else if (command === "verify") await verifyCommand();
-  else if (command === "snapshot") await snapshotCommand();
-  else if (command === "uninstall") await uninstallCommand();
-  else if (command === "daemon") await daemonCommand();
-  else if (["help", "--help", "-h"].includes(command)) printHelp();
-  else throw new Error(`未知命令：${command}`);
+    else if (command === "stop") await stopCommand();
+    else if (command === "status") await statusCommand();
+    else if (command === "doctor") await doctorCommand();
+    else if (command === "verify") await verifyCommand();
+    else if (command === "snapshot") await snapshotCommand();
+    else if (command === "uninstall") await uninstallCommand();
+    else if (command === "daemon") await daemonCommand();
+    else throw new Error(`未知命令：${command}`);
   }
 } catch (error) {
   console.error(`错误：${error.message}`);
