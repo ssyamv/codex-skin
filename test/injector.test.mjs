@@ -17,6 +17,7 @@ import {
   getDiffShadowCss,
   inspectImpactOnPort,
   loadThemeCss,
+  updateThemeSessionCss,
 } from "../src/injector.mjs";
 import { THEMES, deriveThemeRuntimeFields } from "../src/themes.mjs";
 
@@ -163,6 +164,11 @@ test("CSS safety guard rejects layout, hiding, and input-blocking rules", () => 
       + " --wide-block-width: 100%; }",
   ));
   assert.doesNotThrow(() => assertThemeSafety(
+    'html[data-codex-skin="makima"] [data-response-annotation-conversation]'
+      + ' [data-wide-markdown-block][data-wide-markdown-block-kind="mermaid"] {'
+      + " --wide-block-width: 100%; }",
+  ));
+  assert.doesNotThrow(() => assertThemeSafety(
     'html[data-codex-skin="makima"] [data-pip-obstacle="thread-summary-panel"]'
       + ' [data-slot="thread-summary-panel-item-button"] {'
       + " padding-left: 8px; padding-right: 8px; }",
@@ -170,6 +176,56 @@ test("CSS safety guard rejects layout, hiding, and input-blocking rules", () => 
   assert.doesNotThrow(() => assertThemeSafety(
     'html[data-codex-skin="makima"] [data-codex-intelligence-trigger] {'
       + " padding-left: 10px; padding-right: 10px; margin-right: 6px; }",
+  ));
+  assert.doesNotThrow(() => assertThemeSafety(
+    'html[data-codex-skin="makima"] [data-home-ambient-suggestions] button[aria-labelledby], '
+      + 'html[data-codex-skin="makima"] .group\\/home-suggestion-list-item {'
+      + " padding-left: 14px; padding-right: 14px; }",
+  ));
+  assert.doesNotThrow(() => assertThemeSafety(
+    'html[data-codex-skin="makima"] [data-home-ambient-suggestions]'
+      + ' button[aria-labelledby]:not(:last-child), '
+      + 'html[data-codex-skin="makima"]'
+      + ' .group\\/home-suggestion-list-item:not(:last-child) {'
+      + " margin-bottom: 8px; }",
+  ));
+  assert.doesNotThrow(() => assertThemeSafety(
+    'html[data-codex-skin="makima"] [data-turn-key] > div > div'
+      + ' > .text-token-text-secondary > button[aria-expanded] {'
+      + " padding-left: 8px; padding-right: 8px;"
+      + " padding-top: 3px; padding-bottom: 3px; }",
+  ));
+  assert.doesNotThrow(() => assertThemeSafety(
+    'html[data-codex-skin="makima"] [data-turn-key]'
+      + ' .text-token-text-secondary:has(> .text-token-conversation-body)'
+      + ' > .text-token-conversation-body {'
+      + " padding-left: 8px; padding-right: 8px;"
+      + " padding-top: 3px; padding-bottom: 3px; }",
+  ));
+  assert.doesNotThrow(() => assertThemeSafety(
+    'html[data-codex-skin="makima"] button:not(:disabled), '
+      + 'html[data-codex-skin="makima"] a[href], '
+      + 'html[data-codex-skin="makima"] [role="button"]:not([aria-disabled="true"]):not(:disabled), '
+      + 'html[data-codex-skin="makima"] [role="link"]:not([aria-disabled="true"]), '
+      + 'html[data-codex-skin="makima"] summary { cursor: pointer; }',
+  ));
+  assert.doesNotThrow(() => assertThemeSafety(
+    'html[data-codex-skin="makima"] '
+      + 'div.relative.z-0.-mb-8.overflow-hidden.rounded-t-3xl'
+      + '.bg-token-input-validation-error-background\\/70 { display: none; }',
+  ));
+  assert.doesNotThrow(() => assertThemeSafety(
+    'html[data-codex-skin="makima"] [data-app-shell-tab-controller], '
+      + 'html[data-codex-skin="makima"] [data-app-shell-tab-controller] > [role="button"], '
+      + 'html[data-codex-skin="makima"] [data-app-shell-tab-controller] [role="tab"], '
+      + 'html[data-codex-skin="makima"] [data-app-shell-tab-controller] [role="tab"] * {'
+      + ' opacity: 1; }',
+  ));
+  assert.doesNotThrow(() => assertThemeSafety(
+    'html[data-codex-skin="makima"] [data-app-shell-tab-close-button], '
+      + 'html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller] > [role="tablist"] > button, '
+      + 'html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller="right"] > div > button {'
+      + ' opacity: 1; }',
   ));
   const rejected = [
     ['html[data-codex-skin="makima"] { font-family: serif; }', /font declarations/],
@@ -190,7 +246,13 @@ test("CSS safety guard rejects layout, hiding, and input-blocking rules", () => 
     ['html[data-codex-skin="makima"] main { padding-top: 8px; }', /padding-top/],
     ['html[data-codex-skin="makima"] main { padding-bottom: 8px; }', /padding-bottom/],
     ['html[data-codex-skin="makima"] main { margin-right: 6px; }', /margin-right/],
+    ['html[data-codex-skin="makima"] [data-home-ambient-suggestions] button[aria-labelledby]:not(:last-child), html[data-codex-skin="makima"] .group\\/home-suggestion-list-item:not(:last-child) { margin-bottom: 6px; }', /margin-bottom/],
+    ['html[data-codex-skin="makima"] [data-home-ambient-suggestions] button[aria-labelledby], html[data-codex-skin="makima"] .group\\/home-suggestion-list-item { padding-left: 12px; }', /padding-left/],
+    ['html[data-codex-skin="makima"] main { cursor: pointer; }', /cursor/],
+    ['html[data-codex-skin="makima"] button:not(:disabled), html[data-codex-skin="makima"] a[href], html[data-codex-skin="makima"] [role="button"]:not([aria-disabled="true"]):not(:disabled), html[data-codex-skin="makima"] [role="link"]:not([aria-disabled="true"]), html[data-codex-skin="makima"] summary { cursor: default; }', /cursor/],
+    ['html[data-codex-skin="makima"] [data-app-shell-tab-close-button], html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller] > [role="tablist"] > button, html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller="right"] > div > button { opacity: 0.5; }', /opacity/],
     ['html[data-codex-skin="makima"] [data-response-annotation-conversation] [data-wide-markdown-block][data-wide-markdown-block-kind="image"] { --wide-block-width: 120%; }', /custom property/],
+    ['html[data-codex-skin="makima"] [data-response-annotation-conversation] [data-wide-markdown-block][data-wide-markdown-block-kind="mermaid"] { --wide-block-width: 120%; }', /custom property/],
     ['html[data-codex-skin="makima"] main { --wide-block-width: 100%; }', /custom property/],
     ['html[data-codex-skin="makima"] main { animation: pulse 1s infinite; }', /animation/],
     ['html[data-codex-skin="makima"] main { transition: all 1s; }', /transition cannot animate all/],
@@ -308,4 +370,41 @@ test("pending apply is cancelled by remove before DOMContentLoaded", () => {
   const result = pending();
   assert.equal(result.cancelled, true);
   assert.equal(root.dataset.codexSkin, undefined);
+});
+
+test("热重载同时替换当前页面样式和后续导航注入脚本", async () => {
+  const calls = [];
+  const client = {
+    closed: false,
+    async call(method, params) {
+      calls.push({ method, params });
+      if (method === "Page.addScriptToEvaluateOnNewDocument") {
+        return { identifier: "new-script" };
+      }
+      if (method === "Runtime.evaluate") {
+        return { result: { value: { applied: true } } };
+      }
+      return {};
+    },
+  };
+  const session = {
+    client,
+    identifier: "old-script",
+    applyScript: buildApplyScript("old-css"),
+    theme: THEMES.makima,
+  };
+
+  await updateThemeSessionCss(session, "new-css");
+
+  assert.equal(session.identifier, "new-script");
+  assert.match(session.applyScript, /new-css/);
+  assert.deepEqual(
+    calls.map(({ method }) => method),
+    [
+      "Page.addScriptToEvaluateOnNewDocument",
+      "Runtime.evaluate",
+      "Page.removeScriptToEvaluateOnNewDocument",
+    ],
+  );
+  assert.equal(calls[2].params.identifier, "old-script");
 });

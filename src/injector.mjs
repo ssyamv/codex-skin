@@ -141,8 +141,38 @@ export function validateSkinCss(css, { theme = DEFAULT_THEME } = {}) {
   const responseAnnotationSelector = `${rootSelector} [data-response-annotation-conversation]`;
   const finalAssistantFallbackSelector = `${rootSelector} [data-local-conversation-final-assistant]:not(:has([data-response-annotation-conversation]))`;
   const responseImageWideBlockSelector = `${responseAnnotationSelector} [data-wide-markdown-block][data-wide-markdown-block-kind="image"]`;
+  const responseMermaidWideBlockSelector = `${responseAnnotationSelector} [data-wide-markdown-block][data-wide-markdown-block-kind="mermaid"]`;
   const summaryItemSelector = `${rootSelector} [data-pip-obstacle="thread-summary-panel"] [data-slot="thread-summary-panel-item-button"]`;
   const intelligenceTriggerSelector = `${rootSelector} [data-codex-intelligence-trigger]`;
+  const homeSuggestionSelector = [
+    `${rootSelector} [data-home-ambient-suggestions] button[aria-labelledby]`,
+    `${rootSelector} .group\\/home-suggestion-list-item`,
+  ].join(", ");
+  const homeSuggestionSpacingSelector = [
+    `${rootSelector} [data-home-ambient-suggestions] button[aria-labelledby]:not(:last-child)`,
+    `${rootSelector} .group\\/home-suggestion-list-item:not(:last-child)`,
+  ].join(", ");
+  const interactiveCursorSelector = [
+    `${rootSelector} button:not(:disabled)`,
+    `${rootSelector} a[href]`,
+    `${rootSelector} [role="button"]:not([aria-disabled="true"]):not(:disabled)`,
+    `${rootSelector} [role="link"]:not([aria-disabled="true"])`,
+    `${rootSelector} summary`,
+  ].join(", ");
+  const completedTurnStatusSelector = `${rootSelector} [data-turn-key] > div > div > .text-token-text-secondary > button[aria-expanded]`;
+  const runningTurnStatusSelector = `${rootSelector} [data-turn-key] .text-token-text-secondary:has(> .text-token-conversation-body) > .text-token-conversation-body`;
+  const fullAccessWarningSelector = `${rootSelector} div.relative.z-0.-mb-8.overflow-hidden.rounded-t-3xl.bg-token-input-validation-error-background\\/70`;
+  const tabReadabilitySelector = [
+    `${rootSelector} [data-app-shell-tab-controller]`,
+    `${rootSelector} [data-app-shell-tab-controller] > [role="button"]`,
+    `${rootSelector} [data-app-shell-tab-controller] [role="tab"]`,
+    `${rootSelector} [data-app-shell-tab-controller] [role="tab"] *`,
+  ].join(", ");
+  const tabActionReadabilitySelector = [
+    `${rootSelector} [data-app-shell-tab-close-button]`,
+    `${rootSelector} [data-app-shell-tab-strip-controller] > [role="tablist"] > button`,
+    `${rootSelector} [data-app-shell-tab-strip-controller="right"] > div > button`,
+  ].join(", ");
   const errorPrefix = `Unsafe ${theme.displayName} CSS`;
   const forbiddenPatterns = [
     [/([;{]|^)\s*font(?:-family|-size)?\s*:/im, "font declarations"],
@@ -375,17 +405,26 @@ export function validateSkinCss(css, { theme = DEFAULT_THEME } = {}) {
   const decorationRules = new Map([
     [decorationSelector, decorationOnly],
     [navigationRailBackdropSelector, navigationRailDecorationOnly],
+    [tabReadabilitySelector, new Map([["opacity", "1"]])],
+    [tabActionReadabilitySelector, new Map([["opacity", "1"]])],
   ]);
   const layoutExceptions = new Map([
     ["background-attachment", new Map([
       [navigationRailBackdropSelector, "fixed"],
     ])],
+    ["cursor", new Map([
+      [interactiveCursorSelector, "pointer"],
+    ])],
+    ["display", new Map([[fullAccessWarningSelector, "none"]])],
     ["padding-left", new Map([
       [activityHeaderSelector, "10px"],
       [responseAnnotationSelector, "10px"],
       [finalAssistantFallbackSelector, "10px"],
       [summaryItemSelector, "8px"],
       [intelligenceTriggerSelector, "10px"],
+      [homeSuggestionSelector, "14px"],
+      [completedTurnStatusSelector, "8px"],
+      [runningTurnStatusSelector, "8px"],
     ])],
     ["padding-right", new Map([
       [activityHeaderSelector, "10px"],
@@ -393,17 +432,25 @@ export function validateSkinCss(css, { theme = DEFAULT_THEME } = {}) {
       [finalAssistantFallbackSelector, "10px"],
       [summaryItemSelector, "8px"],
       [intelligenceTriggerSelector, "10px"],
+      [homeSuggestionSelector, "14px"],
+      [completedTurnStatusSelector, "8px"],
+      [runningTurnStatusSelector, "8px"],
     ])],
     ["padding-top", new Map([
       [responseAnnotationSelector, "8px"],
       [finalAssistantFallbackSelector, "8px"],
       [activityHeaderSelector, "4px"],
+      [completedTurnStatusSelector, "3px"],
+      [runningTurnStatusSelector, "3px"],
     ])],
     ["padding-bottom", new Map([
       [responseAnnotationSelector, "8px"],
       [finalAssistantFallbackSelector, "8px"],
       [activityHeaderSelector, "4px"],
+      [completedTurnStatusSelector, "3px"],
+      [runningTurnStatusSelector, "3px"],
     ])],
+    ["margin-bottom", new Map([[homeSuggestionSpacingSelector, "8px"]])],
     ["margin-right", new Map([[intelligenceTriggerSelector, "6px"]])],
     ["visibility", new Map([[shimmerDecorationSelector, "hidden"]])],
     ["width", new Map([[navigationRailBackdropSelector, "24px"]])],
@@ -440,6 +487,7 @@ export function validateSkinCss(css, { theme = DEFAULT_THEME } = {}) {
   const safeLayoutCustomProperties = new Map([
     ["--wide-block-width", new Map([
       [responseImageWideBlockSelector, "100%"],
+      [responseMermaidWideBlockSelector, "100%"],
     ])],
   ]);
   for (const rule of parseCssRules(css)) {
@@ -905,6 +953,32 @@ async function createSession(target, css, theme) {
   }
 }
 
+export async function updateThemeSessionCss(session, css) {
+  const nextApplyScript = buildApplyScript(css, session.theme);
+  let nextIdentifier = null;
+  try {
+    ({ identifier: nextIdentifier } = await session.client.call(
+      "Page.addScriptToEvaluateOnNewDocument",
+      { source: nextApplyScript },
+    ));
+    await evaluate(session.client, nextApplyScript);
+    await session.client.call("Page.removeScriptToEvaluateOnNewDocument", {
+      identifier: session.identifier,
+    });
+  } catch (error) {
+    if (nextIdentifier) {
+      await session.client.call("Page.removeScriptToEvaluateOnNewDocument", {
+        identifier: nextIdentifier,
+      }).catch(() => {});
+    }
+    await evaluate(session.client, session.applyScript).catch(() => {});
+    throw error;
+  }
+  session.identifier = nextIdentifier;
+  session.applyScript = nextApplyScript;
+  return session;
+}
+
 async function removeSession(session) {
   if (session.client.closed) return;
   const failures = [];
@@ -1024,6 +1098,33 @@ export class ThemeMonitor {
     if (failures.length > 0) {
       throw new AggregateError(failures, "One or more theme sessions failed to clean up");
     }
+  }
+
+  async updateCss(css) {
+    if (!this.#running) throw new Error("Theme monitor is not running");
+    if (css === this.#css) {
+      return { changed: false, targetCount: this.#sessions.size };
+    }
+    await this.#tickPromise?.catch(() => {});
+    if (!this.#running) throw new Error("Theme monitor stopped during CSS reload");
+    this.#css = css;
+    const sessions = [...this.#sessions.entries()];
+    const results = await Promise.allSettled(
+      sessions.map(([, session]) => updateThemeSessionCss(session, css)),
+    );
+    const failures = [];
+    results.forEach((result, index) => {
+      if (result.status === "fulfilled") return;
+      const [id, session] = sessions[index];
+      session.client.close();
+      this.#sessions.delete(id);
+      failures.push(result.reason);
+    });
+    this.#lastHealth = 0;
+    if (failures.length > 0) {
+      throw new AggregateError(failures, "One or more theme sessions failed to hot reload");
+    }
+    return { changed: true, targetCount: sessions.length };
   }
 
   async #runTick() {

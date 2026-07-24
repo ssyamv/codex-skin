@@ -27,7 +27,7 @@
   "scripts": {
     "start": "node ./bin/codex-skin.mjs start",
     "stop": "node ./bin/codex-skin.mjs stop",
-    "check": "node --check ./bin/codex-skin.mjs && node --check ./src/cdp.mjs && node --check ./src/injector.mjs && node --check ./src/runtime.mjs && node --check ./src/theme-store.mjs && node --check ./src/themes.mjs && node --check ./scripts/runtime-probe.mjs && node --check ./.agents/skills/customize-codex-theme/scripts/create-theme-pack.mjs && zsh -n ./scripts/build-app.zsh ./scripts/package-release.zsh ./.agents/skills/customize-codex-theme/scripts/install-app.zsh",
+    "check": "node --check ./bin/codex-skin.mjs && node --check ./src/cdp.mjs && node --check ./src/hot-reload.mjs && node --check ./src/injector.mjs && node --check ./src/runtime.mjs && node --check ./src/theme-store.mjs && node --check ./src/themes.mjs && node --check ./scripts/runtime-probe.mjs && node --check ./.agents/skills/customize-codex-theme/scripts/create-theme-pack.mjs && zsh -n ./scripts/build-app.zsh ./scripts/package-release.zsh ./.agents/skills/customize-codex-theme/scripts/install-app.zsh",
     "test": "node --test",
     "verify": "npm run check && npm test",
     "test:swift": "./scripts/test-swift-theme-model.zsh",

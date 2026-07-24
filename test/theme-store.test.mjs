@@ -11,6 +11,7 @@ import {
   deriveThemeRuntimeFields,
   validateThemePack,
 } from "../src/theme-store.mjs";
+import { resolveRuntimeTheme } from "../src/themes.mjs";
 
 const PNG_1X1 = Buffer.from(
   "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
@@ -180,4 +181,57 @@ test("派生字段只接受规范化 ID", () => {
     snapshotFile: "quiet-night-runtime.png",
   });
   assert.throws(() => deriveThemeRuntimeFields("../night"), /主题 ID/);
+});
+
+test("仓库 dist 应用运行时自动使用同仓库主题源码", async () => {
+  const { root, builtInRoot } = await makeWorkspace();
+  const packagedDirectory = await writePack(builtInRoot, {
+    id: "makima",
+    displayName: "Makima",
+    appearance: "light",
+  });
+  const sourceRoot = path.join(root, "theme-packs");
+  const sourceDirectory = await writePack(sourceRoot, {
+    id: "makima",
+    displayName: "Makima",
+    appearance: "light",
+    css: 'html[data-codex-skin="makima"] { --cs-makima-ink: #111; color: var(--cs-makima-ink); background-image: url("__CODEX_SKIN_HERO_IMAGE__"); }\n',
+  });
+  await writeFile(path.join(root, "package.json"), JSON.stringify({
+    name: "codex-skin-studio",
+  }));
+  const packaged = await validateThemePack(packagedDirectory, { source: "builtin" });
+  const entrypointPath = path.join(
+    root,
+    "dist",
+    "Codex Skin Studio.app",
+    "Contents",
+    "Resources",
+    "runtime",
+    "bin",
+    "codex-skin.mjs",
+  );
+
+  const resolved = await resolveRuntimeTheme(packaged, { entrypointPath, environment: {} });
+
+  assert.equal(resolved.cssPath, path.join(sourceDirectory, "theme.css"));
+  assert.equal(resolved.developmentSourcePath, sourceDirectory);
+  assert.equal(resolved.source, "builtin");
+});
+
+test("非仓库安装版继续使用打包主题", async () => {
+  const { builtInRoot } = await makeWorkspace();
+  const packagedDirectory = await writePack(builtInRoot, {
+    id: "makima",
+    displayName: "Makima",
+    appearance: "light",
+  });
+  const packaged = await validateThemePack(packagedDirectory, { source: "builtin" });
+
+  const resolved = await resolveRuntimeTheme(packaged, {
+    entrypointPath: "/Applications/Codex Skin Studio.app/Contents/Resources/runtime/bin/codex-skin.mjs",
+    environment: {},
+  });
+
+  assert.equal(resolved, packaged);
 });

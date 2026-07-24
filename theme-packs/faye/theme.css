@@ -520,6 +520,10 @@ html[data-codex-skin="faye"] [data-local-conversation-final-assistant] {
     0 18px 52px rgb(0 0 0 / 22%) !important;
 }
 
+html[data-codex-skin="faye"] [data-response-annotation-conversation] [data-wide-markdown-block][data-wide-markdown-block-kind="mermaid"] {
+  --wide-block-width: 100% !important;
+}
+
 html[data-codex-skin="faye"] [data-user-message-bubble] {
   background:
     radial-gradient(circle at 92% 18%, rgb(131 203 187 / 13%), transparent 36%),
@@ -640,7 +644,7 @@ html[data-codex-skin="faye"] [data-pip-obstacle="thread-summary-panel"] {
   backdrop-filter: blur(8px) saturate(1.04);
 }
 
-html[data-codex-skin="faye"] [data-wide-markdown-block],
+html[data-codex-skin="faye"] [data-wide-markdown-block]:not([data-wide-markdown-block-kind="mermaid"]):not(:has(img)):not(:has([data-markdown-image-preview-trigger])),
 html[data-codex-skin="faye"] pre {
   background: var(--cs-faye-glass-code) !important;
   border-color: rgb(95 175 157 / 16%) !important;
