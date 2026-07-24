@@ -299,6 +299,10 @@ test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () =
   );
   assert.match(
     css,
+    /\[data-nested-in-plan\]\s*>\s*\[data-nested-in-plan\]\s*\{[^}]*background:\s*transparent[^}]*border-radius:\s*0[^}]*box-shadow:\s*none/s,
+  );
+  assert.match(
+    css,
     /\[data-app-shell-tab-controller\]\s+\[role="tab"\][^{]*\{[^}]*color:\s*#20231f[^}]*-webkit-text-fill-color:\s*#20231f[^}]*-webkit-text-stroke:\s*0\.35px #20231f[^}]*text-shadow:\s*none/s,
   );
   assert.match(
@@ -340,6 +344,10 @@ test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () =
   assert.doesNotMatch(
     css,
     /\[data-app-shell-header-edge-scroll\][^{]*\{[^}]*inset 0 -1px/s,
+  );
+  assert.match(
+    css,
+    /\[data-turn-key\]\s+\[data-local-conversation-user-anchor\]\s*\{[^}]*padding-top:\s*12px\s*!important/s,
   );
   assert.match(
     css,

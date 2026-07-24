@@ -223,6 +223,10 @@ test("CSS safety guard rejects layout, hiding, and input-blocking rules", () => 
       + 'html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller="right"] > div > button {'
       + ' opacity: 1; }',
   ));
+  assert.doesNotThrow(() => assertThemeSafety(
+    'html[data-codex-skin="makima"] [data-turn-key] '
+      + '[data-local-conversation-user-anchor] { padding-top: 12px; }',
+  ));
   const rejected = [
     ['html[data-codex-skin="makima"] { font-family: serif; }', /font declarations/],
     ['html[data-codex-skin="makima"] button { display: none; }', /display/],
