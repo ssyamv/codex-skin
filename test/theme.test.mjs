@@ -27,6 +27,19 @@ test("主题注册表保持玛奇玛默认值并隔离 Faye 运行状态", () =>
   assert.throws(() => resolveTheme("unknown"), /未知主题/);
 });
 
+test("内置主题的 Composer 浮层背景匹配内容圆角", async () => {
+  const [makimaCss, fayeCss] = await Promise.all([
+    readFile(themePath, "utf8"),
+    readFile(fayeThemePath, "utf8"),
+  ]);
+  for (const css of [makimaCss, fayeCss]) {
+    assert.match(
+      css,
+      /\[data-composer-overlay-floating-ui\]\s*\{[^}]*border-radius:\s*20px/s,
+    );
+  }
+});
+
 test("玛奇玛回合处理耗时使用主文字色", async () => {
   const css = await readFile(themePath, "utf8");
   assert.match(
