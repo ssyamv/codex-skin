@@ -161,6 +161,7 @@ export function validateSkinCss(css, { theme = DEFAULT_THEME } = {}) {
   ].join(", ");
   const completedTurnStatusSelector = `${rootSelector} [data-turn-key] > div > div > .text-token-text-secondary > button[aria-expanded]`;
   const runningTurnStatusSelector = `${rootSelector} [data-turn-key] .text-token-text-secondary:has(> .text-token-conversation-body) > .text-token-conversation-body`;
+  const userMessageAnchorSelector = `${rootSelector} [data-turn-key] [data-local-conversation-user-anchor]`;
   const tabReadabilitySelector = [
     `${rootSelector} [data-app-shell-tab-controller]`,
     `${rootSelector} [data-app-shell-tab-controller] > [role="button"]`,
@@ -435,6 +436,7 @@ export function validateSkinCss(css, { theme = DEFAULT_THEME } = {}) {
       [runningTurnStatusSelector, "8px"],
     ])],
     ["padding-top", new Map([
+      [userMessageAnchorSelector, "12px"],
       [responseAnnotationSelector, "8px"],
       [finalAssistantFallbackSelector, "8px"],
       [activityHeaderSelector, "4px"],

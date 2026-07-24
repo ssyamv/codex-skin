@@ -28,6 +28,8 @@
     <string>14.0</string>
     <key>NSHighResolutionCapable</key>
     <true/>
+    <key>NSAppleEventsUsageDescription</key>
+    <string>Codex Skin Studio 需要使用 Apple Events，以便其启动的 Codex 与 Codex Computer Use 辅助进程通信。</string>
     <key>NSPrincipalClass</key>
     <string>NSApplication</string>
 </dict>
