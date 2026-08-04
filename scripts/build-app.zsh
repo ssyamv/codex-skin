@@ -8,16 +8,61 @@ source_root="$repo_root/macos/CodexPro"
 build_root="$(mktemp -d "${TMPDIR:-/tmp}/codex-skin-studio-build.XXXXXX")"
 app_path="$build_root/Codex Skin Studio.app"
 node_path="${CODEX_SKIN_NODE:-${CODEX_PRO_NODE:-$(whence -p node 2>/dev/null || true)}}"
+otool_path="${CODEX_SKIN_OTOOL:-/usr/bin/otool}"
 
 cleanup() {
   /bin/rm -rf "$build_root"
 }
 trap cleanup EXIT
 
+validate_node_dylib_closure() {
+  local candidate="$1"
+  local -a dependency_lines
+  local dependency
+  local line
+
+  if [[ ! -x "$otool_path" ]]; then
+    print -u2 -r -- "无法检查 Node.js 动态库依赖：otool 不可执行：$otool_path"
+    return 1
+  fi
+
+  if ! dependency_lines=("${(@f)$("$otool_path" -L "$candidate")}"); then
+    print -u2 -r -- "无法检查 Node.js 动态库依赖：$candidate 不是可分析的 Mach-O 文件。"
+    return 1
+  fi
+
+  # The first line is the Mach-O path itself. Any non-system install name can
+  # make the copied runtime depend on the builder's local package manager.
+  for line in "${dependency_lines[@]:1}"; do
+    dependency="$(print -r -- "$line" | /usr/bin/sed -E 's/^[[:space:]]*([^[:space:]]+).*$/\1/')"
+    case "$dependency" in
+      /System/Library/*|/usr/lib/*)
+        ;;
+      *)
+        print -u2 -r -- "拒绝打包依赖非系统动态库的 Node.js：$dependency"
+        print -u2 -r -- "请使用自包含的 Node.js 22+（otool -L 仅应引用 /System/Library 或 /usr/lib），或通过 CODEX_SKIN_NODE/CODEX_PRO_NODE 指定该 Node。"
+        return 1
+        ;;
+    esac
+  done
+}
+
+if [[ "${1:-}" == "--check-node-runtime" ]]; then
+  if (( $# != 2 )); then
+    print -u2 -r -- "Usage: $0 --check-node-runtime <node-path>"
+    exit 2
+  fi
+  validate_node_dylib_closure "$2"
+  print -r -- "Node.js 动态库依赖检查通过：$2"
+  exit 0
+fi
+
 if [[ -z "$node_path" || ! -x "$node_path" ]]; then
   print -u2 -r -- "找不到可打包的 Node.js 22+。可通过 CODEX_PRO_NODE 指定。"
   exit 1
 fi
+
+validate_node_dylib_closure "$node_path"
 
 node_major="$($node_path -p 'Number(process.versions.node.split(".")[0])')"
 if (( node_major < 22 )); then
@@ -50,6 +95,7 @@ target_arch="$(uname -m)"
 /bin/cp "$source_root/Info.plist" "$app_path/Contents/Info.plist"
 /bin/cp "$node_path" "$app_path/Contents/Resources/runtime/node"
 /bin/chmod 755 "$app_path/Contents/Resources/runtime/node"
+validate_node_dylib_closure "$app_path/Contents/Resources/runtime/node"
 /bin/cp "$repo_root/bin/codex-skin.mjs" "$app_path/Contents/Resources/runtime/bin/"
 /bin/cp "$repo_root/src/"*.mjs "$app_path/Contents/Resources/runtime/src/"
 /bin/cp -R "$repo_root/theme-packs" "$app_path/Contents/Resources/runtime/"

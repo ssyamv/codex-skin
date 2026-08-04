@@ -1,6 +1,6 @@
 {
   "name": "codex-skin-studio",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "private": false,
   "type": "module",
   "description": "Unofficial, reversible custom theme studio for Codex Desktop on macOS.",

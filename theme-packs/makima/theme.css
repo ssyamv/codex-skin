@@ -279,7 +279,6 @@ html[data-codex-skin="makima"] #root {
 
 html[data-codex-skin="makima"] [data-app-shell-aura-tab-strip],
 html[data-codex-skin="makima"] [data-app-shell-tab-strip-controller],
-html[data-codex-skin="makima"] [data-app-shell-header-edge-scroll],
 html[data-codex-skin="makima"] .app-shell-tab-background {
   background:
     linear-gradient(
@@ -293,12 +292,9 @@ html[data-codex-skin="makima"] .app-shell-tab-background {
 }
 
 html[data-codex-skin="makima"] header.app-header-tint[data-app-shell-header-edge-scroll] {
-  background:
-    linear-gradient(
-      90deg,
-      rgb(247 245 239 / 97%) 0 var(--cs-makima-header-opaque-end),
-      transparent var(--cs-makima-header-opaque-end) 100%
-    ) !important;
+  /* This fixed header sits above the tab strip; keep its overlay transparent. */
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 html[data-codex-skin="makima"] [data-app-shell-tab-controller]:has([role="tab"][aria-selected="true"]) > [role="button"] {
@@ -397,6 +393,27 @@ html[data-codex-skin="makima"] [data-app-shell-header-edge-scroll] button {
     border-color 120ms ease-out,
     box-shadow 140ms ease-out,
     color 120ms ease-out;
+}
+
+/* Preserve the native split-button corners inside its clipping wrapper. */
+html[data-codex-skin="makima"]
+  [data-app-shell-header-edge-scroll]
+  div:has(> button + button[aria-haspopup="menu"])
+  > button:first-child {
+  border-start-start-radius: inherit !important;
+  border-end-start-radius: inherit !important;
+  border-start-end-radius: 0 !important;
+  border-end-end-radius: 0 !important;
+}
+
+html[data-codex-skin="makima"]
+  [data-app-shell-header-edge-scroll]
+  div:has(> button + button[aria-haspopup="menu"])
+  > button[aria-haspopup="menu"]:last-child {
+  border-start-start-radius: 0 !important;
+  border-end-start-radius: 0 !important;
+  border-start-end-radius: inherit !important;
+  border-end-end-radius: inherit !important;
 }
 
 html[data-codex-skin="makima"] [data-app-shell-aura-tab-strip] button svg,
@@ -958,6 +975,11 @@ html[data-codex-skin="makima"] [data-response-annotation-conversation] [data-wid
   --wide-block-width: 100% !important;
 }
 
+html[data-codex-skin="makima"] [data-response-annotation-conversation] [data-wide-markdown-block]:has(table) {
+  background: #f7f5ef !important;
+  border-color: rgb(122 91 50 / 16%) !important;
+}
+
 html[data-codex-skin="makima"] [data-user-message-bubble] {
   background: rgb(247 245 239 / 94%) !important;
   border-color: rgb(135 107 62 / 24%) !important;
@@ -1207,20 +1229,12 @@ html[data-codex-skin="makima"] [data-codex-approval-surface] svg {
   color: var(--cs-makima-copper-500) !important;
 }
 
-html[data-codex-skin="makima"] [data-wide-markdown-block]:not([data-wide-markdown-block-kind="mermaid"]):not(:has(img)):not(:has([data-markdown-image-preview-trigger])),
 html[data-codex-skin="makima"] pre {
   background: var(--cs-makima-glass-code) !important;
   border-color: rgb(122 91 50 / 16%) !important;
   box-shadow:
     inset 0 1px rgb(122 91 50 / 9%),
     0 12px 32px rgb(85 61 45 / 9%) !important;
-}
-
-html[data-codex-skin="makima"] [data-wide-markdown-block]:has(img),
-html[data-codex-skin="makima"] [data-wide-markdown-block]:has([data-markdown-image-preview-trigger]) {
-  background: transparent !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
 }
 
 html[data-codex-skin="makima"] :not(pre) > code {
@@ -1262,11 +1276,10 @@ html[data-codex-skin="makima"] .codex-dialog-overlay {
   background: rgb(51 40 36 / 38%) !important;
 }
 
-html[data-codex-skin="makima"] [role="dialog"][data-state="open"],
+html[data-codex-skin="makima"] [role="dialog"][data-state="open"]:not(:has([cmdk-root])),
 html[data-codex-skin="makima"] [data-radix-menu-content],
 html[data-codex-skin="makima"] [role="menu"][data-state="open"],
 html[data-codex-skin="makima"] [role="listbox"][data-state="open"],
-html[data-codex-skin="makima"] .command-menu-dialog,
 html[data-codex-skin="makima"] [data-codex-branch-create-dialog] {
   background: linear-gradient(
     155deg,
@@ -1278,6 +1291,11 @@ html[data-codex-skin="makima"] [data-codex-branch-create-dialog] {
     inset 0 0 0 1px rgb(122 91 50 / 7%),
     0 26px 68px rgb(85 61 45 / 18%) !important;
   backdrop-filter: blur(8px) saturate(0.94);
+}
+
+/* cmdk-root already owns the rounded, clipped command surface. Keep focus inside it. */
+html[data-codex-skin="makima"] [cmdk-root] > [cmdk-input]:focus-visible {
+  box-shadow: inset 0 -1px var(--cs-makima-edge-focus) !important;
 }
 
 html[data-codex-skin="makima"] [data-command-menu-loading],

@@ -40,6 +40,40 @@ test("内置主题的 Composer 浮层背景匹配内容圆角", async () => {
   }
 });
 
+test("玛奇玛命令搜索面板保留原生圆角和裁剪", async () => {
+  const css = await readFile(themePath, "utf8");
+  assert.match(
+    css,
+    /\[role="dialog"\]\[data-state="open"\]:not\(:has\(\[cmdk-root\]\)\)/,
+  );
+  assert.doesNotMatch(css, /\.command-menu-dialog\s*,?\s*(?:\n|\{)/);
+});
+
+test("玛奇玛命令搜索输入框的焦点提示保持在圆角面板内", async () => {
+  const css = await readFile(themePath, "utf8");
+  assert.match(
+    css,
+    /\[cmdk-root\]\s*>\s*\[cmdk-input\]:focus-visible\s*\{[^}]*box-shadow:\s*inset\s+0\s+-1px\s+var\(--cs-makima-edge-focus\)\s*!important/s,
+  );
+});
+
+test("玛奇玛 Header split button 保留原生首尾圆角", async () => {
+  const css = await readFile(themePath, "utf8");
+  const splitButton = /\[data-app-shell-header-edge-scroll\][\s\S]*?div:has\(> button \+ button\[aria-haspopup="menu"\]\)[\s\S]*?> button:first-child\s*\{[^}]*border-start-start-radius:\s*inherit\s*!important[^}]*border-end-start-radius:\s*inherit\s*!important[^}]*border-start-end-radius:\s*0\s*!important[^}]*border-end-end-radius:\s*0\s*!important/s;
+  const splitMenu = /\[data-app-shell-header-edge-scroll\][\s\S]*?div:has\(> button \+ button\[aria-haspopup="menu"\]\)[\s\S]*?> button\[aria-haspopup="menu"\]:last-child\s*\{[^}]*border-start-start-radius:\s*0\s*!important[^}]*border-end-start-radius:\s*0\s*!important[^}]*border-start-end-radius:\s*inherit\s*!important[^}]*border-end-end-radius:\s*inherit\s*!important/s;
+  assert.match(css, splitButton);
+  assert.match(css, splitMenu);
+});
+
+test("玛奇玛顶部标签栏不被 Header 遮罩覆盖", async () => {
+  const css = await readFile(themePath, "utf8");
+  const tabStripSurface = /\[data-app-shell-aura-tab-strip\],[\s\S]*?\[data-app-shell-tab-strip-controller\],[\s\S]*?\.app-shell-tab-background\s*\{/;
+  const headerOverlay = /header\.app-header-tint\[data-app-shell-header-edge-scroll\]\s*\{[^}]*background:\s*transparent\s*!important[^}]*box-shadow:\s*none\s*!important/s;
+  assert.match(css, tabStripSurface);
+  assert.doesNotMatch(css, /\[data-app-shell-tab-strip-controller\],[\s\S]*?\[data-app-shell-header-edge-scroll\],[\s\S]*?\.app-shell-tab-background\s*\{/);
+  assert.match(css, headerOverlay);
+});
+
 test("玛奇玛回合处理耗时使用主文字色", async () => {
   const css = await readFile(themePath, "utf8");
   assert.match(
@@ -339,7 +373,7 @@ test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () =
   );
   assert.match(
     css,
-    /header\.app-header-tint\[data-app-shell-header-edge-scroll\][^{]*\{[^}]*background:[^}]*linear-gradient\(\s*90deg[^}]*rgb\(247 245 239 \/ 97%\) 0 var\(--cs-makima-header-opaque-end\)[^}]*transparent var\(--cs-makima-header-opaque-end\) 100%/s,
+    /header\.app-header-tint\[data-app-shell-header-edge-scroll\][^{]*\{[^}]*background:\s*transparent\s*!important[^}]*box-shadow:\s*none\s*!important/s,
   );
   assert.doesNotMatch(
     css,
@@ -491,6 +525,10 @@ test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () =
   );
   assert.match(
     css,
+    /\[data-response-annotation-conversation\]\s+\[data-wide-markdown-block\]:has\(table\)\s*\{[^}]*background:\s*#f7f5ef[^}]*border-color:\s*rgb\(122 91 50 \/ 16%\)/s,
+  );
+  assert.match(
+    css,
     /\[data-user-message-bubble\]\s*\{[^}]*background:\s*rgb\(247 245 239 \/ 94%\)[^}]*border-color:\s*rgb\(135 107 62 \/ 24%\)/s,
   );
   assert.doesNotMatch(
@@ -499,11 +537,11 @@ test("玛奇玛静态主题保留字体并覆盖完整 Codex 表面", async () =
   );
   assert.match(
     css,
-    /\[data-wide-markdown-block\]:not\(\[data-wide-markdown-block-kind="mermaid"\]\):not\(:has\(img\)\):not\(:has\(\[data-markdown-image-preview-trigger\]\)\)/,
+    /html\[data-codex-skin="makima"\]\s+pre\s*\{[^}]*background:\s*var\(--cs-makima-glass-code\)[^}]*border-color:\s*rgb\(122 91 50 \/ 16%\)[^}]*box-shadow:/s,
   );
-  assert.match(
+  assert.doesNotMatch(
     css,
-    /\[data-wide-markdown-block\]:has\(img\)[^{]*,[^{]*\[data-wide-markdown-block\]:has\(\[data-markdown-image-preview-trigger\]\)[^{]*\{[^}]*background:\s*transparent[^}]*border-color:\s*transparent[^}]*box-shadow:\s*none/s,
+    /\[data-wide-markdown-block\](?!:has\(table\))[^{]*\{[^}]*(?:background|border-color|box-shadow)\s*:/s,
   );
   assert.match(
     css,
